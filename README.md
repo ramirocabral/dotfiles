@@ -1,6 +1,7 @@
 # dotfiles
 
-My Arch Linux dotfiles repo. 
+My Arch Linux dotfiles repo. I use [qtile](https://www.qtile.org/) as my window manager.
+
 
 ## Installation
 
@@ -19,7 +20,7 @@ The installed packages are listed in the [packages](packages) file.
     cd ~
     git clone https://github.com/ramirocabral/dotfiles.git
     cd dotfiles
-    ./install.sh
+    ./autoinstall.sh
 ```
 
 ## Keybindings
@@ -48,3 +49,10 @@ You can find the keybindings in the [qtile](.config/qtile/settings/keys.py) conf
 | **mod + w**             | kill window                      |
 | **mod + ctrl + r**      | restart wm                       |
 | **mod + ctrl + q**      | quit                             |
+
+### TODO
+
+* Add makefile
+* Screenshots
+* Add /etc apps
+* new binaries
