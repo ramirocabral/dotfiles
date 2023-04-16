@@ -54,6 +54,9 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # ------------ App Configs ------------
 
+    #Thunar
+    ([mod], "e", lazy.spawn("thunar")),
+
     # Menu
     ([mod], "m", lazy.spawn("rofi -show drun")),
 
@@ -62,9 +65,6 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # Browser
     ([mod], "b", lazy.spawn("firefox")),
-
-    # File Explorer
-    ([mod], "e", lazy.spawn("pcmanfm")),
 
     # Terminal
     ([mod], "Return", lazy.spawn("alacritty")),
@@ -75,7 +75,7 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # Screenshot
     ([mod], "s", lazy.spawn("scrot")),
-    ([mod, "shift"], "s", lazy.spawn("scrot -s")),
+    ([mod, "shift"], "s", lazy.spawn("scrot -s '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f && rm $f'")),
 
     # ------------ Hardware Configs ------------
 
