@@ -6,7 +6,7 @@ chsh -s $(which zsh)
 
 #install packages from my-packages
 
-filename='my-packages'
+filename='packages'
 while read p; do 
     sudo pacman -S $p
     echo "$p"
