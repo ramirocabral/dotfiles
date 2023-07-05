@@ -91,6 +91,6 @@ math() {
 }
 
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
 neofetch
+
+source ~/powerlevel10k/powerlevel10k.zsh-theme
