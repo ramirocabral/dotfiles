@@ -23,8 +23,8 @@ echo "Packages installed"
 echo Start
 for file in .config/*
 do
-    echo $file
-    ln -s $PWD/$file $HOME/.config
+	echo $file
+	ln -s $PWD/$file $HOME/$file
 done
 
 echo "Config files linked"
