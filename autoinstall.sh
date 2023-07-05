@@ -12,7 +12,7 @@ while read p; do
     echo "$p"
 done < "$filename"
 
-pip install psutils
+pip install psutils --break-system-packages
 sudo systemctl enable lightdm
 
 
