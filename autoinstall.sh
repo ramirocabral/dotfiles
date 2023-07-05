@@ -8,7 +8,7 @@ chsh -s $(which zsh)
 
 filename='packages'
 while read p; do 
-    sudo pacman -S $p
+    sudo pacman -S $p --noconfirm
     echo "$p"
 done < "$filename"
 
