@@ -3,12 +3,6 @@
 # Inspired by Luke Smith LARBS script : https://github.com/LukeSmithxyz/LARBS
 
 ### CONSTANTS ###
-
-GREEN=$'\e[0;32m'
-RED=$'\e[0;31m'
-NC=$'\e[0m'
-YELLOW='\033[0;33m'
-
 ### VARIABLES ###
 
 aurhelper="paru"
@@ -19,17 +13,17 @@ progsfile="$homedir/progs.csv"
 
 error(){
     #print error and exit with failure
-    echo -e "${RED}ERROR : $1"
+    echo -e "ERROR : $1"
     exit 1
 }
 
 installpkg(){
     #install packages wihtout confirming and avoid updating already installed packages
-    pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 || echo -e "${RED}Error installing $1"
+    pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 || echo -e "Error installing $1"
 }
 usercheck(){
     #checks username
-    echo -e "${YELLOW}Enter usename:"
+    echo -e "Enter usename:"
     read name 
     id "$name" >/dev/null 2>/dev/null || error "Invalid username!"
     export homedir="/home/$name"
@@ -55,7 +49,6 @@ install_aur(){
                 sudo -u "$name" git pull --force origin master
             }
     cd "$repodir/$1" || exit 1
-    echo "asdf"
     sudo -u "$name" -D "$repodir/$1" makepkg --noconfirm -si >/dev/null 2>&1 || return 1
 }
 
@@ -65,6 +58,7 @@ aurinstall(){
 }
 
 gitinstall(){
+    #just to install p10k, no need to use make 
     progname="${1##*/}"
 	progname="${progname%.git}"
 	dir="$repodir/$progname"
@@ -78,11 +72,13 @@ gitinstall(){
 }
 
 pipinstall(){
+    #if pip is not already installed, it does
     [ -x "$(command -v "pip")" ] || installpkg python-pip >/dev/null 2>&1
     pip install --break-system-packages $1
 }
 
 installationloop(){
+    #using a temp file to prevent editing the original programs file
     ([ -f "$progsfile" ] &&  sed '/^#/d' "$progsfile" >/tmp/progs.csv) \
         || error "Programs file not found"
     aurinstalled="${pacman -Qqm}"
@@ -130,3 +126,6 @@ installationloop
 # Make zsh the default shell for the user.
 chsh -s /bin/zsh "$name" >/dev/null 2>&1
 sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
+
+
+echo -e "DONE!"
