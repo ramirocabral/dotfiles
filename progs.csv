@@ -44,7 +44,9 @@ p,xtermr
 p,zsh
 p,zsh-autosuggestions
 p,zsh-syntax-highlighting
-p,spotify-launcher p,man p,fzf
+p,spotify-launcher
+p,man
+p,fzf
 p,xorg-server
 p,xorg-xinit
 a,visual-studio-code-bin
