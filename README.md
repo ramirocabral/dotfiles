@@ -7,7 +7,7 @@ These are my Arch Linux dotfiles. I use [qtile](http://www.qtile.org/) as my win
 ### Prerequisites
 
 * Arch Linux based distro
-* [git](https://git-scm.com/)
+* [git](https://git-scm.com/) (you may need [github-cli](https://archlinux.org/packages/extra/x86_64/github-cli/) in order to authenticate).
 
 ### Packages
 
