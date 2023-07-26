@@ -6,7 +6,6 @@
 ### VARIABLES ###
 
 aurhelper="paru"
-progsfile="$homedir/progs.csv"
 
 ### FUNCTIONS ###
 
@@ -19,7 +18,7 @@ error(){
 
 installpkg(){
     #install packages wihtout confirming and avoid updating already installed packages
-    pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 || echo -e "Error installing $1"
+    pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 || echo -e "Error installing $1 (PACMAN)"
 }
 usercheck(){
     #checks username
@@ -74,14 +73,15 @@ gitinstall(){
 pipinstall(){
     #if pip is not already installed, it does
     [ -x "$(command -v "pip")" ] || installpkg python-pip >/dev/null 2>&1
-    pip install --break-system-packages $1
+    pip install --break-system-packages $1 >/dev/null 2>&1 || error "Failed installing $1 (PIP)"
 }
 
 installationloop(){
+    progsfile="$homedir/progs.csv"
     #using a temp file to prevent editing the original programs file
     ([ -f "$progsfile" ] &&  sed '/^#/d' "$progsfile" >/tmp/progs.csv) \
         || error "Programs file not found"
-    aurinstalled="${pacman -Qqm}"
+    aurinstalled="$(pacman -Qqm)"
     tmpfile="/tmp/progs.csv"
     while IFS=, read -r tag program; do
         echo "##### Installing $1 #####"
@@ -116,7 +116,7 @@ trap 'rm -f /etc/sudoers.d/larbs-temp' HUP INT QUIT TERM PWR EXIT  # delete file
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/larbs-temp   # allow wheel users(everyone) to run sudo without password
 
 # Install aur helper manually
-
+echo "##### Installing AUR Helper #####"
 install_aur "${aurhelper}" || error "Failed to install AUR helper"
 
 # Main instalattion loop
@@ -127,5 +127,7 @@ installationloop
 chsh -s /bin/zsh "$name" >/dev/null 2>&1
 sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
 
+#enable lightdm service
+systemctl enable lightdm
 
-echo -e "DONE!"
+echo -e "DONE! Now reboot your computer"
