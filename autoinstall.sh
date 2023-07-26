@@ -84,7 +84,7 @@ installationloop(){
     aurinstalled="$(pacman -Qqm)"
     tmpfile="/tmp/progs.csv"
     while IFS=, read -r tag program; do
-        echo "##### Installing $1 #####"
+        echo "##### Installing $tag #####"
         case "$tag" in
             "p") installpkg "$program" ;;
             "g") gitinstall "$program" ;;
