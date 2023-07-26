@@ -1,0 +1,26 @@
+#!/bin/sh
+
+#$1 = directorio pasado en el parametro,en el que borraran los archivos residuales
+
+error() {
+    echo `Error: $1`
+    exit 1
+}
+
+if [ $# -ne 1 ]; then
+    error 'ingrese un directorio a limpiar'
+fi
+
+
+if [ ! -d $1 ]; then
+    error "no existe el directorio $1"
+fi
+
+for file in `ls $1`; do
+    if [[ $file != *\.* || $file == *\.o || $file == *\.class ]]; then
+        echo "Removido $file"
+        rm $1/$file
+    fi
+done
+
+exit 0   

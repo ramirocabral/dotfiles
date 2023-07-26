@@ -1,0 +1,13 @@
+[user]
+	name = ramirocabral
+	email = ramiro.cabral@alu.ing.unlp.edu.ar
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[http]
+	postBuffer = 157286400
+[init]
+	defaultBranch = main

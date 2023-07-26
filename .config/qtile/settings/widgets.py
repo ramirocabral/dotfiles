@@ -1,0 +1,132 @@
+from libqtile import widget
+from .theme import colors
+
+# Get the icons at https://www.nerdfonts.com/cheat-sheet (you need a Nerd Font)
+
+def base(fg='light', bg='dark'): 
+    return {
+        'foreground': colors[fg],
+        'background': colors[bg]
+    }
+
+def separator_less():
+    return widget.Sep(**base(), linewidth=0, padding=10)
+
+def separator():
+    return widget.Sep(**base(), linewidth=0, padding=20)
+
+
+def icon(fg='light', bg='dark', fontsize=16, text="?",padding=3):
+    return widget.TextBox(
+        **base(fg, bg),
+        fontsize=fontsize,
+        text=text,
+        padding=padding
+    )
+
+
+def powerline(fg="light", bg="dark"):
+    return widget.TextBox(
+        font = "UbuntuMono Nerd Font ",
+        text="|", 
+        fontsize=27,
+        padding_y = 2
+    )
+
+
+
+def workspaces(): 
+    return [
+        separator_less(),
+        widget.GroupBox(
+            font = "UbuntuMono Nerd Font",
+            active = colors['active'],
+            center_aligned = True,
+            disable_drag = True,
+            fontsize = 16,
+            highlight_method = "line",
+            this_current_screen_border = colors['color4'],
+
+        ),
+        separator(),
+        separator(),
+        separator(),
+        separator(),
+        separator(),
+        widget.WindowName(**base(fg='light'), fontsize=12, padding=5),
+    ]
+
+
+primary_widgets = [
+    *workspaces(),
+    separator(),
+
+    powerline('color4', 'dark'),
+
+    icon(fontsize=12, bg="dark", text=' '), # Icon: nf-fae-chip
+
+    widget.CPU(
+        **base(bg='dark'),
+        fontsize = 12,
+        format='{load_percent}% '
+    ),
+
+    powerline('color5', 'color4'),    
+
+    icon(bg="dark", text=' ',fontsize=14), # Icon: nf-fa-memory
+    
+    widget.Memory(
+        **base(bg='dark'),
+        fontsize=12,
+        measure_mem='G',
+        format='{MemUsed:.2f}{mm}/{MemTotal:.1f}{mm} ',
+        update_interval=2.0
+    ),
+
+    powerline('color3', 'color5'),
+
+    icon(fontsize=13,bg="dark", text=' '),  # Icon: nf-fa-feed
+    
+    widget.Net(**base(bg='dark'),fontsize=12,format='{down} {up}', interface='enp5s0'),
+
+    powerline('color2', 'color3'),
+
+    widget.CurrentLayoutIcon(**base(bg='dark'), scale=0.60),
+
+    widget.CurrentLayout(**base(bg='dark'), padding=5, fontsize=12),
+
+    powerline('color1', 'color2'),
+
+
+    widget.Clock(**base(bg='dark'), format='%d/%m/%Y - %H:%M ',fontsize=12),
+
+    powerline('light', 'color1'),
+
+    widget.Systray(background=colors['active'],padding=5),
+
+]
+
+secondary_widgets = [
+    *workspaces(),
+
+    separator(),
+
+    powerline('color1', 'dark'),
+
+    widget.CurrentLayoutIcon(**base(bg='color1'), scale=0.65),
+
+    widget.CurrentLayout(**base(bg='color1'), padding=5),
+
+    powerline('color2', 'color1'),
+
+    widget.Clock(**base(bg='color2'), format='%d/%m/%Y - %H:%M '),
+
+    powerline('dark', 'color2'),
+]
+
+widget_defaults = {
+    'font': 'JetBrainsMono Nerd Font Bold',
+    'fontsize': 14,
+    'padding': 1,
+}
+extension_defaults = widget_defaults.copy()

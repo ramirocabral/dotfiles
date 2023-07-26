@@ -1,0 +1,9 @@
+#!/bin/sh
+
+#change keys repeat rate
+
+xset r rate 300 50
+
+#swape escape and capslock
+
+setxkbmap -option caps:swapescape
