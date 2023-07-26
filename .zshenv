@@ -1,0 +1,1 @@
+/home/ramiro/.config/shell/profile
