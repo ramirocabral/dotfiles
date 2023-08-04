@@ -53,7 +53,7 @@ install_aur(){
 
 aurinstall(){
     echo "$aurinstalled" | grep -q "^$1$" && return 1
-    sudo -u "$name" $aurhelper -S --noconfirm "$1" >/dev/null 2>&1 || error "Failed installing $1 (AUR)"
+    sudo -u "$name" $aurhelper -S --noconfirm "$1" >/dev/null 2>&1 || echo "Failed installing $1 (AUR)"
 }
 
 gitinstall(){
@@ -64,7 +64,7 @@ gitinstall(){
     sudo -u "$name" git -C "$repodir" clone --depth 1 --single-branch \
         --no-tags -q "$1" "$dir" ||
         {
-            cd "$dir" || return 1
+            cd "$dir" || echo "Failed installing $1 (GIT)"
             sudo -u "$name" git pull --force origin master
         }
     cd "$dir" || exit 1
@@ -73,7 +73,7 @@ gitinstall(){
 pipinstall(){
     #if pip is not already installed, it does
     [ -x "$(command -v "pip")" ] || installpkg python-pip >/dev/null 2>&1
-    pip install --break-system-packages $1 >/dev/null 2>&1 || error "Failed installing $1 (PIP)"
+    pip install --break-system-packages $1 >/dev/null 2>&1 || echo "Failed installing $1 (PIP)"
 }
 
 installationloop(){

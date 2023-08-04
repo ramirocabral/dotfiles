@@ -71,6 +71,13 @@ primary_widgets = [
         format='{load_percent}% '
     ),
 
+    icon(fontsize=12, bg="dark", text='- '), # Icon: nf-fae-chip
+
+    widget.ThermalSensor(
+        **base(bg='dark'),
+        fontsize=12
+    ),
+
     powerline('color5', 'color4'),    
 
     icon(bg="dark", text=' ',fontsize=14), # Icon: nf-fa-memory
