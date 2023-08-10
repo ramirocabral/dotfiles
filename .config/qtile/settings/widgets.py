@@ -37,7 +37,6 @@ def powerline(fg="light", bg="dark"):
 
 def workspaces(): 
     return [
-        separator_less(),
         widget.GroupBox(
             font = "UbuntuMono Nerd Font",
             active = colors['active'],
@@ -106,8 +105,6 @@ primary_widgets = [
 
 
     widget.Clock(**base(bg='dark'), format='%d/%m/%Y - %H:%M ',fontsize=12),
-
-    powerline('light', 'color1'),
 
     widget.Systray(background=colors['active'],padding=5),
 

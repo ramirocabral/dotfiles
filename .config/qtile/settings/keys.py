@@ -55,11 +55,9 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     #Thunar
     ([mod], "e", lazy.spawn("thunar")),
+    ([mod], "n", lazy.spawn("ranger")),
 
-    #Ranger
-    ([mod], "f", lazy.spawn("ranger")),
-
-    # Menu
+    #Menu
     ([mod], "m", lazy.spawn("rofi -show drun")),
 
     # Window Nav
