@@ -16,3 +16,4 @@ alias vi='nvim'
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias bare="/usr/bin/git --git-dir=$HOME/dotfiles.git --work-tree=$HOME"
+alias setclip="xclip -sel clp"

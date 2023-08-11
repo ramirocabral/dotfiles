@@ -13,7 +13,7 @@ p,discord
 p,efibootmgr
 p,exa
 p,feh
-p,firefox
+a,librewolf-bin
 p,github-cli
 p,gnome-keyring
 p,htop
@@ -61,3 +61,5 @@ p,ranger
 i,psutil
 p,lm_sensors
 p,gparted
+p,ntfs-3g
+p,xclip

@@ -70,7 +70,7 @@ primary_widgets = [
         format='{load_percent}% '
     ),
 
-    icon(fontsize=12, bg="dark", text='- '), # Icon: nf-fae-chip
+    icon(fontsize=12, bg="dark", text=' '), # Icon: nf-fae-chip
 
     widget.ThermalSensor(
         **base(bg='dark'),
