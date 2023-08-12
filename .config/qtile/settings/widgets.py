@@ -60,7 +60,7 @@ primary_widgets = [
     *workspaces(),
     separator(),
 
-    powerline('color4', 'dark'),
+    powerline('color5', 'color4'),    
 
     icon(fontsize=12, bg="dark", text=' '), # Icon: nf-fae-chip
 

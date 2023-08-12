@@ -63,3 +63,7 @@ p,lm_sensors
 p,gparted
 p,ntfs-3g
 p,xclip
+p,zathura
+p,zathura-pdf-poppler
+p,zathura-ps
+p,zathura-djvu
