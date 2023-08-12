@@ -20,7 +20,6 @@ p,htop
 p,jdk-openjdk
 p,jre-openjdk
 p,lightdm-gtk-greeter
-p,lightdm-webkit2-theme-glorious
 p,lsd
 p,mesa
 p,nano
@@ -33,14 +32,12 @@ p,python-pip
 p,qtile
 p,rofi
 p,scrot
-p,snapd
 p,thunar
 p,unrar
 p,unzip
 p,vlc
 p,volumeicon
 p,xclip
-p,xtermr
 p,zsh
 p,zsh-autosuggestions
 p,zsh-syntax-highlighting
