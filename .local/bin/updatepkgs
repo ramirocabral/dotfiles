@@ -1,0 +1,63 @@
+#!/bin/sh
+name="ramiro"
+repodir="/home/ramiro/.local/src"
+homedir="/home/ramiro"
+
+installpkg(){
+    #install packages wihtout confirming and avoid updating already installed packages
+    pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 || echo -e "Error installing $1 (PACMAN)"
+}
+
+aurinstall(){
+    #check if the package is alrealdy installed
+    echo "$aurinstalled" | grep -q "^$1$" && return 1
+    sudo -u "$name" $aurhelper -S --noconfirm "$1" >/dev/null 2>&1 || echo "Failed installing $1 (AUR)"
+}
+
+gitinstall(){
+    #just to install p10k, no need to use make 
+    progname="${1##*/}"
+	progname="${progname%.git}"
+	dir="$repodir/$progname"
+    #check if the package is alrealdy installed
+    echo "$gitinstalled" | grep -q "^$progname$" && return 1
+    sudo -u "$name" git -C "$repodir" clone --depth 1 --single-branch \
+        --no-tags -q "$1" "$dir" ||
+        {
+            cd "$dir" || echo "Failed installing $1 (GIT)"
+            sudo -u "$name" git pull --force origin master
+        }
+    cd "$dir" || exit 1
+}
+
+pipinstall(){
+    #if pip is not already installed, it does
+    [ -x "$(command -v "pip")" ] || installpkg python-pip >/dev/null 2>&1
+    #check if the package is alrealdy installed
+    echo "$pipinstalled" | grep -q "^$1$" && return 1
+    pip install --break-system-packages $1 >/dev/null 2>&1 || echo "Failed installing $1 (PIP)"
+}
+
+installationloop(){
+    progsfile="$homedir/progs.csv"
+    #using a temp file to prevent editing the original programs file
+    ([ -f "$progsfile" ] &&  sed '/^#/d' "$progsfile" >/tmp/progs.csv) \
+        || (echo "Programs file not found";exit 1)
+    aurinstalled="$(pacman -Qqm)"
+    gitinstalled="$(ls "$repodir")"
+    pipinstalled="$(pip list | awk '{print $1}' | tail -n +3)"
+    tmpfile="/tmp/progs.csv"
+    while IFS=, read -r tag program; do
+        echo "Installing $program"
+        case "$tag" in
+            "p") installpkg "$program" ;;
+            "g") gitinstall "$program" ;;
+            "a") aurinstall "$program" ;;
+            "i") pipinstall "$program" ;;
+        esac
+    done <"$tmpfile"
+}
+
+installationloop
+
+echo 'DONE!'

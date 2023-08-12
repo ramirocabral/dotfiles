@@ -16,10 +16,6 @@ error(){
     exit 1
 }
 
-installpkg(){
-    #install packages wihtout confirming and avoid updating already installed packages
-    pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 || echo -e "Error installing $1 (PACMAN)"
-}
 usercheck(){
     #checks username
     echo -e "Enter usename:"
@@ -34,7 +30,7 @@ welcome_msj(){
     echo  "##### Welcome to my dotfiles install script! #####
 ##### Are you running this as the root user and have an internet connection?(y/n):"
     read option 
-    [[ $option == 'y' ]] || error "User exited"
+    [[ $option == 'y' ]] || error "The user exited"
 }
 
 install_aur(){
@@ -51,6 +47,11 @@ install_aur(){
     sudo -u "$name" -D "$repodir/$1" makepkg --noconfirm -si >/dev/null 2>&1 || return 1
 }
 
+installpkg(){
+    #install packages wihtout confirming and avoid updating already installed packages
+    pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 || echo -e "Error installing $1 (PACMAN)"
+}
+
 aurinstall(){
     echo "$aurinstalled" | grep -q "^$1$" && return 1
     sudo -u "$name" $aurhelper -S --noconfirm "$1" >/dev/null 2>&1 || echo "Failed installing $1 (AUR)"
@@ -59,6 +60,7 @@ aurinstall(){
 gitinstall(){
     #just to install p10k, no need to use make 
     progname="${1##*/}"
+    echo "$gitinstalled" | grep -q "^$progname$" && return 1
 	progname="${progname%.git}"
 	dir="$repodir/$progname"
     sudo -u "$name" git -C "$repodir" clone --depth 1 --single-branch \
@@ -73,6 +75,7 @@ gitinstall(){
 pipinstall(){
     #if pip is not already installed, it does
     [ -x "$(command -v "pip")" ] || installpkg python-pip >/dev/null 2>&1
+    echo "$pipinstalled" | grep -q "^$1$" && return 1
     pip install --break-system-packages $1 >/dev/null 2>&1 || echo "Failed installing $1 (PIP)"
 }
 
@@ -82,9 +85,11 @@ installationloop(){
     ([ -f "$progsfile" ] &&  sed '/^#/d' "$progsfile" >/tmp/progs.csv) \
         || error "Programs file not found"
     aurinstalled="$(pacman -Qqm)"
+    gitinstalled="$(ls "$repodir")"
+    pipinstalled="$(pip list | awk '{print $1}' | tail -n +3)"
     tmpfile="/tmp/progs.csv"
     while IFS=, read -r tag program; do
-        echo "##### Installing $tag #####"
+        echo "Installing $program"
         case "$tag" in
             "p") installpkg "$program" ;;
             "g") gitinstall "$program" ;;
@@ -102,7 +107,7 @@ usercheck
 
 echo "##### Installing all dependencies #####"
 
-for x in  sudo zsh base-devel ca-certificates; do
+for x in  sudo zsh base-devel ca-certificates python-pip; do
     installpkg "$x"
 done
 
