@@ -2,6 +2,7 @@
 name="ramiro"
 repodir="/home/ramiro/.local/src"
 homedir="/home/ramiro"
+aurhelper="paru"
 
 installpkg(){
     #install packages wihtout confirming and avoid updating already installed packages
