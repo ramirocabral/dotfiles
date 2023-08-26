@@ -71,19 +71,22 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     # Terminal
     ([mod], "Return", lazy.spawn("alacritty")),
 
+    # Bluetooth Manager
+    ([mod], "c", lazy.spawn("blueman-manager")),
+
     # Screenshot
     ([mod], "s", lazy.spawn("scrot")),
     ([mod, "shift"], "s", lazy.spawn("scrot --select --line mode=edge '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f && rm $f'")),
 
     # ------------ Hardware Configs ------------
 
-    ([], "XF86AudioLowerVolume", lazy.spawn(
+    ([mod], "minus", lazy.spawn(
         "pactl set-sink-volume @DEFAULT_SINK@ -5%"
     )),
-    ([], "XF86AudioRaiseVolume", lazy.spawn(
+    ([mod], "equal", lazy.spawn(
         "pactl set-sink-volume @DEFAULT_SINK@ +5%"
     )),
-    ([], "XF86AudioMute", lazy.spawn(
+    ([mod], "p", lazy.spawn(
         "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     )),
 
