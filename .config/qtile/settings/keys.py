@@ -55,13 +55,15 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     #Thunar
     ([mod], "e", lazy.spawn("thunar")),
+
+    # Ranger
     ([mod], "n", lazy.spawn("ranger")),
 
     #Menu
     ([mod], "m", lazy.spawn("rofi -show drun")),
 
-    # Window Nav
-    ([mod, "shift"], "m", lazy.spawn("rofi -show")),
+    # Spotify
+    ([mod], "s", lazy.spawn("spotify-launcher")),
 
     # Browser
     ([mod], "b", lazy.spawn("librewolf")),

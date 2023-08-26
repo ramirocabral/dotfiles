@@ -1,8 +1,9 @@
 #!/bin/sh
 
+# https://github.com/ramirocabral/dotfiles
+
 # Inspired by Luke Smith LARBS script : https://github.com/LukeSmithxyz/LARBS
 
-### CONSTANTS ###
 ### VARIABLES ###
 
 aurhelper="paru"

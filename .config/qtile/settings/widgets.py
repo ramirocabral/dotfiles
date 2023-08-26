@@ -9,7 +9,6 @@ def base(fg='light', bg='dark'):
         'background': colors[bg]
     }
 
-def separator_less():
     return widget.Sep(**base(), linewidth=0, padding=10)
 
 def separator():
@@ -33,19 +32,20 @@ def powerline(fg="light", bg="dark"):
         padding_y = 2
     )
 
-
-
 def workspaces(): 
     return [
         widget.GroupBox(
+            margin_x=0,
+            margin_y=0,
+            padding_y=2,
             font = "UbuntuMono Nerd Font",
             active = colors['active'],
-            center_aligned = True,
             disable_drag = True,
             fontsize = 16,
-            highlight_method = "line",
+            highlight_method = "block",
+            urgent_alert_method="block",
             this_current_screen_border = colors['color4'],
-
+            rounded=False,
         ),
         separator(),
         separator(),
