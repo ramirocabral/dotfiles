@@ -1,25 +1,25 @@
 [Alsa]
 card=HD-Audio Generic
-channel=Headphone
+channel=Master
 
 [Notification]
 show_notification=true
-notification_type=0
+notification_type=1
 
 [StatusIcon]
-stepsize=63
-onclick=
-theme=Black Gnome
+stepsize=52
+onclick=pactl
+theme=Default
 use_panel_specific_icons=false
 lmb_slider=false
 mmb_mute=false
 use_horizontal_slider=false
-show_sound_level=false
-use_transparent_background=true
+show_sound_level=true
+use_transparent_background=false
 
 [Hotkeys]
-up_enabled=true
-down_enabled=true
+up_enabled=false
+down_enabled=false
 mute_enabled=false
 up=XF86AudioRaiseVolume
 down=XF86AudioLowerVolume
