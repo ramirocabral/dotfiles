@@ -103,6 +103,17 @@ primary_widgets = [
 
     powerline('color1', 'color2'),
 
+    icon(fontsize=14,bg='dark',text=' '),
+
+    widget.PulseVolume(
+        **base(bg='dark'),
+        fontsize=12,
+        fmt='{}',
+        device='default',
+        update_interval=0.05,
+    ),
+
+    powerline('color1', 'color2'),
 
     widget.Clock(**base(bg='dark'), format='%d/%m/%Y - %H:%M ',fontsize=12),
 
