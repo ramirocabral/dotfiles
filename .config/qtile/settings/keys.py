@@ -19,6 +19,9 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod], "h", lazy.layout.left()),
     ([mod], "l", lazy.layout.right()),
 
+    # Change focus to next layout
+    ([mod], "q", lazy.layout.next()),
+
     # Change window sizes (MonadTall)
     ([mod, "shift"], "h", lazy.layout.grow()),
     ([mod, "shift"], "l", lazy.layout.shrink()),
@@ -37,6 +40,7 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     # Kill window
     ([mod], "w", lazy.window.kill()),
 
+    
     # Switch focus of monitors
     ([mod], "period", lazy.next_screen()),
     ([mod], "comma", lazy.prev_screen()),
@@ -46,9 +50,6 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     ([mod, "control"], "q", lazy.shutdown()),
 
-    # cambiar focus a ventana siguiente
-
-    ([mod], "q", lazy.layout.next()),
 
 
     # ------------ App Configs ------------
@@ -57,25 +58,24 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod], "e", lazy.spawn("thunar")),
 
     # Ranger
-    ([mod], "n", lazy.spawn("ranger")),
+    ([mod], "r", lazy.spawn("alacritty -e ranger")),
 
-    #Menu
+    # Rofi
     ([mod], "m", lazy.spawn("rofi -show drun")),
 
     # Spotify
     ([mod], "s", lazy.spawn("spotify-launcher")),
 
     # Browser
-    ([mod], "b", lazy.spawn("librewolf")),
+    ([mod], "l", lazy.spawn("librewolf")),
 
     # Terminal
     ([mod], "Return", lazy.spawn("alacritty")),
 
     # Bluetooth Manager
-    ([mod], "c", lazy.spawn("blueman-manager")),
+    ([mod], "b", lazy.spawn("blueman-manager")),
 
     # Screenshot
-    ([mod], "s", lazy.spawn("scrot")),
     ([mod, "shift"], "s", lazy.spawn("scrot --select --line mode=edge '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f && rm $f'")),
 
     # ------------ Hardware Configs ------------
