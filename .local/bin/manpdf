@@ -1,0 +1,12 @@
+#!/bin/sh
+
+error(){
+    echo $1
+    exit 1 
+}
+
+if [ $# -ne 1 ]; then
+    error "Usage: manpdf <Program name>"
+fi
+
+man -Tpdf $1 | zathura - & > /dev/null || error "Invalid program"
