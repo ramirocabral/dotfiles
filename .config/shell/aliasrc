@@ -12,9 +12,10 @@ alias ls='exa --group-directories-first'
 alias la='ls -la'
 alias tree='exa -T'
 alias ..='cd ..'
-alias vi='nvim'
+alias vim='nvim'
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias bare="/usr/bin/git --git-dir=$HOME/dotfiles.git --work-tree=$HOME"
 alias setclip="xclip -sel clp"
 alias forcepull="git fetch; git reset --hard HEAD; git merge '@{u}'"
+alias prettyjson='python -m json.tool'
