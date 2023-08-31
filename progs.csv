@@ -65,3 +65,6 @@ p,zathura-pdf-poppler
 p,zathura-ps
 p,zathura-djvu
 p,jq
+p,texlive-binextra
+p,texlive-latex
+p,texlive-basic

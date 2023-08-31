@@ -35,6 +35,7 @@ treesitter.setup({
 		"java",
 		"c",
 		"cpp",
+		"latex",
 	},
 	-- auto install above language parsers
 	auto_install = true,
