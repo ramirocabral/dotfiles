@@ -109,6 +109,10 @@ return packer.startup(function(use)
 	--java
 	use("mfussenegger/nvim-jdtls")
 
+	--vimtex
+
+	use("lervag/vimtex")
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end

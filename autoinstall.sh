@@ -28,8 +28,8 @@ usercheck(){
 
 welcome_msj(){
     #confirmation before installation
-    echo  "##### Welcome to my dotfiles install script! #####
-##### Are you running this as the root user and have an internet connection?(y/n):"
+    echo  "Welcome to my dotfiles install script!
+Are you running this as the root user and have an internet connection?(y/n):"
     read option 
     [[ $option == 'y' ]] || error "The user exited"
 }
@@ -122,7 +122,7 @@ trap 'rm -f /etc/sudoers.d/larbs-temp' HUP INT QUIT TERM PWR EXIT  # delete file
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/larbs-temp   # allow wheel users(everyone) to run sudo without password
 
 # Install aur helper manually
-echo "##### Installing AUR Helper #####"
+echo "Installing AUR Helper!"
 install_aur "${aurhelper}" || error "Failed to install AUR helper"
 
 # Main instalattion loop
