@@ -1,9 +1,7 @@
-#!bin/sh
-
-#execute as root
+#!/bin/sh
 
 #start bluetooth service using systemd
-systemctl start bluetooth-service
+systemctl start bluetooth.service
 
 #capture the output of pactl list sinks
 sink_info=$(pactl list sinks | grep -m1 bluez | awk '{print $2}')
