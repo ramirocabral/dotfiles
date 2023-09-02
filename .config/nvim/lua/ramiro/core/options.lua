@@ -1,6 +1,6 @@
 --set relativenumber
- vim.opt.relativenumber = true
- vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.number = true
 
 -- always 8 lines under when you scroll
 vim.opt.scrolloff = 8
@@ -9,18 +9,17 @@ vim.opt.scrolloff = 8
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-
 --update times
-vim.opt.updatetime=750
+vim.opt.updatetime = 750
 
 --tabs config
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.autoindent  = true
+vim.opt.autoindent = true
 
 --line wrapping
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 --appearance
 vim.opt.termguicolors = true

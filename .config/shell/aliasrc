@@ -20,4 +20,4 @@ alias setclip="xclip -sel clp"
 alias forcepull="git fetch; git reset --hard HEAD; git merge '@{u}'"
 alias prettyjson='python -m json.tool'
 alias cso='cd $HOME/Desktop/CSO'
-alias tdl2='cd $HOME/Desktop/tdl2'
+alias tdl='cd $HOME/Desktop/TallerDeLenguajes2'

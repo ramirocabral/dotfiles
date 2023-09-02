@@ -67,13 +67,13 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod], "s", lazy.spawn("spotify-launcher")),
 
     # Browser
-    ([mod], "l", lazy.spawn("librewolf")),
+    ([mod], "b", lazy.spawn("librewolf")),
 
     # Terminal
     ([mod], "Return", lazy.spawn("alacritty")),
 
     # Bluetooth Manager
-    ([mod], "b", lazy.spawn("blueman-manager")),
+    ([mod], "c", lazy.spawn("blueman-manager")),
 
     # Screenshot
     ([mod, "shift"], "s", lazy.spawn("scrot --select --line mode=edge '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f && rm $f'")),

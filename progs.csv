@@ -68,3 +68,5 @@ p,jq
 p,texlive-binextra
 p,texlive-latex
 p,texlive-basic
+i,s-tui
+p,stress
