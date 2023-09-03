@@ -19,6 +19,10 @@ vim.keymap.set("n", "<leader>d", [["_d]]) -- delete to void register
 vim.keymap.set("v", "<leader>d", [["_d]]) -- delete to void register
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]) --replace ocurrences of word
 
+-- ignores
+vim.keymap.set("n", "s", "<nop>") -- ignore s
+vim.keymap.set("n", "S", "<nop>") -- ignore S
+
 --vertical split
 vim.keymap.set("n", "<leader>v", ":vsplit<CR>")
 
