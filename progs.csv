@@ -70,3 +70,5 @@ p,texlive-latex
 p,texlive-basic
 i,s-tui
 p,stress
+p,libreoffice-fresh
+a,eclipse-java
