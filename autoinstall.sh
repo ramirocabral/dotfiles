@@ -24,6 +24,7 @@ usercheck(){
     id "$name" >/dev/null 2>/dev/null || error "Invalid username!"
     export homedir="/home/$name"
     export repodir="/home/$name/.local/src"
+    [ -f "$repodir" ] || mkdir -p "/home/$name/.local/src"
 }
 
 welcome_msj(){
@@ -54,14 +55,15 @@ installpkg(){
 }
 
 aurinstall(){
-    echo "$aurinstalled" | grep -q "^$1$" && return 1
+    #install aur packages
+    echo "$aurinstalled" | grep -q "^$1$" && return 0
     sudo -u "$name" $aurhelper -S --noconfirm "$1" >/dev/null 2>&1 || echo "Failed installing $1 (AUR)"
 }
 
 gitinstall(){
     #just to install p10k, no need to use make 
     progname="${1##*/}"
-    echo "$gitinstalled" | grep -q "^$progname$" && return 1
+    echo "$gitinstalled" | grep -q "^$progname$" && return 0
 	progname="${progname%.git}"
 	dir="$repodir/$progname"
     sudo -u "$name" git -C "$repodir" clone --depth 1 --single-branch \
@@ -70,11 +72,11 @@ gitinstall(){
             cd "$dir" || echo "Failed installing $1 (GIT)"
             sudo -u "$name" git pull --force origin master
         }
-    cd "$dir" || exit 1
+    cd "$dir" || return 1
 }
 
 pipinstall(){
-    #if pip is not already installed, it does
+    #checks if pip is already installed
     [ -x "$(command -v "pip")" ] || installpkg python-pip >/dev/null 2>&1
     echo "$pipinstalled" | grep -q "^$1$" && return 1
     pip install --break-system-packages $1 >/dev/null 2>&1 || echo "Failed installing $1 (PIP)"
@@ -121,6 +123,7 @@ done
 trap 'rm -f /etc/sudoers.d/larbs-temp' HUP INT QUIT TERM PWR EXIT  # delete file if user exits
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/larbs-temp   # allow wheel users(everyone) to run sudo without password
 
+
 # Install aur helper manually
 echo "Installing AUR Helper!"
 install_aur "${aurhelper}" || error "Failed to install AUR helper"
@@ -131,6 +134,7 @@ installationloop
 
 # Make zsh the default shell for the user.
 chsh -s /bin/zsh "$name" >/dev/null 2>&1
+# just for zsh-autocompletions
 sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
 
 #enable lightdm service
