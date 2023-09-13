@@ -47,8 +47,14 @@ vim.keymap.set("n", "<C-j>", "<C-w>j") -- Window down
 vim.keymap.set("n", "<C-k>", "<C-w>k") -- Window up
 vim.keymap.set("n", "<C-w>", ":q!<CR>") -- close window
 
+-- CHAMOUD
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true }) --chmod current file
+
 --save file
 vim.keymap.set("n", "<C-s>", ":w<CR>") -- save file
+
+-- shebang
+vim.keymap.set("n", "<leader>b", "i#!/bin/sh") -- insert shebang
 
 --visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- in visual mode, move lines down with J

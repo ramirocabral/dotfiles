@@ -21,3 +21,4 @@ alias forcepull="git fetch; git reset --hard HEAD; git merge '@{u}'"
 alias prettyjson='python -m json.tool'
 alias cso='cd $HOME/Desktop/CSO'
 alias tdl='cd $HOME/Desktop/TallerDeLenguajes2'
+alias wificonnect='nmcli -ask device connect'
