@@ -88,7 +88,8 @@ static const Key keys[] = {
     // kill window
 	{ MODKEY,                       XK_w,      killclient,     {0} },
 	//{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },				//toggle floating
-    
+    // set window as master 
+	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 
     // Programs keys
 
@@ -101,7 +102,6 @@ static const Key keys[] = {
     // open bluetooth manager
     { MODKEY,		            	XK_c,	   spawn,	   	   {.v = (const char*[]){ "blueman-manager", NULL } } },	//open spotify
 
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -112,8 +112,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
