@@ -4,14 +4,15 @@
 #define TERMINAL "alacritty"
 #define TERMCLASS "alacritty"
 #define BROWSER "librewolf"
+#define MUSICPLAYER "spotify-launcher"
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrains Mono:size=11","JoyPixels:pixelsize=12:antialias=true:autohint=true"};
-static const char dmenufont[]       = "JetBrains Mono:size=11";
+static const char *fonts[]          = { "monospace:size=10","JoyPixels:pixelsize=12:antialias=true:autohint=true"};
+static const char dmenufont[]       = "monospace:size=11";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -34,7 +35,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Librewolf",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -71,23 +72,40 @@ static const char *termcmd[]  = { "alacritty", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+
+    // Windows management
+
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,   	                XK_Return, spawn,          {.v = termcmd } }, 			//terminal
-	{ MODKEY,                       XK_b,      togglebar,      {0} },				//toggle bar
+	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },				//toggle bar
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_h,      setmfact,       {.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
+	// tiling layout
+	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },	
+    // kill window
+	{ MODKEY,                       XK_w,      killclient,     {0} },
+	//{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },				//toggle floating
+    
+
+    // Programs keys
+
+    // open terminal
+	{ MODKEY,   	                XK_Return, spawn,          {.v = termcmd } },
+    // open browser
+    { MODKEY,		            	XK_b,	   spawn,	   	   {.v = (const char*[]){ BROWSER, NULL } } },	//open browser
+    // open music player
+    { MODKEY,		            	XK_s,	   spawn,	   	   {.v = (const char*[]){ MUSICPLAYER, NULL } } },	//open spotify
+    // open bluetooth manager
+    { MODKEY,		            	XK_c,	   spawn,	   	   {.v = (const char*[]){ "blueman-manager", NULL } } },	//open spotify
+
+	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,                       XK_w,      killclient,     {0} },				//kill window
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },		//tiling layout
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	//{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },				//toggle floating
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
