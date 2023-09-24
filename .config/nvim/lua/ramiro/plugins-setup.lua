@@ -32,9 +32,18 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
+	--colorschemes
 	use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
 	use({ "catppuccin/nvim", as = "catppuccin" })
-
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Recommended, not required.
+	use({
+		"daltonmenezes/aura-theme",
+		rtp = "packages/neovim",
+		config = function()
+			vim.cmd("colorscheme aura-dark") -- Or any Aura theme available
+		end,
+	})
+	use("bluz71/vim-moonfly-colors")
 	use("tpope/vim-surround") -- add, delete, change surroundings
 
 	-- commenting with gc
@@ -112,6 +121,9 @@ return packer.startup(function(use)
 	--vimtex
 
 	use("lervag/vimtex")
+
+	--copilot
+	use("github/copilot.vim")
 
 	if packer_bootstrap then
 		require("packer").sync()
