@@ -9,6 +9,7 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "J", "mzJ`z") -- send bottom line to actual
 vim.keymap.set("n", "n", "nzzzv") -- search terms stay in the middle
 vim.keymap.set("n", "N", "Nzzzv") -- search terms(backwards) stay in the middle
+vim.keymap.set("n", "K", "<esc>mpa<cr><esc>dd`pP`pa") -- in visual mode, move lines up with K
 
 --clipboard management
 vim.keymap.set("n", "<leader>y", [["+y]]) -- copy to system clipboard
