@@ -35,15 +35,15 @@ return packer.startup(function(use)
 	--colorschemes
 	use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
 	use({ "catppuccin/nvim", as = "catppuccin" })
+	use("sainnhe/sonokai")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Recommended, not required.
 	use({
 		"daltonmenezes/aura-theme",
 		rtp = "packages/neovim",
-		config = function()
-			vim.cmd("colorscheme aura-dark") -- Or any Aura theme available
-		end,
+		config = function() end,
 	})
 	use("bluz71/vim-moonfly-colors")
+	use("navarasu/onedark.nvim")
 	use("tpope/vim-surround") -- add, delete, change surroundings
 
 	-- commenting with gc
@@ -57,10 +57,6 @@ return packer.startup(function(use)
 
 	-- statusline
 	use("nvim-lualine/lualine.nvim")
-
-	--a bunch of colorschemes
-	use("lunarvim/colorschemes")
-	use("sainnhe/sonokai")
 
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance

@@ -85,7 +85,7 @@ _G.packer_plugins = {
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["aura-theme"] = {
-    config = { "\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme aura-dark\bcmd\bvim\0" },
+    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
     loaded = true,
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/aura-theme/packages/neovim",
     url = "https://github.com/daltonmenezes/aura-theme"
@@ -114,11 +114,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
-  },
-  colorschemes = {
-    loaded = true,
-    path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/colorschemes",
-    url = "https://github.com/lunarvim/colorschemes"
   },
   ["copilot.vim"] = {
     loaded = true,
@@ -212,6 +207,11 @@ _G.packer_plugins = {
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
+  ["onedark.nvim"] = {
+    loaded = true,
+    path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/onedark.nvim",
+    url = "https://github.com/navarasu/onedark.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -271,7 +271,7 @@ vim.o.runtimepath = vim.o.runtimepath .. ",/home/ramiro/.local/share/nvim/site/p
 time([[Runtimepath customization]], false)
 -- Config for: aura-theme
 time([[Config for aura-theme]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme aura-dark\bcmd\bvim\0", "config", "aura-theme")
+try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "aura-theme")
 time([[Config for aura-theme]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
