@@ -65,9 +65,7 @@ p,zathura-pdf-poppler
 p,zathura-ps
 p,zathura-djvu
 p,jq
-p,texlive-binextra
-p,texlive-latex
-p,texlive-basic
+p,texlive
 i,s-tui
 p,stress
 p,libreoffice-fresh
