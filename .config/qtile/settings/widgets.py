@@ -112,6 +112,17 @@ primary_widgets = [
         update_interval=0.05,
     ),
 
+    powerline('color4', 'color1'),
+
+    widget.KeyboardLayout(
+        **base(bg='dark'),
+        fontsize=12,
+        configured_keyboards=['us', 'es'],
+        display_map={'us': 'US', 'es': 'ES'},
+        option='caps:escape',
+        padding=5
+    ),
+
     powerline('color1', 'color2'),
 
     widget.Clock(**base(bg='dark'), format='%d/%m/%Y - %H:%M ',fontsize=12),
