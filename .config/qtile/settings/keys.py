@@ -29,9 +29,6 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     # Toggle floating
     ([mod, "shift"], "f", lazy.window.toggle_floating()),
 
-    # Hide top bar
-    ([mod], "t", lazy.hide_show_bar("top")),
-
     # Move windows up or down in current stack
     ([mod, "shift"], "k", lazy.layout.shuffle_down()),
     ([mod, "shift"], "j", lazy.layout.shuffle_up()),
