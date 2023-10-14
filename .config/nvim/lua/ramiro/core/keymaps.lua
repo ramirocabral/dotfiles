@@ -75,3 +75,6 @@ vim.keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find stri
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<cr>") -- list keymaps
+
+-- disable git signs
+vim.keymap.set("n", "<leader>tg", "<cmd>Gitsigns toggle_signs<cr>")
