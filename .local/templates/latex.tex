@@ -1,0 +1,41 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+%matriz ampliada
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\AtBeginEnvironment{pmatrix}{\setlength{\arraycolsep}{5pt}}
+
+%! TEX root = "~/home/ramiro/main.tex"
+\setlength{\parindent}{0pt}
+\title{\Huge{Title}}
+\author{\huge{Ramiro Cabral}}
+\date{\huge{}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\end{document}
