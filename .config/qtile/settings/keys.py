@@ -47,10 +47,11 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # Restart Qtile
     ([mod, "control"], "r", lazy.restart()),
-
+    # Restart graphical environment
     ([mod, "control"], "q", lazy.shutdown()),
 
-
+    # Change keyboard layout
+    ([mod], "space", lazy.widget["keyboardlayout"].next_keyboard()),
 
     # ------------ App Configs ------------
 
