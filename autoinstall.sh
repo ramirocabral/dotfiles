@@ -140,4 +140,9 @@ sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
 #enable lightdm service
 systemctl enable lightdm
 
+#User folders
+sudo -u "$name" mkdir -p "/home/$name/Screenshots"
+sudo -u "$name" mkdir -p "/home/$name/Desktop"
+sudo -u "$name" mkdir -p "/home/$name/Documents"
+
 echo -e "DONE! Now reboot your computer"
