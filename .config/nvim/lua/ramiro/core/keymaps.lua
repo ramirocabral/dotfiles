@@ -78,3 +78,6 @@ vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<cr>") -- list keymaps
 
 -- disable git signs
 vim.keymap.set("n", "<leader>tg", "<cmd>Gitsigns toggle_signs<cr>")
+
+--compile c programs and see output on floating terminal
+vim.keymap.set("n", "<leader>cc", "<cmd>!gcc %<cr> <cmd>TermExec cmd='./a.out'<cr>")
