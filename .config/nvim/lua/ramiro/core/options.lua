@@ -12,6 +12,8 @@ vim.opt.incsearch = true
 --update times
 vim.opt.updatetime = 750
 
+vim.opt.cursorline = true
+
 --tabs config
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
