@@ -53,6 +53,9 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     # Change keyboard layout
     ([mod], "space", lazy.widget["keyboardlayout"].next_keyboard()),
 
+    # Hide top bar
+    ([mod], "t", lazy.hide_show_bar("top")),
+
     # ------------ App Configs ------------
 
     #Thunar
