@@ -6,6 +6,9 @@ vim.g.mapleader = " "
 -------------------
 
 --movement
+vim.keymap.set("n", "j", "gj") --move down in wrapped lines
+vim.keymap.set("n", "k", "gk") --move up in wrapped lines
+
 vim.keymap.set("n", "J", "mzJ`z") -- send bottom line to actual
 vim.keymap.set("n", "n", "nzzzv") -- search terms stay in the middle
 vim.keymap.set("n", "N", "Nzzzv") -- search terms(backwards) stay in the middle

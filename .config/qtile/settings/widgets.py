@@ -92,7 +92,7 @@ primary_widgets = [
 
     icon(fontsize=13,bg="dark", text=' '),  # Icon: nf-fa-feed
     
-    widget.Net(**base(bg='dark'),fontsize=12,format='{down:6.2f}{down_suffix:<2} ↓↑ {up:6.2f}{up_suffix:<2}', interface='enp5s0'),
+    widget.Net(**base(bg='dark'),fontsize=12,format='{down:6.2f}{down_suffix:<2} ↓↑ {up:6.2f}{up_suffix:<2}', interface='wlo1'),
 
     powerline('color2', 'color3'),
 
