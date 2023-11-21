@@ -80,7 +80,7 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod], "c", lazy.spawn("blueman-manager")),
 
     # Screenshot
-    ([mod, "shift"], "s", lazy.spawn("scrot --select --line mode=edge '/home/ramiro/Screenshots/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'")),
+    ([mod, "shift"], "s", lazy.spawn("scrot --select --line mode=edge '/home/ramiro/Screenshots/%F_%T.png' -e 'xclip -selection clipboard -target image/png -i $f'")),
 
     # ------------ Hardware Configs ------------
 
