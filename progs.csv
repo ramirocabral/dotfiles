@@ -53,6 +53,7 @@ p,ripgrep
 p,maven
 p,ttf-ubuntu-mono-nerd
 p,ttf-jetbrains-mono-nerd
+p,ttf-meslo-nerd
 p,ranger
 i,psutil
 p,python-requests
