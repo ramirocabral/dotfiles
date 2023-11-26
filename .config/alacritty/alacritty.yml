@@ -22,12 +22,15 @@ colors:
     foreground: "0xc5c9de"
 font:
   bold:
-    family: JetBrainsMono Nerd Font
+    family: JetBrainsMono NF
+    # family: "MesloLGS Nerd Font"
   italic:
-    family: JetBrainsMono Nerd Font
+    family: JetBrainsMono NF
+    # family: "MesloLGS Nerd Font"
   normal:
-    family: JetBrainsMono Nerd Font
-    style: Medium
+    family: JetBrainsMono NF
+    # family: "MesloLGS Nerd Font"
+    style: Regular
   size: 8
 
 window:
