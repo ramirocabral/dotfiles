@@ -38,14 +38,9 @@ Are you running this as the root user and have an internet connection?(y/n):"
 install_aur(){
     #installs $1 manually
     sudo -u "$name" mkdir -p "$repodir/$1"      #create directory
-    sudo -u "$name" git -C "$repodir" clone --depth 1 --single-branch \
-            --no-tags -q "https://aur.archlinux.org/$1.git" "$repodir/$1" ||
-            {
-                cd "$repodir/$1" || return 1
-                sudo -u "$name" git pull --force origin master
-            }
+    sudo -u "$name" git -C "$repodir" clone --depth 1  --no-tags -q "https://aur.archlinux.org/$1.git" "$repodir/$1"
     cd "$repodir/$1" || return 1
-    sudo -u "$name" -D "$repodir/$1" makepkg --noconfirm -si >/dev/null 2>&1 || return 1
+    sudo -u "$name"  makepkg --noconfirm -si "$repodir/$1" >/dev/null 2>&1 || return 1
 }
 
 installpkg(){
@@ -125,7 +120,7 @@ echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/larbs-temp   # allow wheel
 
 # Install aur helper manually
 echo "Installing AUR Helper!"
-sudo chmod 777 "$repodir"
+sudo chmod -R 777 "$repodir"
 install_aur "${aurhelper}" || error "Failed to install AUR helper"
 
 # Main instalattion loop
