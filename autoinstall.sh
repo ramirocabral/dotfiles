@@ -139,4 +139,6 @@ sudo -u "$name" mkdir -p "/home/$name/Screenshots"
 sudo -u "$name" mkdir -p "/home/$name/Desktop"
 sudo -u "$name" mkdir -p "/home/$name/Documents"
 
+ln -s "$homedir/.librewolf/librewolf.overrides.cfg" "$homedir/librewolf.overrides.cfg"
+
 echo -e "DONE! Now reboot your computer"
