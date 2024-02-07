@@ -75,7 +75,7 @@ fi
 [[ -f $autosuggestions ]] && source $autosuggestions
 [[ -f $syntax ]] && source $syntax
 [[ -f $fzf ]] && source $fzf
-source ~/.local/share/gitstatus/gitstatus.prompt.zsh
+source ~/.local/src/gitstatus/gitstatus.prompt.zsh
 
 # Functions
 

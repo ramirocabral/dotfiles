@@ -1,0 +1,23 @@
+set hidden true
+set ignorecase true
+set shell zsh
+set scrolloff 10
+set shellopts '-eu'
+set ifs "\n"
+
+
+# execute current file (must be executable)
+map x $$f
+map X !$f
+
+map ` !true
+
+cmd delete ${{
+    set -f
+    printf "$fx\n"
+    printf "delete?[y/n]"
+    read ans
+    [ "$ans" = "y" ] && rm -rf $fx
+}}
+
+map D delete
