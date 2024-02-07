@@ -6,8 +6,8 @@ end
 
 -- get lualine nightfly theme
 local lualine_nightfly = require("lualine.themes.nightfly")
-local dracula = require("lualine.themes.dracula")
-local ayu_dark = require("lualine.themes.ayu_dark")
+-- local dracula = require("lualine.themes.dracula")
+-- local ayu_dark = require("lualine.themes.ayu_dark")
 
 -- new colors for theme
 local new_colors = {
