@@ -78,3 +78,4 @@ i,pulsectl-asyncio
 a,eog
 p,wireshark-qt
 p,lf
+g,https://github.com/romkatv/gitstatus
