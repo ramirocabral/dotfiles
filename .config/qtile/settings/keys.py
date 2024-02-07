@@ -62,7 +62,7 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod], "e", lazy.spawn("thunar")),
 
     # Ranger
-    ([mod], "r", lazy.spawn("alacritty -e ranger")),
+    ([mod], "r", lazy.spawn("alacritty -e lf")),
 
     # Rofi
     ([mod], "m", lazy.spawn("rofi -show drun")),

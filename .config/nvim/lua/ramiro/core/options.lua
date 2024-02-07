@@ -27,6 +27,7 @@ vim.opt.wrap = true
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.signcolumn = "yes"
+vim.g.nightflyTransparent = true
 
 --backspace
 vim.opt.backspace = "indent,eol,start"

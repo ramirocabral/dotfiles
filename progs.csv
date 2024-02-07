@@ -36,6 +36,7 @@ p,thunar
 p,unrar
 p,unzip
 p,vlc
+p,ttf-liberation-mono-nerd
 p,xclip
 p,zsh
 p,zsh-autosuggestions
@@ -46,7 +47,6 @@ p,fzf
 p,xorg-server
 p,xorg-xinit
 a,visual-studio-code-bin
-g,https://github.com/romkatv/powerlevel10k
 p,npm
 a,jdtls
 p,ripgrep
@@ -54,7 +54,6 @@ p,maven
 p,ttf-ubuntu-mono-nerd
 p,ttf-jetbrains-mono-nerd
 p,ttf-meslo-nerd
-p,ranger
 i,psutil
 p,python-requests
 p,lm_sensors
@@ -78,3 +77,4 @@ p,noto-fonts
 i,pulsectl-asyncio
 a,eog
 p,wireshark-qt
+p,lf

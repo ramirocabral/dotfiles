@@ -8,7 +8,7 @@ se() {
 
 alias grep='grep --color=auto'
 alias cat='bat --style=plain --paging=never'
-alias ls='exa --group-directories-first'
+#alias ls='exa --group-directories-first'
 alias la='ls -la'
 alias tree='exa -T'
 alias ..='cd ..'

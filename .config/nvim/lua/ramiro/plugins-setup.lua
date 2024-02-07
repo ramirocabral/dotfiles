@@ -44,7 +44,9 @@ return packer.startup(function(use)
 	})
 	use("bluz71/vim-moonfly-colors")
 	use("navarasu/onedark.nvim")
-	use("tpope/vim-surround") -- add, delete, change surroundings
+
+	-- add, delete, change surroundings
+	use("tpope/vim-surround")
 
 	-- commenting with gc
 	use("numToStr/Comment.nvim")
