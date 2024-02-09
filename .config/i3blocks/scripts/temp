@@ -1,13 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 
 # This is bullshit
-if [[ $HOST=="VivoBook" ]] then
-    chip="coretemp-isa-0000"
-elif [[ $HOST=="desktop" ]] then
-    chip="k10temp-pci-00c3"
-fi
+case "$HOST" in 
+    "VivoVook") chip="coretemp-isa-0000";;
+    *)          chip="k10temp-pci-00c3";;
+esac
 
-temp=$(sensors | head -n 11 | tail -n 1 | grep -o "[0-9]*.[0-9]°C" | sed -n 's/\(.*\)\..*/\1/p' | head -n 1)
+line=$(sensors | grep -n "${chip}" | cut -d: -f1)
+(( line += 2))
+
+temp=$(sensors | head -n ${line} | tail -n 1 | grep -o "[0-9]*.[0-9]°C" | sed -n 's/\(.*\)\..*/\1/p' | head -n 1)
 
 echo "TEMP $temp°C"
 echo "TEMP $temp°C"
