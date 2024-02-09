@@ -29,7 +29,6 @@ p,pavucontrol
 p,picom
 p,pulseaudio-bluetooth
 p,python-pip
-p,qtile
 p,rofi
 p,scrot
 p,thunar
@@ -79,3 +78,8 @@ a,eog
 p,wireshark-qt
 p,lf
 g,https://github.com/romkatv/gitstatus
+p,i3-wm
+p,i3status
+p,i3blocks
+a,autotiling
+p,acpi

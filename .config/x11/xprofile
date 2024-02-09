@@ -1,5 +1,6 @@
 export PATH=$HOME/.local/bin:$PATH
+remaps
+exec i3
 
 #keyboard remaps
 
-remaps
