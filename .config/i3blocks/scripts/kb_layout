@@ -1,0 +1,9 @@
+#!/bin/sh
+
+layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+
+if [[ $layout == "us" ]]; then
+    echo "US"
+else
+    echo "ES"
+fi

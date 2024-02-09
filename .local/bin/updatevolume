@@ -1,0 +1,14 @@
+#!/bin/bash
+
+vol=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o "[0-9]*%" | head -n 1 | sed "s/%//g")
+mute=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+
+COLOR_GE40=${COLOR_GE40:-#FFAE00}
+
+if [[ $mute == "yes" ]]; then
+    echo "MUTE"
+    echo  $COLOR_GE40
+    exit
+fi
+
+echo "VOL ${vol}%"

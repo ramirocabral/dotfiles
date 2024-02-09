@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # systray battery icon
-cbatticon -u 5 &
+# cbatticon -u 5 &
 # systray volume
-volumeicon &
+# volumeicon &
 
-feh --bg-scale ~/.local/wallpapers/3.png
+feh --bg-scale ~/.local/wallpapers/2.jpg
 
-picom &
+# picom &

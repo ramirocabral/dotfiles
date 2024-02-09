@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#green color
+COLOR_GE80=${COLOR_GE80:-#00FF00}
+
+INTERFACE=$(nmcli device | grep connected | grep -v "loopback" | awk '{print $1}')
+
+#print ip address
+ADDRESS=$(ip addr show $INTERFACE | grep "inet " | head -n 1 | awk '{print $2}')
+
+# if wifi is connected, print SSID
+[[ -z $(nmcli device | grep wifi) ]] && exit 0
+
+SSID="$(iw wlo1 info | grep ssid | awk '{print $2}') @"
+
+echo  "${SSID} ${ADDRESS}"
+echo  "${SSID} ${ADDRESS}"
+echo $COLOR_GE80

@@ -1,4 +1,3 @@
-
 se() {
 	choice="$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)"
 	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
@@ -9,6 +8,7 @@ se() {
 alias grep='grep --color=auto'
 alias cat='bat --style=plain --paging=never'
 #alias ls='exa --group-directories-first'
+alias ls='ls --group-directories-first'
 alias la='ls -la'
 alias tree='exa -T'
 alias ..='cd ..'
