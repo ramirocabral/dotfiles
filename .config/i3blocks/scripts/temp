@@ -14,6 +14,6 @@ echo "TEMP $temp°C"
 
 RED=${RED:-#FF0000}
 
-if [[ $temp -gt 60 ]] then
+if [[ $temp -gt 65 ]] then
     echo "$RED"
 fi
