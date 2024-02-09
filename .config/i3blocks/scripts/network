@@ -9,10 +9,13 @@ INTERFACE=$(nmcli device | grep connected | grep -v "loopback" | awk '{print $1}
 ADDRESS=$(ip addr show $INTERFACE | grep "inet " | head -n 1 | awk '{print $2}')
 
 # if wifi is connected, print SSID
-[[ -z $(nmcli device | grep wifi) ]] && exit 0
+if [[ -z $(nmcli device | grep wifi) ]] then
+    echo "$INTERFACE @ $ADDRESS"
+    echo "$INTERFACE @ $ADDRESS"
+else 
+    SSID="$(iw wlo1 info | grep ssid | awk '{print $2}') @"
+    echo  "${SSID} ${ADDRESS}"
+    echo  "${SSID} ${ADDRESS}"
+fi
 
-SSID="$(iw wlo1 info | grep ssid | awk '{print $2}') @"
-
-echo  "${SSID} ${ADDRESS}"
-echo  "${SSID} ${ADDRESS}"
 echo $COLOR_GE80
