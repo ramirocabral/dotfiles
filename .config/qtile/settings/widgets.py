@@ -12,7 +12,7 @@ def base(fg='light', bg='dark'):
     return widget.Sep(**base(), linewidth=0, padding=10)
 
 def separator():
-    return widget.Sep(**base(), linewidth=0, padding=20)
+    return widget.Sep(**base(), linewidth=0, padding=510)
 
 
 def icon(fg='light', bg='dark', fontsize=16, text="?",padding=3):
@@ -37,6 +37,7 @@ def workspaces():
         widget.GroupBox(
             margin_x=0,
             margin_y=0,
+            hide_unused=True,
             padding_y=2,
             font = "UbuntuMono Nerd Font",
             active = colors['active'],
@@ -48,10 +49,6 @@ def workspaces():
             rounded=False,
         ),
         separator(),
-        separator(),
-        separator(),
-        separator(),
-        widget.WindowName(**base(fg='light'), fontsize=12, padding=5),
     ]
 
 
@@ -128,7 +125,6 @@ primary_widgets = [
     widget.Clock(**base(bg='dark'), format='%d/%m/%Y - %H:%M ',fontsize=12),
 
     widget.Systray(background=colors['active'],padding=5),
-
 ]
 
 secondary_widgets = [

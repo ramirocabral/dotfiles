@@ -87,7 +87,7 @@ math() {
 bindkey '^L' autosuggest-accept
 
 # Prompt
-PROMPT='%F{red}[%f%f%F{yellow}%n%f%F{green}@%f%F{cyan}%m%f %F{magenta}%~%f %F{red}]%f $ '
+PROMPT='%f%f%F{green}%n%f%F{green}@%f%F{green}%m%f:%F{cyan}%~%f %f$ '
 # Using git status:
 # PS1='%F{red}[%f%f%F{yellow}%n%f%F{green}@%f%F{cyan}%m%f %F{magenta}%~%f ${GITSTATUS_PROMPT}%F{red}]%f $ '
 RPROMPT='[%D{%H:%M:%S}] '$RPROMPT

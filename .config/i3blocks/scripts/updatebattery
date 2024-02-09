@@ -1,0 +1,28 @@
+#!/bin/bash
+
+percentage=$(acpi | grep -o "[0-9]*%" | sed 's/%//')
+status=$(acpi | grep -oE 'Not charging|Discharging|Charging')
+
+if [[ $percentage == 100 ]] then
+    label="FULL"
+else
+if [[ $status == "Discharging" ]] then
+    label="BAT"
+else
+    label="CHR"
+fi
+fi
+
+
+GREEN=${GREEN:-#00FF00}
+RED=${RED:-#FF0000}
+
+echo "${label} ${percentage}%"
+echo "${label} ${percentage}%"
+
+
+if [[ $percentage == 100 ]]; then
+    echo $GREEN
+elif [[ $percentage -le 15 ]]; then
+    echo $RED
+fi

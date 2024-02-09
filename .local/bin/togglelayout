@@ -1,0 +1,13 @@
+#!/bin/sh
+
+layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+
+if [[ $layout == 'us' ]] then
+    layout='es'
+    setxkbmap es
+else
+    layout='us'
+    setxkbmap us
+fi
+
+pkill -SIGRTMIN+10 i3blocks

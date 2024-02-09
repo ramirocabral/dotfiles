@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# This is bullshit
+if [[ $HOST=="VivoBook" ]] then
+    chip="coretemp-isa-0000"
+elif [[ $HOST=="desktop" ]] then
+    chip="k10temp-pci-00c3"
+fi
+
+temp=$(sensors | head -n 11 | tail -n 1 | grep -o "[0-9]*.[0-9]°C" | sed -n 's/\(.*\)\..*/\1/p' | head -n 1)
+
+echo "TEMP $temp°C"
+echo "TEMP $temp°C"
+
+RED=${RED:-#FF0000}
+
+if [[ $temp -gt 60 ]] then
+    echo "$RED"
+fi
