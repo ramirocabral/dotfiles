@@ -66,7 +66,7 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec alacritty
 
 # start a browser
-bindsym $mod+Shift+b exec librewolf
+bindsym $mod+Shift+b exec brave
 
 # start Rofi
 bindsym $mod+Shift+m exec rofi -show drun
@@ -80,6 +80,9 @@ bindsym $mod+Shift+s exec spotify-launcher
 # kill focused window
 bindsym $mod+w kill
 
+# screenshot    
+
+bindsym $mod+s " exec scrot --select --line mode=edge '/home/ramiro/Screenshots/%F_%T.png' -e 'xclip -selection clipboard -target image/png -i $f' "
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
@@ -205,7 +208,6 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         # status_command i3status -c "/home/ramiro/.config/i3status/config/i3status.conf"
-        # status_command  SCRIPT_DIR=/home/ramiro/Desktop/i3blocks-contrib i3blocks -c /home/ramiro/.config/i3blocks/i3blocks.conf
         status_command  SCRIPT_DIR=/home/ramiro/.config/i3blocks/scripts i3blocks -c /home/ramiro/.config/i3blocks/i3blocks.conf
         position bottom
         # colors {
@@ -220,7 +222,9 @@ bar {
 }
 
 # Set default border (eliminates the title bar)
-# default_border pixel 2
+default_border pixel 2
+
+hide_edge_borders none
 
 # Don't show borders when there is only one window
 smart_borders on
@@ -228,6 +232,10 @@ smart_borders on
 # Set gaps
 gaps inner 7
 
+# Don't show gaps when there is only one window
+smart_gaps on
+
 # Change borders color
-# client.focused #2e3440 #2e3440 #2e3440 #2e3440
-# client.focused_inactive #000000 #000000 #000000 #000000
+client.focused #166fce #166fce #166fce #166fce
+client.focused_inactive #000000 #000000 #000000 #000000
+client.unfocused #000000 #000000 #000000 #000000
