@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# just configured for my personal laptop
+intern="eDP-1"
+extern="HDMI-1"
+
+[[ "$#" -ne 1 ]] && echo "Usage: extramonitor [duplicate|extra]" && exit 1
+
+case "$1" in 
+    "duplicate") xrandr --output "$extern" --mode 1920x1080 && xrandr --output "$intern" --auto --output "$extern" --same-as "$intern";;
+
+    "extra") xrandr --output "$extern" --mode 1920x1080 && xrandr --output "$intern" --auto --output "$extern" --above "$intern";;
+
+    *) echo "Usage: extramonitor [duplicate|extra]" && exit 1;;
+esac

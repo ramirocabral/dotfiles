@@ -82,3 +82,4 @@ p,i3status
 p,i3blocks
 a,autotiling
 p,acpi
+p,xorg-xrandr
