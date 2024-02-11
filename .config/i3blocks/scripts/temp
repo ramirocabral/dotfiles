@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/zsh
 
 # This is bullshit
 case "$HOST" in 
-    "VivoVook") chip="coretemp-isa-0000";;
+    "VivoBook") chip="coretemp-isa-0000";;
     *)          chip="k10temp-pci-00c3";;
 esac
 
