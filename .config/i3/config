@@ -66,6 +66,9 @@ bindsym $mod+Shift+e exec thunar
 # start Spotify
 bindsym $mod+Shift+s exec spotify-launcher
 
+# start lf file explorer
+bindsym $mod+Shift+f exec alacritty -e lf
+
 # kill focused window
 bindsym $mod+w kill
 
@@ -208,7 +211,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         # status_command i3status -c "/home/ramiro/.config/i3status/config/i3status.conf"
-        status_command  SCRIPT_DIR=/home/ramiro/.config/i3blocks/scripts i3blocks -c /home/ramiro/.config/i3blocks/i3blocks.conf
+        status_command  SCRIPT_DIR=/home/ramiro/.local/bin/statusbar/ i3blocks -c /home/ramiro/.config/i3blocks/i3blocks.conf
         position bottom
         # colors {
         #         background #000000

@@ -7,8 +7,8 @@ se() {
 
 alias grep='grep --color=auto'
 alias cat='bat --style=plain --paging=never'
-#alias ls='exa --group-directories-first'
-alias ls='ls --group-directories-first'
+#alias ls='ls --group-directories-first'
+alias ls='exa --group-directories-first'
 alias la='ls -la'
 alias tree='exa -T'
 alias ..='cd ..'
@@ -19,8 +19,6 @@ alias bare="/usr/bin/git --git-dir=$HOME/dotfiles.git --work-tree=$HOME"
 alias setclip="xclip -sel clp"
 alias forcepull="git fetch; git reset --hard HEAD; git merge '@{u}'"
 alias prettyjson='python -m json.tool'
-alias cso='cd $HOME/Desktop/CSO'
-alias tdl='cd $HOME/Desktop/TallerDeLenguajes2'
 alias wificonnect='nmcli -ask device wifi connect'
 alias bluetooth='sudo systemctl start bluetooth.service'
 alias setlatex='cp $HOME/.local/templates/latex.tex ./'

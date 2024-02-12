@@ -87,7 +87,33 @@ math() {
 bindkey '^L' autosuggest-accept
 
 # Prompt
-PROMPT='%f%f%F{green}%n%f%F{green}@%f%F{green}%m%f:%F{cyan}%~%f %f$ '
+# PROMPT='%f%f%F{green}%n%f%F{green}@%f%F{green}%m%f:%F{cyan}%~%f %f$ '
+
+
+PROMPT='%{%F{40}%}%n%{%F{40}%}@%{%F{40}%}%m%f:%{%F{33}%}%~%f %f$ '
 # Using git status:
-# PS1='%F{red}[%f%f%F{yellow}%n%f%F{green}@%f%F{cyan}%m%f %F{magenta}%~%f ${GITSTATUS_PROMPT}%F{red}]%f $ '
+# PROMPT='%{%F{40}%}%n%{%F{40}%}@%{%F{40}%}%m%f:%{%F{33}%}%~%f ${GITSTATUS_PROMPT} %f$ '
+# show time in right promp
+#
 RPROMPT='[%D{%H:%M:%S}] '$RPROMPT
+
+# change cursor depending on vim mode
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' 
+preexec() { echo -ne '\e[5 q' ;} 
