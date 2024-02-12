@@ -12,7 +12,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="alacritty"
 export TERMINAL_PROG="alacritty"
-export BROWSER="librewolf"
+export BROWSER="brave"
 
 # Other important variables:
 

@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+# receives the file with the packets number
+update(){
+    # take the file name
+    cache=/tmp/${1##*/}    
+    # if the file does not exist, we create it and set old to 0
+    read -r sum < $1
+    [ -f $cache ] && read -r old < "$cache"  || old=0
+    printf "%d\n" "$sum" > "$cache"
+    echo $(( sum - old ))
+}
+
+rx=$(update /sys/class/net/wlo1/statistics/rx_bytes)
+tx=$(update /sys/class/net/wlo1/statistics/tx_bytes)
+
+echo "Rx: $(numfmt --to=si $rx) Tx: $(numfmt --to=si $tx)"

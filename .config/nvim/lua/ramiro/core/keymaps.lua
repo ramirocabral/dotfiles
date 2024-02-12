@@ -64,6 +64,8 @@ vim.keymap.set("n", "<leader>b", "i#!/bin/sh") -- insert shebang
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- in visual mode, move lines down with J
 vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv") -- in visual mode, move lines up with K
 
+vim.keymap.set("x", "p", [["_dP]]) --paste without yanking in visual mode
+
 -------------------
 --Plugins Keymaps--
 -------------------
