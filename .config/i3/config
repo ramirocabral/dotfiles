@@ -35,8 +35,7 @@ exec --no-startup-id nm-applet
 # Use pactl to adjust volume in PulseAudio.
 bindsym $mod+equal exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+15 i3blocks
 bindsym $mod+minus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+15 i3blocks
-bindsym $mod+p exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+15 i3blocks
-bindsym $mod+m exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym $mod+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+15 i3blocks
 
 # Change screen brightness
 bindsym XF86MonBrightnessUp exec brightnessctl set +10%
@@ -67,7 +66,7 @@ bindsym $mod+Shift+e exec thunar
 bindsym $mod+Shift+s exec spotify-launcher
 
 # start lf file explorer
-bindsym $mod+Shift+f exec alacritty -e lf
+bindsym $mod+Shift+f exec alacritty -e ranger
 
 # kill focused window
 bindsym $mod+w kill

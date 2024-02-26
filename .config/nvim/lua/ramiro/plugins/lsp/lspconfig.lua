@@ -51,7 +51,9 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 -- (not in youtube nvim video)
+
 local signs = { Error = " ", Warn = " ", Hint = "󱍷 ", Info = " " }
+-- local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -68,6 +70,7 @@ typescript.setup({
 	server = {
 		capabilities = capabilities,
 		on_attach = on_attach,
+        filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 	},
 })
 
@@ -90,10 +93,19 @@ lspconfig["emmet_ls"].setup({
 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 })
 
+-- configure pyright server
+
+lspconfig["pyright"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "python" },
+})
+
 -- configure lua server (with special settings)
 lspconfig["lua_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+    filetypes = { "lua" },
 	settings = { -- custom settings for lua
 		Lua = {
 			-- make the language server recognize "vim" global
@@ -113,5 +125,6 @@ lspconfig["lua_ls"].setup({
 	lspconfig.clangd.setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
+        filetypes = { "c", "cpp", "objc", "objcpp" },
 	}),
 })
