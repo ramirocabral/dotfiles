@@ -1,7 +1,7 @@
 #!/bin/bash
 
-percentage=$(acpi | grep -o "[0-9]*%" | sed 's/%//')
-status=$(acpi | grep -oE 'Not charging|Discharging|Charging')
+percentage=$(acpi |grep -v "unavailable" | grep -o "[0-9]*%" | sed 's/%//')
+status=$(acpi | grep -v "unavailable" | grep -oE 'Not charging|Discharging|Charging')
 
 if [[ $percentage == 100 ]] then
     label="FULL"
@@ -23,6 +23,6 @@ echo "${label} ${percentage}%"
 
 if [[ $percentage == 100 ]]; then
     echo $GREEN
-elif [[ $percentage -le 15 ]]; then
+elif [[ $percentage -le 20 ]]; then
     echo $RED
 fi

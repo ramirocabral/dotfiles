@@ -21,7 +21,6 @@ p,jre-openjdk
 p,lightdm-gtk-greeter
 p,lsd
 p,mesa
-p,nano
 p,neofetch
 p,neovim
 p,pavucontrol
@@ -48,7 +47,6 @@ a,visual-studio-code-bin
 p,npm
 a,jdtls
 p,ripgrep
-p,maven
 p,ttf-ubuntu-mono-nerd
 p,ttf-jetbrains-mono-nerd
 p,ttf-meslo-nerd
@@ -65,15 +63,12 @@ p,zathura-djvu
 p,jq
 p,texlive
 i,s-tui
-p,stress
 p,libreoffice-fresh
 a,intellij-idea-ultimate-edition
 a,testdisk
 a,nerdfix
-p,qbittorrent
 p,noto-fonts
 i,pulsectl-asyncio
-a,eog
 p,wireshark-qt
 p,lf
 g,https://github.com/romkatv/gitstatus

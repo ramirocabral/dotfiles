@@ -41,3 +41,7 @@ vim.opt.splitbelow = true
 
 -- now - sign is part of a word
 vim.opt.iskeyword:append("-")
+
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+
+-- vim.diagnostic.config({ virtual_text = false })
