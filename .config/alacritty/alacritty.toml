@@ -3,7 +3,7 @@ import = [
 ]
 
 [font]
-size = 7
+size = 8.5
 
 [font.bold]
 family = "Liberation Mono"

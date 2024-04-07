@@ -11,7 +11,7 @@ update(){
     echo $(( sum - old ))
 }
 
-rx=$(update /sys/class/net/wlo1/statistics/rx_bytes)
-tx=$(update /sys/class/net/wlo1/statistics/tx_bytes)
+rx=$(update /sys/class/net/enp6s0/statistics/rx_bytes)
+tx=$(update /sys/class/net/enp6s0/statistics/tx_bytes)
 
 echo "Rx: $(numfmt --to=si $rx) Tx: $(numfmt --to=si $tx)"

@@ -3,23 +3,26 @@
 percentage=$(acpi |grep -v "unavailable" | grep -o "[0-9]*%" | sed 's/%//')
 status=$(acpi | grep -v "unavailable" | grep -oE 'Not charging|Discharging|Charging')
 
-if [[ $percentage == 100 ]] then
-    label="FULL"
+if [[ -z $status ]] then
+    label="POW"
+    echo "${label}"
+    echo "${label}"
 else
-if [[ $status == "Discharging" ]] then
-    label="BAT"
-else
-    label="CHR"
+    if [[ $percentage == 100 ]] then
+        label="FULL"
+    else
+    if [[ $status == "Discharging" ]] then
+        label="BAT"
+    else
+        label="CHR"
+    fi
+    fi
+    echo "${label} ${percentage}%"
+    echo "${label} ${percentage}%"
 fi
-fi
-
 
 GREEN=${GREEN:-#00FF00}
 RED=${RED:-#FF0000}
-
-echo "${label} ${percentage}%"
-echo "${label} ${percentage}%"
-
 
 if [[ $percentage == 100 ]]; then
     echo $GREEN
