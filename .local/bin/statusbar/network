@@ -10,8 +10,9 @@ ADDRESS=$(ip addr show $INTERFACE | grep -m 1 "inet " |  awk '{print $2}')
 
 # if wifi is connected, print SSID
 if [[ -z $(nmcli device | grep wifi) ]] then
-    echo "$INTERFACE @ $ADDRESS"
-    echo "$INTERFACE @ $ADDRESS"
+    SPEED=$(ethtool ${INTERFACE} | grep "Speed" | awk '{print $2}')
+    echo "$INTERFACE @ $ADDRESS ($SPEED)" 
+    echo "$INTERFACE @ $ADDRESS ($SPEED)" 
 else 
     SSID="$(iw wlo1 info | grep ssid | awk '{print $2}') @"
     echo  "${SSID} ${ADDRESS}"
