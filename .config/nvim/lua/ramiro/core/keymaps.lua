@@ -66,6 +66,11 @@ vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv") -- in visual mode, move lines up wi
 
 vim.keymap.set("x", "p", [["_dP]]) --paste without yanking in visual mode
 
+--indentation
+
+vim.keymap.set("v", "<", "<gv") -- indent left in visual mode
+vim.keymap.set("v", ">", ">gv") -- indent right in visual mode
+
 -------------------
 --Plugins Keymaps--
 -------------------
