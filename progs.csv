@@ -1,5 +1,6 @@
 #TAG,NAME IN REPO (or git url)
 p,alacritty
+p,eog
 p,base
 p,base-devel
 p,bat
@@ -64,13 +65,11 @@ p,jq
 p,texlive
 i,s-tui
 p,libreoffice-fresh
-a,intellij-idea-ultimate-edition
 a,testdisk
 a,nerdfix
 p,noto-fonts
 i,pulsectl-asyncio
 p,wireshark-qt
-p,lf
 g,https://github.com/romkatv/gitstatus
 p,i3-wm
 p,i3status
@@ -81,3 +80,4 @@ p,xorg-xrandr
 p,brave-bin
 p,reflector
 p,cifs-utils
+p,doublecmd

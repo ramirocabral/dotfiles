@@ -149,8 +149,8 @@ sudo -u "$name" mkdir -p "/home/$name/Documents"
 sudo mkdir -p /mnt/nas
 sudo mkdir -p /mnt/nas/ramiro /mnt/nas/public
 
-echo "//192.168.1.52/public /mnt/nas/public cifs    credentials=/home/ramiro/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 2" >> /etc/fstab
-echo "//192.168.1.52/ramiro /mnt/nas/ramiro cifs    credentials=/home/ramiro/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 3" >> /etc/fstab
+echo "//nas.lan/public /mnt/nas/public cifs    credentials=/home/ramiro/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 2" >> /etc/fstab
+echo "//nas.lan/ramiro /mnt/nas/ramiro cifs    credentials=/home/ramiro/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 3" >> /etc/fstab
 
 ln -s ""$homedir/librewolf.overrides.cfg" $homedir/.librewolf/librewolf.overrides.cfg" 
 echo -e "DONE! Now reboot your computer"
