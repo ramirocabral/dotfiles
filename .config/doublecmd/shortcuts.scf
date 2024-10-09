@@ -3,17 +3,9 @@
   <Hotkeys Version="63">
     <Form Name="Main">
       <Hotkey>
-        <Shortcut>Shift+F6</Shortcut>
-        <Command>cm_RenameOnly</Command>
-      </Hotkey>
-      <Hotkey>
         <Shortcut>Shift+F3</Shortcut>
         <Command>cm_View</Command>
         <Param>cursor=1</Param>
-      </Hotkey>
-      <Hotkey>
-        <Shortcut>F6</Shortcut>
-        <Command>cm_Rename</Command>
       </Hotkey>
       <Hotkey>
         <Shortcut>F7</Shortcut>
@@ -68,10 +60,6 @@
         <Command>cm_NewTab</Command>
       </Hotkey>
       <Hotkey>
-        <Shortcut>Ctrl+U</Shortcut>
-        <Command>cm_Exchange</Command>
-      </Hotkey>
-      <Hotkey>
         <Shortcut>Ctrl+W</Shortcut>
         <Command>cm_CloseTab</Command>
       </Hotkey>
@@ -116,10 +104,6 @@
         <Command>cm_ShellExecute</Command>
       </Hotkey>
       <Hotkey>
-        <Shortcut>Ctrl+Shift+A</Shortcut>
-        <Command>cm_ShowTabsList</Command>
-      </Hotkey>
-      <Hotkey>
         <Shortcut>Ctrl+Shift+B</Shortcut>
         <Command>cm_FlatViewSel</Command>
       </Hotkey>
@@ -130,10 +114,6 @@
       <Hotkey>
         <Shortcut>Ctrl+Shift+D</Shortcut>
         <Command>cm_ConfigDirHotList</Command>
-      </Hotkey>
-      <Hotkey>
-        <Shortcut>Ctrl+Shift+H</Shortcut>
-        <Command>cm_HorizontalFilePanels</Command>
       </Hotkey>
       <Hotkey>
         <Shortcut>Ctrl+Shift+X</Shortcut>
@@ -380,10 +360,6 @@
         <Command>cm_Delete</Command>
       </Hotkey>
       <Hotkey>
-        <Shortcut>Ctrl+R</Shortcut>
-        <Command>cm_Rename</Command>
-      </Hotkey>
-      <Hotkey>
         <Shortcut>Ctrl+N</Shortcut>
         <Command>cm_MakeDir</Command>
       </Hotkey>
@@ -408,6 +384,23 @@
         <Command>cm_EditNew</Command>
       </Hotkey>
       <Hotkey>
+        <Shortcut>Ctrl+Shift+H</Shortcut>
+        <Command>cm_ChangeDir</Command>
+        <Param>/home/ramiro</Param>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+S</Shortcut>
+        <Command>cm_Exchange</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Shift+A</Shortcut>
+        <Command>cm_MarkUnmarkAll</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+R</Shortcut>
+        <Command>cm_RenameOnly</Command>
+      </Hotkey>
+      <Hotkey>
         <Shortcut>Ctrl+A</Shortcut>
         <Command>cm_MarkMarkAll</Command>
         <Control>Files Panel</Control>
@@ -425,11 +418,6 @@
       <Hotkey>
         <Shortcut>Shift+Num+</Shortcut>
         <Command>cm_MarkCurrentExtension</Command>
-        <Control>Files Panel</Control>
-      </Hotkey>
-      <Hotkey>
-        <Shortcut>Ctrl+Num-</Shortcut>
-        <Command>cm_MarkUnmarkAll</Command>
         <Control>Files Panel</Control>
       </Hotkey>
       <Hotkey>

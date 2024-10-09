@@ -489,7 +489,7 @@
   </Configuration>
   <History>
     <SearchReplaceHistory Save="True"/>
-    <DirHistory Save="True"/>
+    <DirHistory Save="False"/>
     <CmdLineHistory Save="True"/>
     <FileMaskHistory Save="True"/>
     <VolumeSizeHistory Save="True"/>
@@ -726,7 +726,7 @@
           <Title>Name</Title>
           <Unique>AE3169F4-8EB9-4AB8-961A-C225004AD1E7</Unique>
           <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
-          <Width>250</Width>
+          <Width>565</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
@@ -947,7 +947,7 @@
     <Presets>
       <Preset>
         <Name>{BC322BF1-2185-47F6-9F99-D27ED1E23E53}</Name>
-        <Filename>[N]</Filename>
+        <Filename>[C]</Filename>
         <Extension>[E]</Extension>
         <FilenameStyle>0</FilenameStyle>
         <ExtensionStyle>0</ExtensionStyle>
