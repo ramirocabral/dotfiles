@@ -66,7 +66,7 @@ bindsym $mod+Shift+e exec thunar
 bindsym $mod+Shift+s exec spotify-launcher
 
 # start lf file explorer
-bindsym $mod+Shift+f exec alacritty -e ranger
+bindsym $mod+Shift+f exec doublecmd
 
 # kill focused window
 bindsym $mod+w kill
