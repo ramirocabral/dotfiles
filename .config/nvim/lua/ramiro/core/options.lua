@@ -14,6 +14,8 @@ vim.opt.updatetime = 750
 
 vim.opt.cursorline = true
 
+vim.opt["guicursor"] = ""
+
 --tabs config
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
