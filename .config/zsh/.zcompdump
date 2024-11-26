@@ -1,4 +1,4 @@
-#files: 815	version: 5.9
+#files: 819	version: 5.9
 
 _comps=(
 '-' '_precommand'
@@ -155,6 +155,7 @@ _comps=(
 'chcon' '_chcon'
 'chdir' '_cd'
 'chfn' '_users'
+'chg' '_hg'
 'chgrp' '_chown'
 'chimera' '_webbrowser'
 'chkconfig' '_chkconfig'
@@ -219,6 +220,7 @@ _comps=(
 'ctags' '_ctags'
 'ctags-exuberant' '_ctags'
 'ctags-universal' '_ctags'
+'ctr' '_ctr'
 'curl' '_curl'
 'cut' '_cut'
 'cvs' '_cvs'
@@ -263,6 +265,7 @@ _comps=(
 'dmesg' '_dmesg'
 'dmidecode' '_dmidecode'
 'doas' '_doas'
+'docker' '_docker'
 'domainname' '_yp'
 'dos2unix' '_dos2unix'
 'drill' '_drill'
@@ -575,6 +578,7 @@ _comps=(
 'heat' '_openstack'
 'help' '_sccs'
 'hexdump' '_hexdump'
+'hg' '_hg'
 'hilite' '_precommand'
 'histed' '_zed'
 'history' '_fc'
@@ -665,6 +669,7 @@ _comps=(
 'less' '_less'
 'let' '_math'
 'lf' '_lf'
+'lfcd' '_lf'
 'lftp' '_ncftp'
 'lha' '_lha'
 'libinput' '_libinput'
@@ -751,7 +756,6 @@ _comps=(
 'mencal' '_mencal'
 'mere' '_mere'
 'merge' '_rcs'
-'meson' '_meson'
 'metaflac' '_flac'
 'mformat' '_mtools'
 'mgv' '_pspdf'
@@ -843,7 +847,6 @@ _comps=(
 'nginx' '_nginx'
 'ngrep' '_ngrep'
 'nice' '_nice'
-'ninja' '_ninja'
 'nkf' '_nkf'
 'nl' '_nl'
 'nm' '_nm'
@@ -1082,6 +1085,7 @@ _comps=(
 'rubber-pipe' '_rubber'
 'ruby' '_ruby'
 'ruby-mri' '_ruby'
+'run0' '_run0'
 'run-help' '_run-help'
 'rup' '_hosts'
 'rusage' '_precommand'
@@ -1242,6 +1246,7 @@ _comps=(
 'tee' '_tee'
 'telnet' '_telnet'
 'tex' '_tex'
+'texdoc' '_texdoc'
 'texi2any' '_texinfo'
 'texi2dvi' '_texinfo'
 'texi2pdf' '_texinfo'
@@ -1390,6 +1395,7 @@ _comps=(
 '-value-,XZ_OPT,-default-' '_xz'
 '-vared-' '_in_vared'
 'vared' '_vared'
+'varlinkctl' '_varlinkctl'
 'vcs_info_hookadd' '_vcs_info'
 'vcs_info_hookdel' '_vcs_info'
 'vi' '_vi'
@@ -1489,6 +1495,7 @@ _comps=(
 'xzcat' '_xz'
 'yafc' '_yafc'
 'yash' '_sh'
+'yazi' '_yazi'
 'ypbind' '_yp'
 'ypcat' '_yp'
 'ypmatch' '_yp'
@@ -1663,15 +1670,16 @@ bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
 autoload -Uz _alacritty _bat _bluetoothctl _bootctl _busctl \
-            _bwrap _cargo _code _coredumpctl _curl \
-            _eza _gh _hostnamectl _journalctl _kernel-install \
-            _lf _libinput _localectl _loginctl _lsd \
-            _machinectl _meson _mkinitcpio _networkctl _ninja \
-            _oomctl _pacman _paru _pip _pulseaudio \
-            _resolvectl _rg _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes \
-            _sd_unit_files _sqv _systemctl _systemd _systemd-analyze \
-            _systemd-delta _systemd-inhibit _systemd-nspawn _systemd-path _systemd-run \
-            _systemd-tmpfiles _timedatectl _udevadm _wpctl _zathura \
+            _bwrap _cargo _code _coredumpctl _ctr \
+            _curl _docker _eza _gh _hg \
+            _hostnamectl _journalctl _kernel-install _lf _libinput \
+            _localectl _loginctl _lsd _machinectl _mkinitcpio \
+            _networkctl _oomctl _pacman _paru _pip \
+            _pulseaudio _resolvectl _rg _run0 _sd_hosts_or_user_at_host \
+            _sd_machines _sd_outputmodes _sd_unit_files _sqv _systemctl \
+            _systemd _systemd-analyze _systemd-delta _systemd-inhibit _systemd-nspawn \
+            _systemd-path _systemd-run _systemd-tmpfiles _texdoc _timedatectl \
+            _udevadm _varlinkctl _wpctl _yazi _zathura \
             _cdr _all_labels _all_matches _alternative _approximate \
             _arg_compile _arguments _bash_completions _cache_invalid _call_function \
             _combination _complete _complete_debug _complete_help _complete_help_generic \
