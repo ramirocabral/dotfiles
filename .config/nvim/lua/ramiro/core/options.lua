@@ -2,6 +2,8 @@
 vim.opt.relativenumber = true
 vim.opt.number = true
 
+vim.opt.showmode = false
+
 -- always 8 lines under when you scroll
 vim.opt.scrolloff = 8
 
@@ -31,6 +33,12 @@ vim.opt.background = "dark"
 vim.opt.signcolumn = "yes"
 vim.g.nightflyTransparent = true
 
+vim.opt.undofile = true
+
+vim.opt.signcolumn = 'yes'
+
+vim.opt.inccommand = 'split'
+
 --backspace
 vim.opt.backspace = "indent,eol,start"
 
@@ -45,5 +53,15 @@ vim.opt.splitbelow = true
 vim.opt.iskeyword:append("-")
 
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+
+
+-- Highlight when yanking (copying) text
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
 -- vim.diagnostic.config({ virtual_text = false })

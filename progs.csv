@@ -82,3 +82,4 @@ p,reflector
 p,cifs-utils
 p,doublecmd
 p,aws-cli
+p,docker
