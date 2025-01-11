@@ -11,14 +11,6 @@ local ensure_packer = function()
 end
 local packer_bootstrap = ensure_packer() -- true if packer was just installed
 
--- autocommand that reloads neovim and installs/updates/removes plugins
--- when file is saved
-vim.cmd([[ 
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
-augroup end
-]])
 
 -- import packer safely
 local status, packer = pcall(require, "packer")
@@ -47,6 +39,9 @@ return packer.startup(function(use)
 
 	-- add, delete, change surroundings
 	use("tpope/vim-surround")
+
+    --detect tabstop and shiftwidth automatically
+    use("tpope/vim-sleuth")
 
 	-- commenting with gc
 	use("numToStr/Comment.nvim")
@@ -114,7 +109,6 @@ return packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
 	--vimtex
-
 	use("lervag/vimtex")
 
 	--copilot

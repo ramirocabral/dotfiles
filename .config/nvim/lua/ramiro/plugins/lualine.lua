@@ -1,10 +1,8 @@
--- import lualine plugin safely
 local status, lualine = pcall(require, "lualine")
 if not status then
 	return
 end
 
--- get lualine nightfly theme
 local lualine_nightfly = require("lualine.themes.nightfly")
 -- local dracula = require("lualine.themes.dracula")
 -- local ayu_dark = require("lualine.themes.ayu_dark")

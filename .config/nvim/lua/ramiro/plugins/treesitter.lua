@@ -36,6 +36,8 @@ treesitter.setup({
 		"c",
 		"cpp",
 		"latex",
+        "python",
+        "go",
 	},
 	-- auto install above language parsers
 	auto_install = true,
