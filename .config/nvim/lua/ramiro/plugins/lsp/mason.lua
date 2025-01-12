@@ -1,7 +1,6 @@
 -- import mason plugin safely
 local mason_status, mason = pcall(require, "mason")
 if not mason_status then
-	print("asdf")
 	return
 end
 
@@ -37,7 +36,7 @@ mason_lspconfig.setup({
 		"clangd",
 		"texlab",
 		"pyright",
-        "gopls",
+		"gopls",
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
