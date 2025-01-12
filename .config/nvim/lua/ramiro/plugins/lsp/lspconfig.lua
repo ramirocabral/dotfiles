@@ -111,4 +111,13 @@ lspconfig["gopls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "go" },
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+			completeUnimported = true,
+		},
+	}
 })
