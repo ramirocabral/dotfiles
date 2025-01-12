@@ -24,11 +24,12 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
+	use("folke/tokyonight.nvim")
+
 	--colorschemes
-	use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
+	use("bluz71/vim-nightfly-guicolors")
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use("sainnhe/sonokai")
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Recommended, not required.
 	use({
 		"daltonmenezes/aura-theme",
 		rtp = "packages/neovim",
@@ -40,8 +41,8 @@ return packer.startup(function(use)
 	-- add, delete, change surroundings
 	use("tpope/vim-surround")
 
-    --detect tabstop and shiftwidth automatically
-    use("tpope/vim-sleuth")
+	--detect tabstop and shiftwidth automatically
+	use("tpope/vim-sleuth")
 
 	-- commenting with gc
 	use("numToStr/Comment.nvim")
@@ -106,7 +107,7 @@ return packer.startup(function(use)
 	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
 	-- git integration
-	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+	use("lewis6991/gitsigns.nvim")
 
 	--vimtex
 	use("lervag/vimtex")
@@ -121,14 +122,14 @@ return packer.startup(function(use)
 		config = function()
 			require("toggleterm").setup()
 		end,
-    })
+	})
 
-    use ({
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        requires = { {"nvim-lua/plenary.nvim"} }
-    }
-    )
+	use ({
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		requires = { {"nvim-lua/plenary.nvim"} }
+	}
+	)
 
 	if packer_bootstrap then
 		require("packer").sync()

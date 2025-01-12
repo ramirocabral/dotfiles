@@ -27,6 +27,10 @@ vim.opt.autoindent = true
 --line wrapping
 vim.opt.wrap = true
 
+
+
+
+
 --appearance
 vim.opt.termguicolors = true
 vim.opt.background = "dark"

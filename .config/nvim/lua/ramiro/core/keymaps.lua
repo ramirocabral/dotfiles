@@ -11,7 +11,6 @@ vim.keymap.set("n", "k", "gk") --move up in wrapped lines
 vim.keymap.set("n", "J", "mzJ`z") -- send bottom line to actual
 vim.keymap.set("n", "n", "nzzzv") -- search terms stay in the middle
 vim.keymap.set("n", "N", "Nzzzv") -- search terms(backwards) stay in the middle
-vim.keymap.set("n", "K", "<esc>mpa<cr><esc>dd`pP`pa") -- in visual mode, move lines up with K
 
 --clipboard management
 vim.keymap.set("n", "<leader>y", [["+y]]) -- copy to system clipboard
@@ -79,13 +78,14 @@ vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
 
 -- telescope
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
+vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>") -- find tracked git files
 vim.keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<cr>") -- list keymaps
 
--- disable git signs
+-- toggle git signs
 vim.keymap.set("n", "<leader>tg", "<cmd>Gitsigns toggle_signs<cr>")
 
 --compile c programs and see output on floating terminal
