@@ -83,3 +83,4 @@ p,cifs-utils
 p,doublecmd
 p,aws-cli
 p,docker
+a,wscat
