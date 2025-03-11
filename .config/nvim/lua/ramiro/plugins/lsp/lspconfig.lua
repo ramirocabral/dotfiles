@@ -10,12 +10,6 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
--- import typescript plugin safely
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript_setup then
-	return
-end
-
 -- enable keybinds only for when lsp server available
 local on_attach = function(client, bufnr)
 	-- keybind options
@@ -28,7 +22,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>ca",function() vim.lsp.buf.code_action() end, opts) -- see available code actions
 	vim.keymap.set("n", "<leader>rn",function() vim.lsp.buf.rename() end, opts) -- smart rename
 	vim.keymap.set("n", "<leader>D", function() vim.lsp.diagnostic.get_line_diagnostics() end, opts) -- show diagnostics for current line
-	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts) --show documentation for what is under cursor
+	vim.keymap.set("n", "<leader>sd", function() vim.lsp.buf.hover() end, opts) --show documentation for what is under cursor
 	vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
 end
@@ -43,13 +37,10 @@ lspconfig["html"].setup({
 	on_attach = on_attach,
 })
 
--- configure typescript server with plugin
-typescript.setup({
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-        filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-	},
+lspconfig["tsserver"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
 })
 
 -- configure css server
@@ -58,21 +49,20 @@ lspconfig["cssls"].setup({
 	on_attach = on_attach,
 })
 
--- configure tailwindcss server
-lspconfig["tailwindcss"].setup({
+lspconfig["eslint"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
 })
 
--- configure emmet language server
-lspconfig["emmet_ls"].setup({
+-- configure tailwindcss server
+lspconfig["tailwindcss"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 })
 
 -- configure pyright server
-
 lspconfig["pyright"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
