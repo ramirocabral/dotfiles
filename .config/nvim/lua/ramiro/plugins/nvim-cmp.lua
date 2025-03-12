@@ -10,13 +10,6 @@ if not luasnip_status then
 	return
 end
 
--- import lspkind plugin safely
-local lspkind_status, lspkind = pcall(require, "lspkind")
-if not lspkind_status then
-	return
-end
-
--- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.opt.completeopt = "menu,menuone,noselect"
@@ -43,5 +36,43 @@ cmp.setup({
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
 	}),
-	-- configure lspkind for vs-code like icons
+	formatting = {
+		fields = { "kind", "abbr", "menu" },
+		format = function(entry, vim_item)
+			vim_item.menu = ({
+				nvim_lsp = "[LSP]",
+				luasnip = "[LuaSnip]",
+				buffer = "[Buffer]",
+				path = "[Path]",
+			})[entry.source.name]
+
+			--for showing colors on tailwindcss autocomplete
+			if vim_item.kind == 'Color' and entry.completion_item.documentation then
+
+				if type(entry.completion_item.documentation) ~= 'table' then
+					local _, _, r, g, b =
+					---@diagnostic disable-next-line: param-type-mismatch
+					string.find(entry.completion_item.documentation, '^rgb%((%d+), (%d+), (%d+)')
+					local color
+
+					if r and g and b then
+						color = string.format('%02x', r) .. string.format('%02x', g) .. string.format('%02x', b)
+					else
+						color = entry.completion_item.documentation:gsub('#', '')
+					end
+					local group = 'Tw_' .. color
+
+					if vim.api.nvim_call_function('hlID', { group }) < 1 then
+						vim.api.nvim_command('highlight' .. ' ' .. group .. ' ' .. 'guifg=#' .. color)
+					end
+
+					vim_item.kind = '󰹞󰹞󰹞󰹞󰹞󰹞'
+					vim_item.kind_hl_group = group
+				end
+
+			end
+
+			return vim_item
+		end
+	}
 })

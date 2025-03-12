@@ -140,11 +140,6 @@ _G.packer_plugins = {
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
     url = "https://github.com/onsails/lspkind.nvim"
   },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
-    url = "https://github.com/glepnir/lspsaga.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -179,11 +174,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
-  },
-  ["nvim-jdtls"] = {
-    loaded = true,
-    path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
-    url = "https://github.com/mfussenegger/nvim-jdtls"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
