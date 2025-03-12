@@ -28,6 +28,7 @@ vim.opt.autoindent = true
 vim.opt.wrap = true
 
 
+vim.opt.mouse = ""
 
 
 
