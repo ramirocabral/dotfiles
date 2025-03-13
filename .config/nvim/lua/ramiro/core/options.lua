@@ -1,3 +1,6 @@
+--disable swap files
+vim.opt.swapfile = false
+
 --set relativenumber
 vim.opt.relativenumber = true
 vim.opt.number = true
