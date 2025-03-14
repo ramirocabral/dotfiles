@@ -43,7 +43,6 @@ p,man
 p,fzf
 p,xorg-server
 p,xorg-xinit
-a,visual-studio-code-bin
 p,npm
 a,jdtls
 p,ripgrep
