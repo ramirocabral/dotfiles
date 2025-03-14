@@ -85,3 +85,4 @@ p,docker
 a,wscat
 a,postman
 p,go
+p,deno
