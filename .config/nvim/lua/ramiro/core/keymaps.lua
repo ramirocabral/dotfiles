@@ -49,6 +49,12 @@ vim.keymap.set("n", "<C-j>", "<C-w>j") -- Window down
 vim.keymap.set("n", "<C-k>", "<C-w>k") -- Window up
 vim.keymap.set("n", "<C-w>", ":q!<CR>") -- close window
 
+--resize windows
+vim.keymap.set("n", "<C-Up>", ":resize +2<CR>") -- increase window height
+vim.keymap.set("n", "<C-Down>", ":resize -2<CR>") -- decrease window height
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>") -- increase window width
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>") -- decrease window width
+
 -- CHAMOUD
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true }) --chmod current file
 
