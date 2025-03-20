@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/ramiro/.cache/nvim/packer_hererocks/2.1.1720049189/share/lua/5.1/?.lua;/home/ramiro/.cache/nvim/packer_hererocks/2.1.1720049189/share/lua/5.1/?/init.lua;/home/ramiro/.cache/nvim/packer_hererocks/2.1.1720049189/lib/luarocks/rocks-5.1/?.lua;/home/ramiro/.cache/nvim/packer_hererocks/2.1.1720049189/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/ramiro/.cache/nvim/packer_hererocks/2.1.1720049189/lib/lua/5.1/?.so"
+local package_path_str = "/home/ramiro/.cache/nvim/packer_hererocks/2.1.1736781742/share/lua/5.1/?.lua;/home/ramiro/.cache/nvim/packer_hererocks/2.1.1736781742/share/lua/5.1/?/init.lua;/home/ramiro/.cache/nvim/packer_hererocks/2.1.1736781742/lib/luarocks/rocks-5.1/?.lua;/home/ramiro/.cache/nvim/packer_hererocks/2.1.1736781742/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/ramiro/.cache/nvim/packer_hererocks/2.1.1736781742/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -135,11 +135,6 @@ _G.packer_plugins = {
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
-  ["lspkind.nvim"] = {
-    loaded = true,
-    path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
-    url = "https://github.com/onsails/lspkind.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -212,6 +207,12 @@ _G.packer_plugins = {
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["peek.nvim"] = {
+    config = { "\27LJ\2\n¡\1\0\0\6\0\n\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\3\0009\0\4\0009\0\5\0'\2\6\0006\3\0\0'\5\1\0B\3\2\0029\3\a\0034\4\0\0B\0\4\0016\0\3\0009\0\4\0009\0\5\0'\2\b\0006\3\0\0'\5\1\0B\3\2\0029\3\t\0034\4\0\0B\0\4\1K\0\1\0\nclose\14PeekClose\topen\rPeekOpen\29nvim_create_user_command\bapi\bvim\nsetup\tpeek\frequire\0" },
+    loaded = true,
+    path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/peek.nvim",
+    url = "https://github.com/toppair/peek.nvim"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -231,12 +232,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["toggleterm.nvim"] = {
-    config = { "\27LJ\2\n8\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15toggleterm\frequire\0" },
-    loaded = true,
-    path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
-    url = "https://github.com/akinsho/toggleterm.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
@@ -280,14 +275,14 @@ time([[Defining packer_plugins]], false)
 time([[Runtimepath customization]], true)
 vim.o.runtimepath = vim.o.runtimepath .. ",/home/ramiro/.local/share/nvim/site/pack/packer/start/aura-theme/packages/neovim"
 time([[Runtimepath customization]], false)
--- Config for: toggleterm.nvim
-time([[Config for toggleterm.nvim]], true)
-try_loadstring("\27LJ\2\n8\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
-time([[Config for toggleterm.nvim]], false)
 -- Config for: aura-theme
 time([[Config for aura-theme]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "aura-theme")
 time([[Config for aura-theme]], false)
+-- Config for: peek.nvim
+time([[Config for peek.nvim]], true)
+try_loadstring("\27LJ\2\n¡\1\0\0\6\0\n\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\3\0009\0\4\0009\0\5\0'\2\6\0006\3\0\0'\5\1\0B\3\2\0029\3\a\0034\4\0\0B\0\4\0016\0\3\0009\0\4\0009\0\5\0'\2\b\0006\3\0\0'\5\1\0B\3\2\0029\3\t\0034\4\0\0B\0\4\1K\0\1\0\nclose\14PeekClose\topen\rPeekOpen\29nvim_create_user_command\bapi\bvim\nsetup\tpeek\frequire\0", "config", "peek.nvim")
+time([[Config for peek.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-treesitter ]]

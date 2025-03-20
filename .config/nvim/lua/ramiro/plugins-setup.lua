@@ -110,8 +110,7 @@ return packer.startup(function(use)
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		requires = { {"nvim-lua/plenary.nvim"} }
-	}
-	)
+	})
 
 	if packer_bootstrap then
 		require("packer").sync()
