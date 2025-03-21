@@ -1,6 +1,6 @@
 
 [font]
-size = 8.5
+size = 11
 
 [font.bold]
 family = "Liberation Mono"
@@ -19,16 +19,6 @@ opacity = 0.9
 [window.padding]
 x = 6
 y = 6
-
-[keyboard]
-bindings = [{ key = "k", mods = "Alt", action = "ScrollHalfPageUp" },
-            { key = "j", mods = "Alt", action = "ScrollHalfPageDown"},
-            { key = "u", mods = "Alt", action = "ScrollToTop"},
-            { key = "d", mods = "Alt", action = "ScrollToBottom"},
-            { key = "c", mods = "Alt", action = "Copy"},
-            { key = "v", mods = "Alt", action = "Paste"},
-            { key = "l", mods = "Alt", action = "Right"},
-]
 
 [general]
 import = [
