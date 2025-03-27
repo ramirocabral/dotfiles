@@ -87,3 +87,6 @@ p,go
 p,deno
 p,tmux
 p,fd
+p,cups
+p,cups-filters
+p,cups-pdf
