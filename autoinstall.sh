@@ -146,11 +146,20 @@ systemctl enable lightdm
 sudo -u "$name" mkdir -p "/home/$name/Screenshots"
 sudo -u "$name" mkdir -p "/home/$name/Desktop"
 sudo -u "$name" mkdir -p "/home/$name/Documents"
+sudo -u "$name" mkdir -p "/home/$name/projects"
+sudo -u "$name" mkdir -p "/home/$name/facultad"
 sudo mkdir -p /mnt/nas
 sudo mkdir -p /mnt/nas/ramiro /mnt/nas/public
 
+# mount NAS smb shares
 echo "//nas.lan/public /mnt/nas/public cifs    credentials=/home/ramiro/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 2" >> /etc/fstab
 echo "//nas.lan/ramiro /mnt/nas/ramiro cifs    credentials=/home/ramiro/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 3" >> /etc/fstab
 
 ln -s ""$homedir/librewolf.overrides.cfg" $homedir/.librewolf/librewolf.overrides.cfg" 
+
+# set up cups client
+systemctl enable --now cups.service
+lpadmin -p my_network_printer -E -v ipp://192.168.9.7:631/printers/EPSONL395 -m everywhere
+
+
 echo -e "DONE! Now reboot your computer"
