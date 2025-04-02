@@ -115,11 +115,6 @@ _G.packer_plugins = {
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["copilot.vim"] = {
-    loaded = true,
-    path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/copilot.vim",
-    url = "https://github.com/github/copilot.vim"
-  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -207,12 +202,6 @@ _G.packer_plugins = {
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  ["peek.nvim"] = {
-    config = { "\27LJ\2\n¡\1\0\0\6\0\n\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\3\0009\0\4\0009\0\5\0'\2\6\0006\3\0\0'\5\1\0B\3\2\0029\3\a\0034\4\0\0B\0\4\0016\0\3\0009\0\4\0009\0\5\0'\2\b\0006\3\0\0'\5\1\0B\3\2\0029\3\t\0034\4\0\0B\0\4\1K\0\1\0\nclose\14PeekClose\topen\rPeekOpen\29nvim_create_user_command\bapi\bvim\nsetup\tpeek\frequire\0" },
-    loaded = true,
-    path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/peek.nvim",
-    url = "https://github.com/toppair/peek.nvim"
-  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/ramiro/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -279,10 +268,6 @@ time([[Runtimepath customization]], false)
 time([[Config for aura-theme]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "aura-theme")
 time([[Config for aura-theme]], false)
--- Config for: peek.nvim
-time([[Config for peek.nvim]], true)
-try_loadstring("\27LJ\2\n¡\1\0\0\6\0\n\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\3\0009\0\4\0009\0\5\0'\2\6\0006\3\0\0'\5\1\0B\3\2\0029\3\a\0034\4\0\0B\0\4\0016\0\3\0009\0\4\0009\0\5\0'\2\b\0006\3\0\0'\5\1\0B\3\2\0029\3\t\0034\4\0\0B\0\4\1K\0\1\0\nclose\14PeekClose\topen\rPeekOpen\29nvim_create_user_command\bapi\bvim\nsetup\tpeek\frequire\0", "config", "peek.nvim")
-time([[Config for peek.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-treesitter ]]

@@ -104,7 +104,7 @@ return packer.startup(function(use)
 	use("lervag/vimtex")
 
 	--copilot
-	use("github/copilot.vim")
+	-- use("github/copilot.vim")
 
 	use ({
 		"ThePrimeagen/harpoon",

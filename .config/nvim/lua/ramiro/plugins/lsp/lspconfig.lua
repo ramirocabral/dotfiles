@@ -52,6 +52,7 @@ lspconfig["eslint"].setup({
 lspconfig["tailwindcss"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx", "templ", "vue", "html", "astro", "htmlangular", "react"},
 })
 
 -- configure pyright server
@@ -102,4 +103,9 @@ lspconfig["gopls"].setup({
 			completeUnimported = true,
 		},
 	}
+})
+
+lspconfig["templ"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 })

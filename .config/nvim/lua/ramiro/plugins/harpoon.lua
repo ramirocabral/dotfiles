@@ -13,6 +13,3 @@ vim.keymap.set("n", "<C-5>", function() harpoon:list():select(5) end)
 vim.keymap.set("n", "<C-5>", function() harpoon:list():select(5) end)
 vim.keymap.set("n", "<C-6>", function() harpoon:list():select(6) end)
 vim.keymap.set("n", "<C-7>", function() harpoon:list():select(7) end)
-
--- vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
--- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
