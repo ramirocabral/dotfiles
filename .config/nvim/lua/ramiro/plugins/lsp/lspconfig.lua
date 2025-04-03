@@ -23,10 +23,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>rn",function() vim.lsp.buf.rename() end, opts) -- smart rename
 	vim.keymap.set("n", "<leader>D", function() vim.lsp.diagnostic.get_line_diagnostics() end, opts) -- show diagnostics for current line
 	vim.keymap.set("n", "<leader>sd", function() vim.lsp.buf.hover() end, opts) --show documentation for what is under cursor
-	vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
 end
-
 
 -- used to enable autocompletion (assign to every lsp server config)
 local capabilities = cmp_nvim_lsp.default_capabilities()
