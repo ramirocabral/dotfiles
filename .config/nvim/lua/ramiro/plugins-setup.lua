@@ -103,14 +103,17 @@ return packer.startup(function(use)
 	--vimtex
 	use("lervag/vimtex")
 
-	--copilot
-	-- use("github/copilot.vim")
+	-- copilot
+	use("github/copilot.vim")
 
 	use ({
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		requires = { {"nvim-lua/plenary.nvim"} }
 	})
+
+	--colorizer
+	use("norcalli/nvim-colorizer.lua")
 
 	if packer_bootstrap then
 		require("packer").sync()
