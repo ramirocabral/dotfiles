@@ -3,7 +3,7 @@
 #green color
 COLOR_GE80=${COLOR_GE80:-#00FF00}
 
-INTERFACE=$(nmcli device | grep connected | grep -v "loopback" | cut -d" " -f1)
+INTERFACE=$(nmcli device | grep connected |grep -vE "loopback|docker|br-|veth" | cut -d" " -f1)
 
 #print ip address
 ADDRESS=$(ip addr show $INTERFACE | grep -m 1 "inet " |  awk '{print $2}')
