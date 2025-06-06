@@ -27,6 +27,7 @@ The second column is the name of the package.
 ```bash
 git clone https://github.com/ramirocabral/dotfiles /tmp/dotfiles
 /cp -rfT /tmp/dotfiles $HOME
+cd $HOME
 sudo su
 ./autoinstall.sh
 ```
