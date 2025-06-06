@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doublecmd DCVersion="1.1.16 gamma" ConfigVersion="15">
+<doublecmd DCVersion="1.1.25 gamma" ConfigVersion="15">
   <Toolbars>
     <MainToolbar>
       <Row>
@@ -158,13 +158,13 @@
   </Toolbars>
   <MainWindow>
     <Position Save="True">
-      <Left>80</Left>
-      <Top>48</Top>
-      <Width>800</Width>
-      <Height>480</Height>
+      <Left>963</Left>
+      <Top>7</Top>
+      <Width>946</Width>
+      <Height>1018</Height>
       <PixelsPerInch>96</PixelsPerInch>
-      <Maximized>True</Maximized>
-      <Splitter>50</Splitter>
+      <Maximized>False</Maximized>
+      <Splitter>49.6087636932707</Splitter>
     </Position>
   </MainWindow>
   <Language>
@@ -247,7 +247,7 @@
   <Fonts>
     <Main>
       <Name>default</Name>
-      <Size>10</Size>
+      <Size>9</Size>
       <Style>1</Style>
       <Quality>0</Quality>
     </Main>
@@ -429,7 +429,7 @@
     <UseTrash>True</UseTrash>
     <SkipFileOpError>False</SkipFileOpError>
     <TypeOfDuplicatedRename>0</TypeOfDuplicatedRename>
-    <ShowDialogOnDragDrop>True</ShowDialogOnDragDrop>
+    <ShowDialogOnDragDrop>False</ShowDialogOnDragDrop>
     <DragAndDropTextRichtextDesireLevel>0</DragAndDropTextRichtextDesireLevel>
     <DragAndDropTextHtmlDesireLevel>1</DragAndDropTextHtmlDesireLevel>
     <DragAndDropTextUnicodeDesireLevel>2</DragAndDropTextUnicodeDesireLevel>
@@ -441,7 +441,7 @@
     <AutoExtractOpenMask/>
     <SearchDefaultTemplate/>
     <ProgressKind>0</ProgressKind>
-    <Confirmations>15</Confirmations>
+    <Confirmations>0</Confirmations>
     <Options>
       <Symlink>0</Symlink>
       <CorrectLinks>False</CorrectLinks>
@@ -473,6 +473,7 @@
       <MulRenFilenameWithFullPathInLog>False</MulRenFilenameWithFullPathInLog>
       <MulRenPathRangeSeparator>- </MulRenPathRangeSeparator>
     </MultiRename>
+    <DefaultDropEffect>True</DefaultDropEffect>
   </FileOperations>
   <Tabs>
     <Options>49937</Options>
@@ -489,7 +490,7 @@
   </Configuration>
   <History>
     <SearchReplaceHistory Save="True"/>
-    <DirHistory Save="False"/>
+    <DirHistory Save="False" Count="30"/>
     <CmdLineHistory Save="True"/>
     <FileMaskHistory Save="True"/>
     <VolumeSizeHistory Save="True"/>
@@ -624,6 +625,7 @@
     <FilterSingles>True</FilterSingles>
     <FileMask Save="True">*</FileMask>
     <DateTimeFormat>yyyy.mm.dd hh:nn:ss</DateTimeFormat>
+    <FilterUnknown>True</FilterUnknown>
   </SyncDirs>
   <InternalAssociations>
     <OfferToAddNewFileType>False</OfferToAddNewFileType>
@@ -921,7 +923,7 @@
         <Name>FTP</Name>
         <Path>%commander_path%/plugins/wfx/ftp/ftp.wfx</Path>
       </WfxPlugin>
-      <WfxPlugin Enabled="True">
+      <WfxPlugin Enabled="False">
         <Name>Windows Network</Name>
         <Path>%commander_path%/plugins/wfx/samba/samba.wfx</Path>
       </WfxPlugin>
