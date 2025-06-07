@@ -73,3 +73,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.diagnostic.config({ virtual_text = true })
+
+vim.api.nvim_create_user_command('TypstCompileWatch', function()
+  local file = vim.fn.expand('%:p')
+  local output_pdf = vim.fn.expand('%:r') .. '.pdf'
+
+  local compile_cmd = string.format("typst compile %s", file)
+  vim.fn.jobstart(compile_cmd, {
+    on_exit = function(_, code, _)
+      if code == 0 then
+        local watch_cmd = string.format("typst watch %s", file)
+        vim.fn.jobstart(watch_cmd, {
+          detach = true,
+        })
+
+        local zathura_cmd = string.format("zathura %s", output_pdf)
+        vim.fn.jobstart(zathura_cmd, {
+          detach = true,
+        })
+      else
+        print("typst compile failed.")
+      end
+    end
+  })
+end, { desc = 'Compile + watch Typst file and open PDF in Zathura' })
