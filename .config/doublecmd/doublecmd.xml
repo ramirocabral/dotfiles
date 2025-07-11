@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doublecmd DCVersion="1.1.25 gamma" ConfigVersion="15">
+<doublecmd DCVersion="1.1.26 gamma" ConfigVersion="15">
   <Toolbars>
     <MainToolbar>
       <Row>
@@ -158,12 +158,12 @@
   </Toolbars>
   <MainWindow>
     <Position Save="True">
-      <Left>963</Left>
+      <Left>7</Left>
       <Top>7</Top>
       <Width>946</Width>
-      <Height>1018</Height>
+      <Height>493</Height>
       <PixelsPerInch>96</PixelsPerInch>
-      <Maximized>False</Maximized>
+      <Maximized>True</Maximized>
       <Splitter>49.6087636932707</Splitter>
     </Position>
   </MainWindow>
@@ -424,7 +424,7 @@
     <WipePassNumber>1</WipePassNumber>
     <DropReadOnlyFlag>False</DropReadOnlyFlag>
     <ProcessComments>False</ProcessComments>
-    <RenameSelOnlyName>False</RenameSelOnlyName>
+    <RenameSelOnlyName>True</RenameSelOnlyName>
     <ShowCopyTabSelectPanel>False</ShowCopyTabSelectPanel>
     <UseTrash>True</UseTrash>
     <SkipFileOpError>False</SkipFileOpError>
