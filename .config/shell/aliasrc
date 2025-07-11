@@ -18,6 +18,8 @@ alias mv="mv -iv"
 alias bare="/usr/bin/git --git-dir=$HOME/dotfiles.git --work-tree=$HOME"
 alias setclip="xclip -sel clp"
 alias forcepull="git fetch; git reset --hard HEAD; git merge '@{u}'"
+alias gs="git status"
+alias gc="git commit -m"
 alias prettyjson='python -m json.tool'
 alias wificonnect='nmcli -ask device wifi connect'
 alias bluetooth='sudo systemctl start bluetooth.service'
