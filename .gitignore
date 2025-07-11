@@ -1,0 +1,7 @@
+.config/doublecmd/*
+
+!.config/doublecmd/doublecmd.xml
+!.config/doublecmd/doublecmd.cfg
+!.config/doublecmd/colors.json
+!.config/doublecmd/shortcuts.csf
+!.config/doublecmd/pixmaps.txt
