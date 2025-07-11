@@ -278,10 +278,6 @@
         <Param>index=-1</Param>
       </Hotkey>
       <Hotkey>
-        <Shortcut>Ctrl+/</Shortcut>
-        <Command>cm_QuickSearch</Command>
-      </Hotkey>
-      <Hotkey>
         <Shortcut>Ctrl+Y</Shortcut>
         <Command>cm_Copy</Command>
       </Hotkey>
@@ -390,6 +386,15 @@
       <Hotkey>
         <Shortcut>Alt+9</Shortcut>
         <Command>cm_OpenDriveByIndex</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Shift+F</Shortcut>
+        <Command>cm_ChangeDir</Command>
+        <Param>/mnt/nas/ramiro/facultad</Param>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Num/</Shortcut>
+        <Command>cm_Search</Command>
       </Hotkey>
       <Hotkey>
         <Shortcut>Ctrl+A</Shortcut>

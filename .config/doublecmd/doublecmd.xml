@@ -161,7 +161,7 @@
       <Left>7</Left>
       <Top>7</Top>
       <Width>946</Width>
-      <Height>493</Height>
+      <Height>1010</Height>
       <PixelsPerInch>96</PixelsPerInch>
       <Maximized>True</Maximized>
       <Splitter>49.6087636932707</Splitter>
@@ -439,7 +439,7 @@
     <DragAndDropSaveUnicodeTextInUFT8>True</DragAndDropSaveUnicodeTextInUFT8>
     <NtfsHourTimeDelay>False</NtfsHourTimeDelay>
     <AutoExtractOpenMask/>
-    <SearchDefaultTemplate/>
+    <SearchDefaultTemplate>nombre</SearchDefaultTemplate>
     <ProgressKind>0</ProgressKind>
     <Confirmations>0</Confirmations>
     <Options>
@@ -511,7 +511,7 @@
     <GridHorzLine>False</GridHorzLine>
     <ShowWarningMessages>True</ShowWarningMessages>
     <SpaceMovesDown>False</SpaceMovesDown>
-    <DirBrackets>True</DirBrackets>
+    <DirBrackets>False</DirBrackets>
     <InplaceRename>False</InplaceRename>
     <InplaceRenameButton>True</InplaceRenameButton>
     <DblClickToParent>False</DblClickToParent>
@@ -714,7 +714,40 @@
   <MarkShowWantedAttribute>False</MarkShowWantedAttribute>
   <MarkDefaultWantedAttribute/>
   <MarkLastWantedAttribute/>
-  <SearchTemplates/>
+  <SearchTemplates>
+    <Template>
+      <Name>nombre</Name>
+      <StartPath/>
+      <ExcludeDirectories/>
+      <FilesMasks>zilla</FilesMasks>
+      <ExcludeFiles/>
+      <SearchDepth>0</SearchDepth>
+      <IsPartialNameSearch>True</IsPartialNameSearch>
+      <RegExp>False</RegExp>
+      <FollowSymLinks>False</FollowSymLinks>
+      <FindInArchives>False</FindInArchives>
+      <AttributesPattern/>
+      <IsDateFrom>False</IsDateFrom>
+      <IsDateTo>False</IsDateTo>
+      <IsTimeFrom>False</IsTimeFrom>
+      <IsTimeTo>False</IsTimeTo>
+      <IsNotOlderThan>False</IsNotOlderThan>
+      <IsFileSizeFrom>False</IsFileSizeFrom>
+      <IsFileSizeTo>False</IsFileSizeTo>
+      <FileSizeUnit>1</FileSizeUnit>
+      <IsFindText>False</IsFindText>
+      <IsReplaceText>False</IsReplaceText>
+      <HexValue>False</HexValue>
+      <CaseSensitive>False</CaseSensitive>
+      <NotContainingText>False</NotContainingText>
+      <TextRegExp>False</TextRegExp>
+      <TextEncoding>Default</TextEncoding>
+      <OfficeXML>False</OfficeXML>
+      <Duplicates Enabled="False"/>
+      <SearchPlugin/>
+      <ContentPlugins Enabled="False"/>
+    </Template>
+  </SearchTemplates>
   <ColumnsSets DefaultTitleHash="540805403">
     <ColumnsSet UseFrameCursor="False">
       <Name>Default</Name>
@@ -727,28 +760,12 @@
         <Column>
           <Title>Name</Title>
           <Unique>AE3169F4-8EB9-4AB8-961A-C225004AD1E7</Unique>
-          <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
-          <Width>565</Width>
-          <Align>0</Align>
+          <FuncString>[DC().GETFILENAME{}]</FuncString>
+          <Width>524</Width>
+          <Align>2</Align>
           <Font>
             <Name>default</Name>
-            <Size>10</Size>
-            <Style>1</Style>
-            <Quality>0</Quality>
-          </Font>
-          <UseInvertedSelection>False</UseInvertedSelection>
-          <UseInactiveSelColor>False</UseInactiveSelColor>
-          <Overcolor>True</Overcolor>
-        </Column>
-        <Column>
-          <Title>Ext</Title>
-          <Unique>9865DFEF-73E2-4874-A0A1-65BA538F3527</Unique>
-          <FuncString>[DC().GETFILEEXT{}]</FuncString>
-          <Width>50</Width>
-          <Align>0</Align>
-          <Font>
-            <Name>default</Name>
-            <Size>10</Size>
+            <Size>9</Size>
             <Style>1</Style>
             <Quality>0</Quality>
           </Font>
@@ -760,11 +777,11 @@
           <Title>Size</Title>
           <Unique>0883E2C3-168F-45F3-B953-C2906D5BC9DD</Unique>
           <FuncString>[DC().GETFILESIZE{}]</FuncString>
-          <Width>70</Width>
+          <Width>87</Width>
           <Align>1</Align>
           <Font>
             <Name>default</Name>
-            <Size>10</Size>
+            <Size>9</Size>
             <Style>1</Style>
             <Quality>0</Quality>
           </Font>
@@ -776,11 +793,11 @@
           <Title>Date</Title>
           <Unique>CE866DAA-D87E-40BB-9999-3E856E562E3E</Unique>
           <FuncString>[DC().GETFILETIME{}]</FuncString>
-          <Width>140</Width>
-          <Align>1</Align>
+          <Width>203</Width>
+          <Align>2</Align>
           <Font>
             <Name>default</Name>
-            <Size>10</Size>
+            <Size>9</Size>
             <Style>1</Style>
             <Quality>0</Quality>
           </Font>
@@ -792,11 +809,11 @@
           <Title>Attr</Title>
           <Unique>79054497-9BD9-4029-95F7-CA69D372C4CD</Unique>
           <FuncString>[DC().GETFILEATTR{}]</FuncString>
-          <Width>100</Width>
+          <Width>148</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
-            <Size>10</Size>
+            <Size>9</Size>
             <Style>1</Style>
             <Quality>0</Quality>
           </Font>
