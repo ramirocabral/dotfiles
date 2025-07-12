@@ -90,3 +90,15 @@ vim.keymap.set("n", "<leader>tg", "<cmd>Gitsigns toggle_signs<cr>")
 
 --compile c programs and see output on floating terminal
 vim.keymap.set("n", "<leader>cc", "<cmd>!gcc %<cr> <cmd>TermExec cmd='./a.out'<cr>")
+
+-- disable/enable spellchecking
+vim.keymap.set("n", "<leader>sp", function()
+ --  if vim.opt.spell then
+	-- vim.opt.spell = false
+	-- print("Spellchecking disabled")
+ --  else
+	-- vim.opt.spell = true
+	-- print("Spellchecking enabled")
+  -- end
+  vim.opt.spell = not vim.opt.spell:get()
+end)
