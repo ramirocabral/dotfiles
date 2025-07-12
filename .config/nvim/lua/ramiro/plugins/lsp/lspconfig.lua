@@ -106,3 +106,8 @@ lspconfig["templ"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
+
+lspconfig["tinymist"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
