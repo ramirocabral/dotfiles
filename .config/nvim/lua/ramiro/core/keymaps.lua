@@ -93,12 +93,41 @@ vim.keymap.set("n", "<leader>cc", "<cmd>!gcc %<cr> <cmd>TermExec cmd='./a.out'<c
 
 -- disable/enable spellchecking
 vim.keymap.set("n", "<leader>sp", function()
- --  if vim.opt.spell then
-	-- vim.opt.spell = false
-	-- print("Spellchecking disabled")
- --  else
-	-- vim.opt.spell = true
-	-- print("Spellchecking enabled")
-  -- end
   vim.opt.spell = not vim.opt.spell:get()
 end)
+
+-- see spelling suggestions
+vim.keymap.set("n", "<leader>wS", "z=")
+-- add word to dictionary
+vim.keymap.set("n", "<leader>wi", "zg")
+
+
+local function auto_correct_first_suggestion()
+  local word = vim.fn.expand("<cword>")
+  local suggestions = vim.fn.spellsuggest(word, 1)
+
+  if #suggestions == 0 then
+    print("No suggestions found for '" .. word .. "'")
+    return
+  end
+
+  local replacement = suggestions[1]
+  local cursor_pos = vim.api.nvim_win_get_cursor(0)
+  local line = vim.api.nvim_get_current_line()
+  local col = cursor_pos[2]
+
+  local pattern = "\\<" .. word .. "\\>"
+  local s, e = vim.regex(pattern):match_str(line)
+  if not s then
+    print("Could not find word '" .. word .. "' in the current line.")
+    return
+  end
+
+  local new_line = line:sub(1, s) .. replacement .. line:sub(e + 1)
+  vim.api.nvim_set_current_line(new_line)
+
+  vim.api.nvim_win_set_cursor(0, { cursor_pos[1], s + #replacement })
+  print("Replaced '" .. word .. "' with '" .. replacement .. "'")
+end
+
+vim.keymap.set("n", "<leader>ws", auto_correct_first_suggestion, { desc = "Auto-correct with first spelling suggestion" })
