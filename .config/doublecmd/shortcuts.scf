@@ -40,10 +40,6 @@
         <Command>cm_CalculateSpace</Command>
       </Hotkey>
       <Hotkey>
-        <Shortcut>Ctrl+M</Shortcut>
-        <Command>cm_MultiRename</Command>
-      </Hotkey>
-      <Hotkey>
         <Shortcut>Ctrl+P</Shortcut>
         <Command>cm_AddPathToCmdLine</Command>
       </Hotkey>
@@ -395,6 +391,10 @@
       <Hotkey>
         <Shortcut>Ctrl+Num/</Shortcut>
         <Command>cm_Search</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+M</Shortcut>
+        <Command>cm_Rename</Command>
       </Hotkey>
       <Hotkey>
         <Shortcut>Ctrl+A</Shortcut>
