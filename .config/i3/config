@@ -22,7 +22,7 @@ exec_always --no-startup-id picom --config /home/ramiro/.config/picom/picom.conf
 exec_always --no-startup-id autotiling
 
 # Set wallpaper
-exec --no-startup-id feh --bg-fill /home/ramiro/.local/wallpapers/2.jpg
+exec --no-startup-id feh --bg-fill /home/ramiro/.local/wallpapers/4.jpg
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
