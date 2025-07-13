@@ -362,7 +362,7 @@
     <CurrentDirectory>True</CurrentDirectory>
     <TabHeader>True</TabHeader>
     <StatusBar>True</StatusBar>
-    <CmdLine>True</CmdLine>
+    <CmdLine>False</CmdLine>
     <LogWindow>False</LogWindow>
     <TermWindow>False</TermWindow>
     <KeyButtons>True</KeyButtons>
@@ -761,8 +761,8 @@
           <Title>Name</Title>
           <Unique>AE3169F4-8EB9-4AB8-961A-C225004AD1E7</Unique>
           <FuncString>[DC().GETFILENAME{}]</FuncString>
-          <Width>524</Width>
-          <Align>2</Align>
+          <Width>494</Width>
+          <Align>0</Align>
           <Font>
             <Name>default</Name>
             <Size>9</Size>
@@ -793,7 +793,7 @@
           <Title>Date</Title>
           <Unique>CE866DAA-D87E-40BB-9999-3E856E562E3E</Unique>
           <FuncString>[DC().GETFILETIME{}]</FuncString>
-          <Width>203</Width>
+          <Width>183</Width>
           <Align>2</Align>
           <Font>
             <Name>default</Name>
