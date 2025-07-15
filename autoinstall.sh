@@ -32,10 +32,10 @@ usercheck(){
 }
 
 install_aur(){
-    sudo -u "$name" mkdir -p "$repodir/$1"      #create directory
-    sudo -u "$name" git -C "$repodir" clone --depth 1  --no-tags -q "https://aur.archlinux.org/$1.git" "$repodir/$1"
-    cd "$repodir/$1" || return 1
-    sudo -u "$name"  makepkg --noconfirm -si "$repodir/$1" >/dev/null 2>&1 || return 1
+    sudo -u "$USERNAME" mkdir -p "$REPODIR/$1"      #create directory
+    sudo -u "$USERNAME" git -C "$REPODIR" clone --depth 1  --no-tags -q "https://aur.archlinux.org/$1.git" "$REPODIR/$1"
+    cd "$REPODIR/$1" || return 1
+    sudo -u "$USERNAME"  makepkg --noconfirm -si "$REPODIR/$1" >/dev/null 2>&1 || return 1
 }
 
 installpkg(){
@@ -46,7 +46,7 @@ installpkg(){
 aurinstall(){
     #install aur packages
     echo "$aurinstalled" | grep -q "^$1$" && return 0
-    sudo -u "$name" $aurhelper -S --noconfirm "$1" >/dev/null 2>&1 || echo "Failed installing $1 (AUR)"
+    sudo -u "$USERNAME" $aurhelper -S --noconfirm "$1" >/dev/null 2>&1 || echo "Failed installing $1 (AUR)"
 }
 
 gitinstall(){
@@ -54,12 +54,12 @@ gitinstall(){
     progname="${1##*/}"
     echo "$gitinstalled" | grep -q "^$progname$" && return 0
 	progname="${progname%.git}"
-	dir="$repodir/$progname"
-    sudo -u "$name" git -C "$repodir" clone --depth 1 --single-branch \
+	dir="$REPODIR/$progname"
+    sudo -u "$USERNAME" git -C "$REPODIR" clone --depth 1 --single-branch \
         --no-tags -q "$1" "$dir" ||
         {
             cd "$dir" || echo "Failed installing $1 (GIT)"
-            sudo -u "$name" git pull --force origin master
+            sudo -u "$USERNAME" git pull --force origin master
         }
     cd "$dir" || return 1
 }
@@ -72,12 +72,12 @@ pipinstall(){
 }
 
 installationloop(){
-    progsfile="$homedir/progs.csv"
+    progsfile="$USER_HOME/progs.csv"
     #using a temp file to prevent editing the original programs file
     ([ -f "$progsfile" ] &&  sed '/^#/d' "$progsfile" >/tmp/progs.csv) \
         || error "Programs file not found"
     aurinstalled="$(pacman -Qqm)"
-    gitinstalled="$(ls "$repodir")"
+    gitinstalled="$(ls "$REPODIR")"
     pipinstalled="$(pip list | awk '{print $1}' | tail -n +3)"
     tmpfile="/tmp/progs.csv"
     while IFS=, read -r tag program; do
@@ -107,7 +107,7 @@ echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/larbs-temp   # allow wheel
 
 # Install aur helper manually
 echo "Installing AUR Helper..."
-sudo chmod -R 777 "$repodir"
+sudo chmod -R 777 "$REPODIR"
 install_aur "${aurhelper}" || error "Failed to install AUR helper"
 
 # Main instalattion loop
@@ -115,19 +115,19 @@ install_aur "${aurhelper}" || error "Failed to install AUR helper"
 installationloop
 
 # Make zsh the default shell for the user.
-chsh -s /bin/zsh "$name" >/dev/null 2>&1
+chsh -s /bin/zsh "$USERNAME" >/dev/null 2>&1
 # just for zsh-autocompletions
-sudo -u "$name" mkdir -p "$HOME/.cache/zsh/"
+sudo -u "$USERNAME" mkdir -p "$HOME/.cache/zsh/"
 
 #enable lightdm service
 systemctl enable lightdm
 
 #User folders
-sudo -u "$name" mkdir -p "$HOMEDIR/Screenshots"
-sudo -u "$name" mkdir -p "$HOMEDIR/Desktop"
-sudo -u "$name" mkdir -p "$HOMEDIR/Documents"
-sudo -u "$name" mkdir -p "$HOMEDIR/projects"
-sudo -u "$name" mkdir -p "$HOMEDIR/facultad"
+sudo -u "$USERNAME" mkdir -p "$HOMEDIR/Screenshots"
+sudo -u "$USERNAME" mkdir -p "$HOMEDIR/Desktop"
+sudo -u "$USERNAME" mkdir -p "$HOMEDIR/Documents"
+sudo -u "$USERNAME" mkdir -p "$HOMEDIR/projects"
+sudo -u "$USERNAME" mkdir -p "$HOMEDIR/facultad"
 sudo mkdir -p /mnt/nas
 sudo mkdir -p /mnt/nas/ramiro /mnt/nas/public
 
