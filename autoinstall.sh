@@ -7,9 +7,10 @@
 ### VARIABLES ###
 
 aurhelper="paru"
-USERNAME="${SUDO_USER:-$(logname)}"
-USER_HOME="$(eval echo "~$USERNAME")"
-REPODIR="$USER_HOME/.local/src"
+USERNAME="$1"
+[ -z "$USERNAME" ] && error "Username not provided. Usage: $0 <username>"
+HOMEDIR="$(eval echo "~$USERNAME")"
+REPODIR="$HOMEDIR/.local/src"
 
 ### FUNCTIONS ###
 
@@ -26,9 +27,9 @@ usercheck(){
     echo -e "Enter Samba Server password"
     read smb_password
 
-    echo "username=$smb_name" >> "$USER_HOME/.credentials"
-    echo "password=$smb_password" >> "$USER_HOME/.credentials"
-    echo "domain=WORKGROUP" >> "$USER_HOME/.credentials"
+    echo "username=$smb_name" >> "$HOMEDIR/.credentials"
+    echo "password=$smb_password" >> "$HOMEDIR/.credentials"
+    echo "domain=WORKGROUP" >> "$HOMEDIR/.credentials"
 }
 
 install_aur(){
@@ -72,7 +73,7 @@ pipinstall(){
 }
 
 installationloop(){
-    progsfile="$USER_HOME/progs.csv"
+    progsfile="$HOMEDIR/progs.csv"
     #using a temp file to prevent editing the original programs file
     ([ -f "$progsfile" ] &&  sed '/^#/d' "$progsfile" >/tmp/progs.csv) \
         || error "Programs file not found"
@@ -117,7 +118,7 @@ installationloop
 # Make zsh the default shell for the user.
 chsh -s /bin/zsh "$USERNAME" >/dev/null 2>&1
 # just for zsh-autocompletions
-sudo -u "$USERNAME" mkdir -p "$HOME/.cache/zsh/"
+sudo -u "$USERNAME" mkdir -p "$HOMEDIR/.cache/zsh/"
 
 #enable lightdm service
 systemctl enable lightdm
@@ -132,8 +133,8 @@ sudo mkdir -p /mnt/nas
 sudo mkdir -p /mnt/nas/ramiro /mnt/nas/public
 
 # mount NAS smb shares
-echo "//nas.lan/public /mnt/nas/public cifs    credentials=/home/ramiro/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 2" >> /etc/fstab
-echo "//nas.lan/ramiro /mnt/nas/ramiro cifs    credentials=/home/ramiro/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 3" >> /etc/fstab
+echo "//nas.lan/public /mnt/nas/public cifs    credentials=$HOMEDIR/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 2" >> /etc/fstab
+echo "//nas.lan/ramiro /mnt/nas/ramiro cifs    credentials=$HOMEDIR/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 3" >> /etc/fstab
 
 ln -s ""$HOMEDIR/librewolf.overrides.cfg" $HOMEDIR/.librewolf/librewolf.overrides.cfg" 
 
