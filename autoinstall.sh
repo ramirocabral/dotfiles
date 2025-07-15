@@ -7,9 +7,11 @@
 ### VARIABLES ###
 
 aurhelper="paru"
+USERNAME="${SUDO_USER:-$(logname)}"
+USER_HOME="$(eval echo "~$USERNAME")"
+REPODIR="$USER_HOME/.local/src"
 
 ### FUNCTIONS ###
-
 
 error(){
     #print error and exit with failure
@@ -18,29 +20,15 @@ error(){
 }
 
 usercheck(){
-    #checks username
-    echo -e "Enter usename:"
-    read name 
-    id "$name" >/dev/null 2>/dev/null || error "Invalid username!"
-    export homedir="/home/$name"
-    export repodir="/home/$name/.local/src"
-    [ -f "$repodir" ] || mkdir -p "/home/$name/.local/src"
+    [ -f "$REPODIR" ] || mkdir -p "$REPODIR"
     echo -e "Enter Samba Server user:"
     read smb_name
     echo -e "Enter Samba Server password"
     read smb_password
 
-    echo $smb_name >> "/home/${name}/.credentials"
-    echo $smb_password >> "/home/${name}/.credentials"
-    echo "domain=WORKGROUP" >> "/home/${name}/.credentials"
-}
-
-welcome_msj(){
-    #confirmation before installation
-    echo  "Welcome to my dotfiles install script!
-Are you running this as the root user and have an internet connection?(y/n):"
-    read option 
-    [[ $option == 'y' ]] || error "The user exited"
+    echo "username=$smb_name" >> "$USER_HOME/.credentials"
+    echo "password=$smb_password" >> "$USER_HOME/.credentials"
+    echo "domain=WORKGROUP" >> "$USER_HOME/.credentials"
 }
 
 install_aur(){
@@ -105,15 +93,7 @@ installationloop(){
 
 ### SCRIPT ###
 
-welcome_msj
-
 usercheck
-
-echo "##### Installing all dependencies #####"
-
-for x in  sudo zsh base-devel ca-certificates python-pip; do
-    installpkg "$x"
-done
 
 
 [ -f /etc/sudoers.pacnew ] && cp /etc/sudoers.pacnew /etc/sudoers # Just in case
@@ -126,7 +106,7 @@ echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/larbs-temp   # allow wheel
 
 
 # Install aur helper manually
-echo "Installing AUR Helper!"
+echo "Installing AUR Helper..."
 sudo chmod -R 777 "$repodir"
 install_aur "${aurhelper}" || error "Failed to install AUR helper"
 
@@ -137,17 +117,17 @@ installationloop
 # Make zsh the default shell for the user.
 chsh -s /bin/zsh "$name" >/dev/null 2>&1
 # just for zsh-autocompletions
-sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
+sudo -u "$name" mkdir -p "$HOME/.cache/zsh/"
 
 #enable lightdm service
 systemctl enable lightdm
 
 #User folders
-sudo -u "$name" mkdir -p "/home/$name/Screenshots"
-sudo -u "$name" mkdir -p "/home/$name/Desktop"
-sudo -u "$name" mkdir -p "/home/$name/Documents"
-sudo -u "$name" mkdir -p "/home/$name/projects"
-sudo -u "$name" mkdir -p "/home/$name/facultad"
+sudo -u "$name" mkdir -p "$HOMEDIR/Screenshots"
+sudo -u "$name" mkdir -p "$HOMEDIR/Desktop"
+sudo -u "$name" mkdir -p "$HOMEDIR/Documents"
+sudo -u "$name" mkdir -p "$HOMEDIR/projects"
+sudo -u "$name" mkdir -p "$HOMEDIR/facultad"
 sudo mkdir -p /mnt/nas
 sudo mkdir -p /mnt/nas/ramiro /mnt/nas/public
 
@@ -155,11 +135,8 @@ sudo mkdir -p /mnt/nas/ramiro /mnt/nas/public
 echo "//nas.lan/public /mnt/nas/public cifs    credentials=/home/ramiro/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 2" >> /etc/fstab
 echo "//nas.lan/ramiro /mnt/nas/ramiro cifs    credentials=/home/ramiro/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 3" >> /etc/fstab
 
-ln -s ""$homedir/librewolf.overrides.cfg" $homedir/.librewolf/librewolf.overrides.cfg" 
+ln -s ""$HOMEDIR/librewolf.overrides.cfg" $HOMEDIR/.librewolf/librewolf.overrides.cfg" 
 
 # set up cups client
 systemctl enable --now cups.service
 lpadmin -p my_network_printer -E -v ipp://192.168.9.7:631/printers/EPSONL395 -m everywhere
-
-
-echo -e "DONE! Now reboot your computer"
