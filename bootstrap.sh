@@ -23,9 +23,6 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-USERNAME="${SUDO_USER:-$(logname)}"
-HOMEDIR="$(eval echo "~$USERNAME")"
-
 echo "##### Installing dependencies #####"
 pacman -Sy --noconfirm git stow sudo python-pip base-devel zsh ca-certificates >/dev/null 2>&1
 
@@ -47,16 +44,23 @@ chown -R "$USERNAME:$USERNAME" "$TARGET_DIR"
 echo "Linking dotfiles with stow..."
 
 # symlink all files in the repo to the user's home directory
-sudo -u "$USERNAME" stow --ignore=".config" --ignore=".local" --dir="$TARGET_DIR" --target="$HOMEDIR" || echo "Failed to link dotfiles"
+cd $TARGET_DIR
+sudo -u "$USERNAME" stow --adopt --ignore=".config" --ignore=".local" . || echo "Failed to link dotfiles"
 
+# this is dumb but i swear there is not a better way to do it
 mkdir -p "$HOMEDIR/.config"
-sudo -u "$USERNAME" stow -t --dir="$TARGET_DIR/.config" --target="$HOMEDIR/.config" || echo "Failed to link .config files"
+cd "$TARGET_DIR/.config"
+stow --target="$HOMEDIR/.config" . || echo "Failed to link .config files"
 
 mkdir -p "$HOMEDIR/.local"
-sudo -u "$USERNAME" stow -t --dir="$TARGET_DIR/.local" --target="$HOMEDIR/.local" || echo "Failed to link .local files"
+cd "$TARGET_DIR/.local"
+stow --target="$HOMEDIR/.local" . || echo "Failed to link .local files"
 
 echo "Running autoinstall.sh..."
 
-"$TARGET_DIR/autoinstall.sh $USERNAME" || echo "Failed to run autoinstall.sh"
+cd "$HOMEDIR"
+chown -R "$USERNAME:$USERNAME" .
+
+bash "$TARGET_DIR/autoinstall.sh" "$USERNAME" || echo "Failed to run autoinstall.sh"
 
 echo -e "DONE! Now reboot your system."
