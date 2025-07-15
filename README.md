@@ -6,8 +6,7 @@ These are my Arch Linux dotfiles. I use [i3wm](https://github.com/i3/i3.github.i
 
 ### Prerequisites
 
-- Arch Linux based distro
-- [git](https://git-scm.com/) (you may need [github-cli](https://archlinux.org/packages/extra/x86_64/github-cli/) in order to authenticate).
+- Arch Linux based distro.
 
 ### Packages
 
@@ -24,10 +23,8 @@ The second column is the name of the package.
 
 ### Install
 
+Execute as root:
+
 ```bash
-git clone https://github.com/ramirocabral/dotfiles /tmp/dotfiles
-/cp -rfT /tmp/dotfiles $HOME
-cd $HOME
-sudo su
-./autoinstall.sh
+bash < (curl -fsSL https://raw.githubusercontent.com/ramirocabral/dotfiles/main/bootstrap.sh)
 ```
