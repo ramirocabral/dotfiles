@@ -26,5 +26,5 @@ The second column is the name of the package.
 Execute as root:
 
 ```bash
-bash < (curl -fsSL https://raw.githubusercontent.com/ramirocabral/dotfiles/main/bootstrap.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/ramirocabral/dotfiles/main/bootstrap.sh)
 ```
