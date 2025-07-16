@@ -21,11 +21,11 @@ p,jre-openjdk
 p,lightdm-gtk-greeter
 p,lsd
 p,mesa
-p,neofetch
+p,fastfetch
 p,neovim
 p,pavucontrol
 p,picom
-p,pulseaudio-bluetooth
+p,pipewire-pulse
 p,python-pip
 p,rofi
 p,scrot
@@ -95,3 +95,4 @@ p,termscp
 a,darkly
 p,qt6ct
 p,vim-spell-es
+p,iw
