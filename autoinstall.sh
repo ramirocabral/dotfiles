@@ -72,6 +72,16 @@ pipinstall(){
     pip install --break-system-packages $1 >/dev/null 2>&1 || echo "Failed installing $1 (PIP)"
 }
 
+install_tmux_plugins(){
+    git clone https://github.com/tmux-plugins/tpm "$HOMEDIR/.config/tmux/plugins/tpm" || {
+        echo "Failed to clone tpm"
+        return 1
+    }
+    # install plugins
+    [ -d "$HOMEDIR/.config/tmux/plugins/tpm" ] && [ -z "$(ls -A "$HOMEDIR/.config/tmux/plugins/" | grep -v tpm)" ] && \
+    "$HOMEDIR/.config/tmux/plugins/tpm/bin/install_plugins"
+}
+
 installationloop(){
     progsfile="$HOMEDIR/progs.csv"
     #using a temp file to prevent editing the original programs file
@@ -96,15 +106,12 @@ installationloop(){
 
 usercheck
 
-
 [ -f /etc/sudoers.pacnew ] && cp /etc/sudoers.pacnew /etc/sudoers # Just in case
 
 # Allow user to run sudo without password. Since AUR programs must be installed
 # in a fakeroot environment, this is required for all builds with AUR.
-
 trap 'rm -f /etc/sudoers.d/larbs-temp' HUP INT QUIT TERM PWR EXIT  # delete file if user exits
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/larbs-temp   # allow wheel users(everyone) to run sudo without password
-
 
 # Install aur helper manually
 echo "Installing AUR Helper..."
@@ -120,6 +127,9 @@ chsh -s /bin/zsh "$USERNAME" >/dev/null 2>&1
 # just for zsh-autocompletions
 sudo -u "$USERNAME" mkdir -p "$HOMEDIR/.cache/zsh/"
 
+#install tmux plugins
+install_tmux_plugins || echo "Failed to install tmux plugins"
+
 #enable lightdm service
 systemctl enable lightdm
 
@@ -133,11 +143,11 @@ sudo mkdir -p /mnt/nas
 sudo mkdir -p /mnt/nas/ramiro /mnt/nas/public
 
 # mount NAS smb shares
-echo "//nas.lan/public /mnt/nas/public cifs    credentials=$HOMEDIR/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 2" >> /etc/fstab
-echo "//nas.lan/ramiro /mnt/nas/ramiro cifs    credentials=$HOMEDIR/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 3" >> /etc/fstab
+echo "//nas.lan/public /mnt/nas/public cifs credentials=$HOMEDIR/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 2" >> /etc/fstab
+echo "//nas.lan/ramiro /mnt/nas/ramiro cifs credentials=$HOMEDIR/.credentials,uid=1000,gid=100,dir_mode=0770,file_mode=0660 0 3" >> /etc/fstab
 
 ln -s ""$HOMEDIR/librewolf.overrides.cfg" $HOMEDIR/.librewolf/librewolf.overrides.cfg" 
 
 # set up cups client
 systemctl enable --now cups.service
-lpadmin -p my_network_printer -E -v ipp://192.168.9.7:631/printers/EPSONL395 -m everywhere
+# lpadmin -p my_network_printer -E -v ipp://192.168.9.7:631/printers/EPSONL395 -m everywhere
