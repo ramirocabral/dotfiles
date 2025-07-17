@@ -78,7 +78,7 @@ p,xorg-xrandr
 a,brave-bin
 p,reflector
 p,cifs-utils
-p,doublecmd
+p,doublecmd-qt6
 p,aws-cli
 p,docker
 a,wscat
