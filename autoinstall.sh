@@ -151,3 +151,4 @@ ln -s ""$HOMEDIR/librewolf.overrides.cfg" $HOMEDIR/.librewolf/librewolf.override
 # set up cups client
 systemctl enable --now cups.service
 # lpadmin -p my_network_printer -E -v ipp://192.168.9.7:631/printers/EPSONL395 -m everywhere
+
