@@ -36,8 +36,9 @@ treesitter.setup({
 		"c",
 		"cpp",
 		"latex",
-        "python",
-        "go",
+		"python",
+		"go",
+		"terraform"
 	},
 	-- auto install above language parsers
 	auto_install = true,
