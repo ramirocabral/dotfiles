@@ -102,3 +102,10 @@ a,bruno-bin
 p,terraform
 a,obsidian
 p,dnsutils
+p,libvirt
+p,qemu
+p,podman
+p,conntrack-tools
+p,crictl
+a,cri-dockerd
+p,kubeadm
