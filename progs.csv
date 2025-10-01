@@ -109,3 +109,4 @@ p,conntrack-tools
 p,crictl
 a,cri-dockerd
 p,kubeadm
+p,kubectl
