@@ -111,3 +111,4 @@ a,cri-dockerd
 p,kubeadm
 p,kubectl
 p,kubie
+a,kube-ps1
