@@ -1,0 +1,30 @@
+clipboard-read = allow
+clipboard-paste-protection = false
+
+shell-integration = zsh
+
+shell-integration-features = no-cursor
+
+cursor-style-blink = false
+cursor-style = block
+
+font-family = JetBrains Mono
+
+theme = Everready
+
+background-opacity = 0.93
+background-blur = false
+
+# see i3 borders
+window-decoration = server
+window-padding-x = 6
+window-padding-y = 5
+window-show-tab-bar = auto
+gtk-titlebar = false
+custom-shader-animation = false
+
+keybind = ctrl+t=new_tab
+keybind = ctrl+w=close_surface
+keybind = ctrl+v=new_split
+
+confirm-close-surface = false
