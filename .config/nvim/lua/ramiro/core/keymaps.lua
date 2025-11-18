@@ -41,7 +41,7 @@ vim.keymap.set("n", "<C-h>", ":wincmd h<CR>") -- Window left
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>") -- Window right
 vim.keymap.set("n", "<C-j>", ":wincmd j<CR>") -- Window down
 vim.keymap.set("n", "<C-k>", "wincmd k<CR>") -- Window up
-vim.keymap.set("n", "<C-w>", ":q!<CR>") -- close window
+-- vim.keymap.set("n", "<C-w>", ":q!<CR>") -- close window
 
 --resize windows
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>") -- increase window height
