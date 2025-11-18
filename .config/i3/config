@@ -51,7 +51,7 @@ tiling_drag modifier titlebar
 #~~~~~~~~~~~~~~~~Programs bindings~~~~~~~~~~~~~~~~~~~~
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec ghostty
 
 # start a browser
 bindsym $mod+Shift+b exec brave
