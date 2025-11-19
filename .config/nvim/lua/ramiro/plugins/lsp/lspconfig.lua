@@ -1,8 +1,4 @@
--- import ls
-local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status then
-	return
-end
+local lspconfig = vim.lsp.config
 
 -- import cmp-nvim-lsp plugin safely
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
@@ -29,40 +25,40 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- configure html server
-lspconfig["html"].setup({
+lspconfig["html"]={
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
+}
 
-lspconfig["ts_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
-})
-
-lspconfig["eslint"].setup({
+lspconfig["ts_ls"]={
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
-})
+}
 
-lspconfig["tailwindcss"].setup({
+lspconfig["eslint"]={
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
+}
+
+lspconfig["tailwindcss"]={
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx", "templ", "vue", "html", "astro", "htmlangular", "react"},
-})
+}
 
 -- configure pyright server
-lspconfig["pyright"].setup({
+lspconfig["pyright"]={
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "python" },
-})
+}
 
 -- configure lua server (with special settings)
-lspconfig["lua_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+lspconfig["lua_ls"]={
+    capabilities = capabilities,
+    on_attach = on_attach,
     filetypes = { "lua" },
 	settings = { -- custom settings for lua
 		Lua = {
@@ -79,15 +75,15 @@ lspconfig["lua_ls"].setup({
 			},
 		},
 	},
+}
 
-	lspconfig.clangd.setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-        filetypes = { "c", "cpp", "objc", "objcpp" },
-	}),
-})
+lspconfig["clangd"]={
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "c", "cpp", "objc", "objcpp" }
+}
 
-lspconfig["gopls"].setup({
+lspconfig["gopls"]={
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "go" },
@@ -100,14 +96,14 @@ lspconfig["gopls"].setup({
 			completeUnimported = true,
 		},
 	}
-})
+}
 
-lspconfig["templ"].setup({
+lspconfig["templ"]={
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
+}
 
-lspconfig["tinymist"].setup({
+lspconfig["tinymist"]={
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
+}
