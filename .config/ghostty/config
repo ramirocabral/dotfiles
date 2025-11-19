@@ -10,9 +10,11 @@ cursor-style = block
 
 font-family = JetBrains Mono
 
+selection-background = cell-foreground
+
 theme = Everready
 
-background-opacity = 0.93
+background-opacity = 0.88
 background-blur = false
 
 # see i3 borders
