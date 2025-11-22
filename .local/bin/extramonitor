@@ -1,15 +1,53 @@
-#!/bin/sh
+#!/bin/bash
 
-# just configured for my personal laptop
+# Configuración de pantallas
 intern="eDP-1"
 extern="HDMI-1"
 
-[[ "$#" -ne 1 ]] && echo "Usage: extramonitor [duplicate|extra]" && exit 1
+# Función de ayuda
+usage() {
+    echo "Uso: $(basename "$0") [duplicate|extra|off] [left|right|above|below]"
+    exit 1
+}
 
-case "$1" in 
-    "duplicate") xrandr --output "$extern" --mode 1920x1080 && xrandr --output "$intern" --auto --output "$extern" --same-as "$intern";;
+[[ "$#" -lt 1 ]] && usage
 
-    "extra") xrandr --output "$extern" --mode 1920x1080 && xrandr --output "$intern" --auto --output "$extern" --above "$intern";;
+action="$1"
+position="${2:-right}" 
 
-    *) echo "Usage: extramonitor [duplicate|extra]" && exit 1;;
+case "$action" in 
+    "duplicate")
+        echo "📺 Duplicando pantallas..."
+        # Reseteamos primero para evitar bugs visuales
+        xrandr --output "$extern" --off 
+        xrandr --output "$extern" --mode 1920x1080 --output "$intern" --auto --output "$extern" --same-as "$intern"
+        ;;
+
+    "extra")
+        case "$position" in
+            "left")  flag="--left-of" ;;
+            "right") flag="--right-of" ;;
+            "above") flag="--above" ;;
+            "below") flag="--below" ;;
+            *) echo "❌ Posición inválida"; usage ;;
+        esac
+
+        echo "🖥️ Extendiendo pantalla hacia: $position"
+        # Primero apagamos el externo brevemente para limpiar la config anterior
+        # Esto evita el "bug" de superposición al cambiar de posición
+        xrandr --output "$extern" --off
+        sleep 0.5
+        xrandr --output "$extern" --pos 0x0 --rotate normal --output "$intern" --primary --pos 0x0 --rotate normal --output "$extern" "$flag" "$intern"
+        ;;
+
+    "off")
+        echo "🔌 Desconectando monitor externo..."
+        # IMPORTANTE: Primero encendemos el interno, luego matamos el externo
+        xrandr --output "$intern" --auto --primary
+        xrandr --output "$extern" --off
+        ;;
+
+    *)
+        usage
+        ;;
 esac
