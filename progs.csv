@@ -49,12 +49,11 @@ p,ripgrep,Line-oriented search tool
 p,ttf-ubuntu-mono-nerd,Nerd Font Mono
 p,ttf-jetbrains-mono-nerd,Nerd Font Mono
 p,ttf-meslo-nerd,Nerd Font
-i,psutil,Python system and process utilities
+p,python-psutil,Python sistem and process utilities
 p,python-requests,HTTP library for Python
 p,lm_sensors,Hardware health monitoring
 p,gparted,GNOME partition editor
 p,ntfs-3g,NTFS file system driver
-p,xclip,Command line interface to the X11 clipboard
 p,zathura,Document viewer
 p,zathura-pdf-poppler,PDF plugin for zathura
 p,zathura-ps,PostScript plugin for zathura
@@ -86,7 +85,7 @@ a,postman,API development environment
 p,go,Go programming language
 p,deno,Javascript and TypeScript runtime
 p,tmux,Terminal multiplexer
-p,fd,Simple, fast and user-friendly alternative to find
+p,fd,Fast and user-friendly alternative to find
 p,cups,Common Unix Printing System
 p,cups-filters,CUPS filters
 p,cups-pdf,PDF printer backend for CUPS
@@ -110,7 +109,6 @@ p,crictl,CLI for CRI-compatible container runtimes
 a,cri-dockerd,CRI interface for Docker
 p,kubeadm,Kubernetes cluster bootstrapping tool
 p,kubelet,Kubernetes node agent
-p,kubectl-cli,Kubernetes command-line tool
 p,kubectl,Kubernetes command-line tool
 p,kubie,Kubernetes CLI wrapper
 a,kube-ps1,Kubernetes prompt info for shell
