@@ -1,8 +1,9 @@
 #!/bin/zsh
 
 # This is bullshit
-case "$HOST" in 
-    "VivoBook") chip="coretemp-isa-0000";;
+case "$SYSTEM_CLASS" in 
+    "laptop") chip="coretemp-isa-0000";;
+    "desktop") chip="k10temp-pci-00c3";;
     *)          chip="k10temp-pci-00c3";;
 esac
 
