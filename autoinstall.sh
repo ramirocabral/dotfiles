@@ -140,65 +140,76 @@ install_tmux_plugins(){
 # --- MAIN INSTALL LOOP ---
 
 installationloop(){
+    # Check if file exists
     if [ ! -f "$PROGSFILE" ]; then
         echo "Programs file not found at $PROGSFILE"
         return
     fi
 
-    # Get installed lists
-    aurinstalled="$(pacman -Qqm)"
-    gitinstalled="$(ls "$REPODIR")"
-    pipinstalled="$(pip list | awk '{print $1}' | tail -n +3)"
+    aurinstalled="$(pacman -Qqm 2>/dev/null)"
+    gitinstalled="$(ls "$REPODIR" 2>/dev/null)"
+    pipinstalled="$(pip list 2>/dev/null | awk '{print $1}' | tail -n +3)"
 
-    # Build Dialog Array
     options=()
-    while IFS=, read -r tag program desc; do
+    while IFS=, read -r -u 9 tag program desc; do
+        # Cleanup variables (Trim spaces & remove Windows carriage returns)
+        tag=$(echo "$tag" | xargs | tr -d '\r')
+        program=$(echo "$program" | xargs | tr -d '\r')
+        desc=$(echo "$desc" | xargs | tr -d '\r')
+
         [[ "$tag" =~ ^#.*$ ]] && continue
         [[ -z "$program" ]] && continue
+        
         options+=("$program" "$desc" "on")
-    done < "$PROGSFILE"
+    done 9< "$PROGSFILE"
 
-    # Show Checklist
+    # --separate-output ensures clean newlines instead of quoted strings
     selected_programs=$(dialog --title "Software Selector" \
-                               --checklist "Select programs to install (Space to toggle):" \
+                               --separate-output \
+                               --checklist "Space: Select/Deselect | Enter: Confirm" \
                                25 80 15 \
                                "${options[@]}" \
                                3>&1 1>&2 2>&3)
 
-    exit_status=$?
-    if [ $exit_status -ne 0 ]; then
-        echo "Program selection cancelled."
+    if [ $? -ne 0 ]; then
+        echo "Program selection cancelled by user."
         return
     fi
     
     clear
-    echo "##### Installing Selected Programs #####"
+    echo "##### Starting Installation #####"
 
-    # Install Loop
-    while IFS=, read -r tag program desc; do
-        [[ "$tag" =~ ^#.*$ ]] && continue
+    while IFS=, read -r -u 9 tag program desc; do
+        # Cleanup again to ensure matching
+        tag=$(echo "$tag" | xargs | tr -d '\r')
+        program=$(echo "$program" | xargs | tr -d '\r')
         
-        # Check if program is in the selected string
-        if echo "$selected_programs" | grep -w -q "\"$program\""; then
-            echo "Installing: $program..."
+        [[ "$tag" =~ ^#.*$ ]] && continue
+        [[ -z "$program" ]] && continue
+        
+        # grep -F (fixed string) -x (exact line match) -q (quiet)
+        if echo "$selected_programs" | grep -F -x -q "$program"; then
+            
+            echo "--> Installing: $program"
             success=0
             
-            # Execute install and capture exit code
+            # Execute installer closing stdin (< /dev/null)
             case "$tag" in
-                "p") installpkg "$program" || success=1 ;;
-                "g") gitinstall "$program" || success=1 ;;
-                "a") aurinstall "$program" || success=1 ;;
-                "i") pipinstall "$program" || success=1 ;;
+                "p") installpkg "$program" < /dev/null || success=1 ;;
+                "g") gitinstall "$program" < /dev/null || success=1 ;;
+                "a") aurinstall "$program" < /dev/null || success=1 ;;
+                "i") pipinstall "$program" < /dev/null || success=1 ;;
                 *) echo "Unknown tag '$tag' for $program"; success=1 ;;
             esac
 
-            # Log failure
             if [ $success -ne 0 ]; then
-                echo "FAILED to install: $program"
+                echo "    [X] FAILED: $program"
                 failed_items+=("$program")
+            else
+                echo "    [OK] Success"
             fi
         fi
-    done < "$PROGSFILE"
+    done 9< "$PROGSFILE"
 }
 
 ### SCRIPT EXECUTION ###
@@ -215,7 +226,6 @@ echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/larbs-temp
 
 # Install AUR Helper
 echo "Installing AUR Helper ($aurhelper)..."
-sudo chmod -R 777 "$REPODIR"
 install_aur "${aurhelper}" || error "Failed to install AUR helper"
 
 # Run Installation Loop
