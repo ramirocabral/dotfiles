@@ -24,7 +24,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 echo "##### Installing dependencies #####"
-pacman -Sy --noconfirm git stow sudo python-pip base-devel zsh ca-certificates >/dev/null 2>&1
+pacman -Sy --noconfirm git stow sudo python-pip base-devel zsh ca-certificates dialog >/dev/null 2>&1
 
 ### CLONE DOTFILES ###
 
