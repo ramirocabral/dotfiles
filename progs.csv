@@ -1,127 +1,129 @@
 #TAG,NAME IN REPO (or git url)
-p,alacritty
-p,eog
-p,base
-p,base-devel
-p,bat
-p,blueman
-p,bluez
-p,bluez-utils
-p,brightnessctl
-p,btrfs-progs
-p,discord
-p,efibootmgr
-p,exa
-p,feh
-p,github-cli
-p,gnome-keyring
-p,htop
-p,jdk-openjdk
-p,jre-openjdk
-p,lightdm-gtk-greeter
-p,lsd
-p,mesa
-p,fastfetch
-p,neovim
-p,pavucontrol
-p,picom
-p,pipewire-pulse
-p,python-pip
-p,rofi
-p,scrot
-p,thunar
-p,unrar
-p,unzip
-p,vlc
-p,ttf-liberation-mono-nerd
-p,xclip
-p,zsh
-p,zsh-autosuggestions
-p,zsh-syntax-highlighting
-p,spotify-launcher
-p,man
-p,fzf
-p,xorg-server
-p,xorg-xinit
-p,npm
-a,jdtls
-p,ripgrep
-p,ttf-ubuntu-mono-nerd
-p,ttf-jetbrains-mono-nerd
-p,ttf-meslo-nerd
-i,psutil
-p,python-requests
-p,lm_sensors
-p,gparted
-p,ntfs-3g
-p,xclip
-p,zathura
-p,zathura-pdf-poppler
-p,zathura-ps
-p,zathura-djvu
-p,jq
-p,texlive
-i,s-tui
-p,libreoffice-fresh
-a,testdisk
-a,nerdfix
-p,noto-fonts
-i,pulsectl-asyncio
-p,wireshark-qt
-g,https://github.com/romkatv/gitstatus
-p,i3-wm
-p,i3status
-p,i3blocks
-a,autotiling
-p,acpi
-p,xorg-xrandr
-a,brave-bin
-p,reflector
-p,cifs-utils
-p,doublecmd-qt6
-p,aws-cli
-p,docker
-a,wscat
-a,postman
-p,go
-p,deno
-p,tmux
-p,fd
-p,cups
-p,cups-filters
-p,cups-pdf
-p,sqlite
-p,termscp
-a,darkly
-p,qt6ct
-p,vim-spell-es
-p,iw
-p,tree-sitter-cli
-p,rsync
-a,bruno-bin
-p,terraform
-a,obsidian
-p,dnsutils
-p,libvirt
-p,qemu
-p,podman
-p,conntrack-tools
-p,crictl
-a,cri-dockerd
-p,kubeadm
-p,kubectl
-p,kubie
-a,kube-ps1
-p,ghostty
-p,vlc-plugins-extra
-a,pup-bin
-p,helm
-a,forticlient-vpn
-p,openconnect
-p,nm-connection-editor
-p,network-manager-applet
-a,networkmanager-fortisslvpn
-p,networkmanager-openvpn
-p,networkmanager-l2tp
-p,mysql
-p,yq
+p,alacritty,Backup terminal
+p,eog,Image viewer
+p,base,idk
+p,base-devel,Development tools
+p,bat,Cat clone with syntax highlighting
+p,blueman,Bluetooth manager
+p,bluez,Bluetooth stack
+p,bluez-utils,Bluetooth utilities
+p,brightnessctl,Backlight brightness control
+p,btrfs-progs,Btrfs filesystem utilities
+p,discord,ds
+p,efibootmgr,EFI boot manager
+p,exa,Modern replacement for ls
+p,feh,Image viewer and cataloguer
+p,github-cli,GitHub command line tool
+p,gnome-keyring,Password manager and keyring
+p,htop,Interactive process viewer
+p,jdk-openjdk,Java Development Kit
+p,jre-openjdk,Java Runtime Environment
+p,lightdm-gtk-greeter,LightDM GTK+ greeter
+p,lsd,Modern replacement for ls
+p,mesa,OpenGL implementation
+p,fastfetch,System information tool
+p,neovim,Best text editor ever
+p,pavucontrol,PulseAudio volume control
+p,picom,Compositor for X11
+p,pipewire-pulse,PulseAudio replacement
+p,python-pip,Python package installer
+p,rofi,Application launcher and dmenu replacement
+p,scrot,Screenshot utility
+p,thunar,File manager
+p,unrar,RAR file extractor
+p,unzip,ZIP file extractor
+p,vlc,Media player
+p,ttf-liberation-mono-nerd,Nerd Font Mono
+p,xclip,Clipboard utilities
+p,zsh,Shell
+p,zsh-autosuggestions,Fish-like autosuggestions for Zsh
+p,zsh-syntax-highlighting,Syntax highlighting for Zsh
+p,spotify-launcher,Spotify client
+p,man,Manual pager
+p,fzf,Command-line fuzzy finder
+p,xorg-server,Xorg server
+p,xorg-xinit,Xorg init program
+p,npm,Node.js package manager
+a,jdtls,Java Development Tools Language Server
+p,ripgrep,Line-oriented search tool
+p,ttf-ubuntu-mono-nerd,Nerd Font Mono
+p,ttf-jetbrains-mono-nerd,Nerd Font Mono
+p,ttf-meslo-nerd,Nerd Font
+i,psutil,Python system and process utilities
+p,python-requests,HTTP library for Python
+p,lm_sensors,Hardware health monitoring
+p,gparted,GNOME partition editor
+p,ntfs-3g,NTFS file system driver
+p,xclip,Command line interface to the X11 clipboard
+p,zathura,Document viewer
+p,zathura-pdf-poppler,PDF plugin for zathura
+p,zathura-ps,PostScript plugin for zathura
+p,zathura-djvu,DjVu plugin for zathura
+p,jq,Command-line JSON processor
+p,texlive,TeX Live typesetting system
+i,s-tui,System monitoring for terminal
+p,libreoffice-fresh,Office suite
+a,testdisk,Data recovery tool
+a,nerdfix,Nerd Font fixer
+p,noto-fonts,Google Noto fonts
+i,pulsectl-asyncio,Python PulseAudio controller with asyncio support
+p,wireshark-qt,Network protocol analyzer
+g,https://github.com/romkatv/gitstatus,Git status prompt for Zsh
+p,i3-wm,Window manager
+p,i3status,Status bar for i3
+p,i3blocks,Modular status bar for i3
+a,autotiling,Automatic window tiling for i3
+p,acpi,ACPI client
+p,xorg-xrandr,X11 RandR extension client
+a,brave-bin,Web browser
+p,reflector,Mirrorlist generator
+p,cifs-utils,Tools for CIFS/SMB filesystems
+p,doublecmd-qt6,Double Commander file manager
+p,aws-cli,Amazon Web Services command line interface
+p,docker,Container platform
+a,wscat,WebSocket cat
+a,postman,API development environment
+p,go,Go programming language
+p,deno,Javascript and TypeScript runtime
+p,tmux,Terminal multiplexer
+p,fd,Simple, fast and user-friendly alternative to find
+p,cups,Common Unix Printing System
+p,cups-filters,CUPS filters
+p,cups-pdf,PDF printer backend for CUPS
+p,sqlite,Lightweight SQL database engine
+p,termscp,Terminal file transfer client
+a,darkly,Terminal color scheme
+p,qt6ct,Qt6 configuration tool
+p,vim-spell-es,Spanish spell file for Vim
+p,iw,Wireless tools for Linux
+p,tree-sitter-cli,CLI for Tree-sitter parsers
+p,rsync,File synchronization tool
+a,bruno-bin,Bruno note-taking app
+p,terraform,Infrastructure as Code tool
+a,obsidian,Knowledge base application
+p,dnsutils,DNS utilities
+p,libvirt,Virtualization API library
+p,qemu,Generic and open source machine emulator and virtualizer
+p,podman,Daemonless container engine
+p,conntrack-tools,Connection tracking utilities
+p,crictl,CLI for CRI-compatible container runtimes
+a,cri-dockerd,CRI interface for Docker
+p,kubeadm,Kubernetes cluster bootstrapping tool
+p,kubelet,Kubernetes node agent
+p,kubectl-cli,Kubernetes command-line tool
+p,kubectl,Kubernetes command-line tool
+p,kubie,Kubernetes CLI wrapper
+a,kube-ps1,Kubernetes prompt info for shell
+p,ghostty,Best terminal ever
+p,vlc-plugins-extra,Extra plugins for VLC media player
+a,pup-bin,HTML parsing tool
+p,helm,Helm package manager for Kubernetes
+a,forticlient-vpn,FortiClient VPN
+p,openconnect,VPN client for Cisco AnyConnect and others
+p,nm-connection-editor,NetworkManager connection editor
+p,network-manager-applet,NetworkManager applet
+a,networkmanager-fortisslvpn,FortiSSL VPN plugin for NetworkManager
+p,networkmanager-openvpn,OpenVPN plugin for NetworkManager
+p,networkmanager-l2tp,L2TP plugin for NetworkManager
+p,mysql,MySQL database server
+p,yq,YAML processor
