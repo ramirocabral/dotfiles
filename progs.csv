@@ -116,3 +116,12 @@ p,ghostty
 p,vlc-plugins-extra
 a,pup-bin
 p,helm
+a,forticlient-vpn
+p,openconnect
+p,nm-connection-editor
+p,network-manager-applet
+a,networkmanager-fortisslvpn
+p,networkmanager-openvpn
+p,networkmanager-l2tp
+p,mysql
+p,yq
