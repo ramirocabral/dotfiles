@@ -50,3 +50,5 @@ confirm-close-surface = false
 
 # this is useful when opening a new tab, but new windows also inherit the working directory, so i don't like it
 window-inherit-working-directory = false
+
+term = xterm-256color
