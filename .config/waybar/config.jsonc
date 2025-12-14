@@ -10,7 +10,7 @@
   "modules-center": [],
   "modules-right": [
     "network",
-    // "language",
+    // "sway/language",
     "custom/kb_layout",
     "pulseaudio",
     "battery",
@@ -34,16 +34,17 @@
     "tooltip-format": "{ifname} via {gwaddr}"
   },
   //
-  // "language": {
-  //   "format": "{shortDescription}"
+  // "sway/language": {
+  //   "format": " {}",
+  //   "interval": 1,
   // },
 
   "custom/kb_layout": {
     "exec": "/home/ramiro/.local/bin/statusbar/kb_layout",
-    "signal": 10,
     "interval": "once",
+    "signal": 10,
     "format": "  {} ",
-    "on-click": "togglelayout"
+    // "on-click": "togglelayout"
   },
 
   "pulseaudio": {
@@ -84,7 +85,8 @@
   "clock": {
     "format": "{:%a %d-%m-%Y %H:%M}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "timezone": "America/Argentina/Buenos_Aires"
+    "timezone": "America/Argentina/Buenos_Aires",
+    "interval": 50
   },
 
   "tray": {

@@ -9,3 +9,5 @@ else
 fi
 
 swaymsg input type:keyboard xkb_layout "$new_layout"
+
+pkill -SIGRTMIN+10 waybar
