@@ -14,7 +14,7 @@ selection-background = cell-foreground
 
 theme = Everready
 
-background-opacity = 0.88
+background-opacity = 0.90
 background-blur = false
 
 # see i3 borders
