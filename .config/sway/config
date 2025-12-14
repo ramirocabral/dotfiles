@@ -5,6 +5,7 @@ font pango:monospace 8
 exec --no-startup-id dex --autostart --environment sway
 exec_always swaybg -i /home/ramiro/.local/wallpapers/4.jpg -m fill
 
+# logout every hour, lock after 10 minutes of inactivity
 exec swayidle -w \
   timeout 3600 'swaylock -f' \
   timeout 600 'swaymsg "output * power off"' \
@@ -26,7 +27,6 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 ### Mouse
 floating_modifier $mod
 # tiling_drag modifier titlebar
-
 
 ### Programas
 bindsym $mod+Return exec ghostty
@@ -186,9 +186,10 @@ input * {
 }
 
 output DP-3 mode 2560x1440@120Hz
-
 #vertical 
-output HDMI-A-1 mode 1920x1080@60Hz position 2560 0 transform 90
+output HDMI-A-1 mode 1920x1080@70Hz position 2560 0 transform 90
 
+# Reload waybar with Win+Ctrl+R
 bindsym Ctrl+Mod4+r exec killall -SIGUSR2 waybar
+# Logout with Win+Ctrl+Q
 bindsym Ctrl+Mod4+q exec swaymsg exit
