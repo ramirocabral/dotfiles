@@ -20,6 +20,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"
 export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
 export ZDOTDIR="$HOME/.config/zsh"
+export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME="qt6ct"
 export AWS_CONFIG_FILE="$HOME/.config/aws/config"
 
