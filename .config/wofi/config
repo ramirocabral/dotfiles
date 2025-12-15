@@ -1,0 +1,8 @@
+width=600
+height=350
+show=drun
+prompt=Run
+insensitive=true
+allow_markup=true
+no_actions=true
+term=alacritty
