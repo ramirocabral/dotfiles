@@ -134,6 +134,4 @@ p,wofi,Application launcher for Wayland
 p,grim,Wayland screenshot utility
 p,slurp,Wayland selection utility
 p,wl-clipboard,Clipboard utilities for Wayland
-p,brightnessctl,Backlight brightness control
-p,network-manager-applet,NetworkManager ap
 p,wireplumber,Modular session manager for PipeWire
