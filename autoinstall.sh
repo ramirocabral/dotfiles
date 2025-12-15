@@ -259,6 +259,8 @@ if [ -f "$HOMEDIR/librewolf.overrides.cfg" ]; then
     ln -sf "$HOMEDIR/librewolf.overrides.cfg" "$HOMEDIR/.librewolf/librewolf.overrides.cfg" 
 fi
 
+systemctl enable lightdm
+
 # 8. FINAL REPORT
 clear
 echo "########################################"

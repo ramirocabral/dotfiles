@@ -18,7 +18,7 @@ vim.keymap.set("v", "<leader>u", [["+p]]) -- paste from system clipboard
 vim.keymap.set("n", "<leader>u", [["+p]]) -- paste from system clipboard
 vim.keymap.set("n", "<leader>d", [["_d]]) -- delete to void register
 vim.keymap.set("v", "<leader>d", [["_d]]) -- delete to void register
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]) --replace ocurrences of word
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]) --replace ocurrences of word
 
 -- ignores
 vim.keymap.set("n", "s", "<nop>") -- ignore s
@@ -35,7 +35,7 @@ vim.keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 vim.keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
 vim.keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
-vim.keymap.set("n", "<leader>q", ":q!<CR>")
+vim.keymap.set("n", "<leader>q", ":q!<CR>") -- close current window
 
 --moving between windows
 vim.keymap.set("n", "<C-h>", ":wincmd h<CR>") -- Window left
@@ -54,10 +54,8 @@ vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>") -- decrease window wi
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true }) --chmod current file
 
 --save file
-vim.keymap.set("n", "<C-s>", ":w<CR>") -- save file
-
--- shebang
-vim.keymap.set("n", "<leader>b", "i#!/bin/sh") -- insert shebang
+-- vim.keymap.set("n", "<C-s>", ":w<CR>") -- save file
+vim.keymap.set("n", "<leader>s", ":w<CR>") -- save file
 
 --visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- in visual mode, move lines down with J
@@ -66,7 +64,6 @@ vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv") -- in visual mode, move lines up wi
 vim.keymap.set("x", "p", [["_dP]]) --paste without yanking in visual mode
 
 --indentation
-
 vim.keymap.set("v", "<", "<gv") -- indent left in visual mode
 vim.keymap.set("v", ">", ">gv") -- indent right in visual mode
 
@@ -93,7 +90,7 @@ vim.keymap.set("n", "<leader>tg", "<cmd>Gitsigns toggle_signs<cr>")
 vim.keymap.set("n", "<leader>cc", "<cmd>!gcc %<cr> <cmd>TermExec cmd='./a.out'<cr>")
 
 -- disable/enable spellchecking
-vim.keymap.set("n", "<leader>sp", function()
+vim.keymap.set("n", "<leader>ts", function()
   vim.opt.spell = not vim.opt.spell:get()
 end)
 

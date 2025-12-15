@@ -1,3 +1,0 @@
-#!/bin/zsh
-
-curl -s "http://api.openweathermap.org/data/2.5/weather?q=Buenos%20Aires,AR&appid=58aef9763abba041a3e265c12881a0f6" | jq -r '.main.temp, .weather[0].id'

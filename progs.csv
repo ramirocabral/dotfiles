@@ -125,3 +125,15 @@ p,networkmanager-openvpn,OpenVPN plugin for NetworkManager
 p,networkmanager-l2tp,L2TP plugin for NetworkManager
 p,mysql,MySQL database server
 p,yq,YAML processor
+p,sway,Wayland compositor
+p,swaybg,Sway background setter
+p,swaylock,Sway screen locker
+p,swayidle,Sway idle management
+p,waybar,Status bar for Sway
+p,wofi,Application launcher for Wayland
+p,grim,Wayland screenshot utility
+p,slurp,Wayland selection utility
+p,wl-clipboard,Clipboard utilities for Wayland
+p,brightnessctl,Backlight brightness control
+p,network-manager-applet,NetworkManager ap
+p,wireplumber,Modular session manager for PipeWire

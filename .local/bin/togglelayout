@@ -1,13 +1,13 @@
 #!/bin/sh
 
-layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+current_layout=$(swaymsg -t get_inputs | grep -m 1 -E 'xkb_active_layout_name' | awk '{print $2}' | tr -d '"')
 
-if [[ $layout == 'us' ]] then
-    layout='es'
-    setxkbmap es
+if [[ "$current_layout" == "English" ]]; then
+    new_layout="es"
 else
-    layout='us'
-    setxkbmap us
+    new_layout="us"
 fi
 
-pkill -SIGRTMIN+10 i3blocks
+swaymsg input type:keyboard xkb_layout "$new_layout"
+
+pkill -SIGRTMIN+10 waybar
