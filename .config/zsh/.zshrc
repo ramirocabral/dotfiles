@@ -75,3 +75,4 @@ PROMPT='%{%F{40}%}%n%{%F{40}%}@%{%F{40}%}%m%f:%{%F{33}%}%~%f ${GITSTATUS_PROMPT}
 PROMPT='$(kube_ps1)'$PROMPT
 # show time in right promp
 RPROMPT='[%D{%H:%M:%S}]'$RPROMPT
+
