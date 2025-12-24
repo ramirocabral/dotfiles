@@ -13,7 +13,7 @@
     // "sway/language",
     "custom/kb_layout",
     "pulseaudio",
-    "battery",
+    // "battery",
     "memory",
     "temperature",
     "cpu",
@@ -29,7 +29,7 @@
   "network": {
     "interval": 1,
     "format": "{ifname} @ {ipaddr}/{cidr}   {bandwidthDownBits}  {bandwidthUpBits} ",
-    "format-wifi": " {essid} @ {ipaddr}/{cidr}   {bandwidthDownBits}  {bandwidthUpBits}",
+    "format-wifi": "{essid} @ {ipaddr}/{cidr}   {bandwidthDownBits}  {bandwidthUpBits} ",
     "format-disconnected": " Disconnected",
     "tooltip-format": "{ifname} via {gwaddr}"
   },
@@ -56,12 +56,12 @@
     "scroll-step": 5
   },
 
-  "battery": {
-    "format": "  {capacity}% {status}",
-    "status-charging": "",
-    "status-discharging": "",
-    "status-full": ""
-  },
+  // "battery": {
+  //   "format": "  {capacity}% {status}",
+  //   "status-charging": "",
+  //   "status-discharging": "",
+  //   "status-full": ""
+  // },
 
   "memory": {
     "interval": 2,
