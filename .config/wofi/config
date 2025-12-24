@@ -1,8 +1,10 @@
-width=600
-height=350
+width=780
+height=455
 show=drun
 prompt=Run
 insensitive=true
 allow_markup=true
 no_actions=true
 term=alacritty
+key_down=Ctrl-j
+key_up=Ctrl-k
