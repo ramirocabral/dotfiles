@@ -260,6 +260,7 @@ if [ -f "$HOMEDIR/librewolf.overrides.cfg" ]; then
 fi
 
 systemctl enable lightdm
+brave --enable-features=WebRTCPipeWireCapturer
 
 # 8. FINAL REPORT
 clear
@@ -285,3 +286,4 @@ else
 fi
 
 echo -e "\nDONE! Please reboot your system."
+
