@@ -3,7 +3,8 @@ font pango:monospace 8
 
 ### Autostart
 exec --no-startup-id dex --autostart --environment sway
-exec_always swaybg -i /home/ramiro/.local/wallpapers/4.jpg -m fill
+# exec_always swaybg -i /home/ramiro/.local/wallpapers/4.jpg -m fill
+exec_always sh -c 'pkill swaybg 2>/dev/null; swaybg -i "$(find -L ~/.local/wallpapers -type f | shuf -n 1)" -m fill'
 
 # logout every hour, lock after 10 minutes of inactivity
 exec swayidle -w \
