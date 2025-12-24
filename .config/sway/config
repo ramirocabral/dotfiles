@@ -15,6 +15,8 @@ exec swayidle -w \
 exec --no-startup-id nm-applet
 exec_always autotiling
 
+exec_always wl-paste --watch cliphist store
+
 ### Audio
 bindsym $mod+equal exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym $mod+minus exec pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -32,6 +34,7 @@ floating_modifier $mod
 bindsym $mod+Return exec ghostty
 bindsym $mod+Shift+b exec brave
 bindsym $mod+Shift+m exec wofi --show drun
+bindsym $mod+v exec cliphist list | wofi --dmenu --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy
 bindsym $mod+Shift+e exec thunar
 bindsym $mod+Shift+s exec spotify-launcher
 bindsym $mod+Shift+f exec doublecmd
@@ -63,7 +66,6 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 ### Layout
-bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 bindsym $mod+e layout toggle split
 bindsym $mod+space exec togglelayout
@@ -191,5 +193,4 @@ bindsym Ctrl+Mod4+r exec killall -SIGUSR2 waybar
 bindsym Ctrl+Mod4+q exec swaymsg exit
 
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
 exec_always ~/.local/bin/sway-displays.sh
