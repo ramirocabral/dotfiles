@@ -185,13 +185,11 @@ input * {
     xkb_options caps:swapescape
 }
 
-output DP-3 mode 2560x1440@120Hz
-#vertical 
-output HDMI-A-1 mode 1920x1080@70Hz position 2560 0 transform 90
-
 # Reload waybar with Win+Ctrl+R
 bindsym Ctrl+Mod4+r exec killall -SIGUSR2 waybar
 # Logout with Win+Ctrl+Q
 bindsym Ctrl+Mod4+q exec swaymsg exit
 
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+exec_always ~/.local/bin/sway-displays.sh
