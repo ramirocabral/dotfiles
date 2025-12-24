@@ -44,7 +44,7 @@ zstyle ':vcs_info:*' formats ' %F{yellow}%s%f(%F{red}%b%f)' # git(main)
 
 # Function to reload history before each prompt
 force_reload_history() {
-    fc -RI
+    fc -R
 }
 add-zsh-hook precmd force_reload_history
 
@@ -75,4 +75,3 @@ PROMPT='%{%F{40}%}%n%{%F{40}%}@%{%F{40}%}%m%f:%{%F{33}%}%~%f ${GITSTATUS_PROMPT}
 PROMPT='$(kube_ps1)'$PROMPT
 # show time in right promp
 RPROMPT='[%D{%H:%M:%S}]'$RPROMPT
-
