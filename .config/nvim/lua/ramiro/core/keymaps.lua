@@ -27,6 +27,10 @@ vim.keymap.set("n", "S", "<nop>") -- ignore S
 --send deleted character to black h000le
 vim.keymap.set("n", "x", '"_x')
 
+-- change without yanking
+vim.keymap.set("n", "c", '"_c', { noremap = true })
+vim.keymap.set("v", "c", '"_c', { noremap = true })
+
 -- window management
 vim.keymap.set("n", "<leader>v", ":vsplit<CR>") -- split window vertically
 vim.keymap.set("n", "<leader>V", ":split<CR>") -- split window horizontally
