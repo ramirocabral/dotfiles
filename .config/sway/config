@@ -17,6 +17,7 @@ exec --no-startup-id nm-applet
 exec_always autotiling
 
 exec_always wl-paste --watch cliphist store
+exec_always blueman-applet
 
 ### Audio
 bindsym $mod+equal exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -32,7 +33,7 @@ floating_modifier $mod
 # tiling_drag modifier titlebar
 
 ### Programas
-bindsym $mod+Return exec ghostty
+bindsym $mod+Return exec kitty
 bindsym $mod+Shift+b exec brave
 bindsym $mod+Shift+m exec wofi --show drun
 bindsym $mod+v exec cliphist list | wofi --dmenu --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy
@@ -43,8 +44,8 @@ bindsym $mod+w kill
 
 ### Screenshot
 bindsym --release $mod+s exec \
-  grim -g "$(slurp)" /home/ramiro/Screenshots/$(date +%F_%T).png && \
-  wl-copy < /home/ramiro/Screenshots/$(ls -t /home/ramiro/Screenshots | head -n1)
+  grim -g "$(slurp)" ~/Screenshots/$(date +%F_%T).png && \
+  wl-copy < ~/Screenshots/$(ls -t /home/ramiro/Screenshots | head -n1)
 
 ### Focus
 bindsym $mod+h focus left
@@ -70,6 +71,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 bindsym $mod+e layout toggle split
 bindsym $mod+space exec togglelayout
+bindsym $mod+p exec ~/.local/bin/vpn-menu.sh
 
 ### Workspaces
 set $fm DP-3

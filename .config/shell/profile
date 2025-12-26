@@ -23,6 +23,7 @@ export ZDOTDIR="$HOME/.config/zsh"
 export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME="qt6ct"
 export AWS_CONFIG_FILE="$HOME/.config/aws/config"
+export GOPATH="$HOME/go"
 
 # File with system-specific settings
 export SYSTEM_PROFILE="$HOME/.zshenv.local"
