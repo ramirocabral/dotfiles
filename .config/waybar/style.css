@@ -46,7 +46,8 @@ window#waybar {
 #backlight,
 #network,
 #pulseaudio,
-#custom\/kb_layout,
+#custom-nmvpn,
+#custom-kb_layout,
 #wireplumber,
 #custom-media,
 #tray,
@@ -87,3 +88,18 @@ window#waybar {
 #memory.critical {
     color: #ff0000;
 }
+
+/* #custom-nmvpn.connected { */
+/*     color: rgba(0x29, 0x80, 0xb9, 0.8); */
+/*     box-shadow: inset 0 -3px rgba(0x29, 0x80, 0xb9, 1.0); */
+/* } */
+/**/
+/* #custom-nmvpn.disconnected { */
+/*     color: rgba(0xf5, 0x3c, 0x3c, 0.8); */
+    /* box-shadow: inset 0 -3px rgba(0xf5, 0x3c, 0x3c, 1.0); */
+/* } */
+/**/
+/* #custom-nmvpn.error { */
+/*     background-color: rgba(0xeb, 0x4d, 0x4b, 0.8); */
+/*     box-shadow: inset 0 -3px rgba(0xeb, 0x4d, 0x4b, 1.0); */
+/* } */
