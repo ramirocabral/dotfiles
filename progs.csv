@@ -114,6 +114,7 @@ p,kubie,Kubernetes CLI wrapper
 a,kube-ps1,Kubernetes prompt info for shell
 p,ghostty,Best terminal ever
 p,vlc-plugins-extra,Extra plugins for VLC media player
+p,vlc-plugin-ffmpeg,Ffmpeg plugin for VLC media player
 a,pup-bin,HTML parsing tool
 p,helm,Helm package manager for Kubernetes
 a,forticlient-vpn,FortiClient VPN
@@ -122,6 +123,7 @@ p,nm-connection-editor,NetworkManager connection editor
 p,network-manager-applet,NetworkManager applet
 a,networkmanager-fortisslvpn,FortiSSL VPN plugin for NetworkManager
 p,networkmanager-openvpn,OpenVPN plugin for NetworkManager
+p,networkmanager-openconnect,OpenConnect plugin for NetworkManager
 p,networkmanager-l2tp,L2TP plugin for NetworkManager
 p,mysql,MySQL database server
 p,yq,YAML processor
