@@ -141,3 +141,4 @@ p,xdg-desktop-portal,XDG desktop portal implementation
 p,xdg-desktop-portal-wlr,Wayland backend for xdg-desktop
 a,xdg-desktop-portal-hyprland-git, Hyprland backend for xdg-desktop
 a,cliphist,Clipboard manager for Wayland
+p,kitty,Fast terminal emulator
