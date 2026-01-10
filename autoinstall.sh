@@ -259,6 +259,13 @@ if [ -f "$HOMEDIR/librewolf.overrides.cfg" ]; then
     ln -sf "$HOMEDIR/librewolf.overrides.cfg" "$HOMEDIR/.librewolf/librewolf.overrides.cfg" 
 fi
 
+#point ~/.kube/kubie.yaml to .config/kubie/kubie.yaml
+echo "Configuring kubie..."
+if [ -f "$HOMEDIR/.config/kubie/kubie.yaml" ]; then
+    sudo -u "$USERNAME" mkdir -p "$HOMEDIR/.kube"
+    ln -sf "$HOMEDIR/.config/kubie/kubie.yaml" "$HOMEDIR/.kube/kubie.yaml"
+fi
+
 systemctl enable lightdm
 brave --enable-features=WebRTCPipeWireCapturer
 
