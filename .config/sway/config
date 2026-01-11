@@ -43,7 +43,7 @@ bindsym $mod+Shift+f exec doublecmd
 bindsym $mod+w kill
 
 ### Screenshot
-bindsym --release $mod+s exec \
+bindsym $mod+s exec \
   grim -g "$(slurp)" ~/Screenshots/$(date +%F_%T).png && \
   wl-copy < ~/Screenshots/$(ls -t /home/ramiro/Screenshots | head -n1)
 
