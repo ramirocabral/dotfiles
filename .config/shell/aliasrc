@@ -27,11 +27,8 @@ alias bluetooth='sudo systemctl start bluetooth.service'
 alias setlatex='cp $HOME/.local/templates/latex.tex ./'
 alias updaterepos='sudo reflector --country 'us' --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias list-hosts='cat ~/.ssh/config | grep "Host " | cut -d " " -f 2 | sort'
-<<<<<<< HEAD
-=======
 alias ns='kubie ns'
 alias c='kubie ctx'
->>>>>>> @{u}
 alias k='kubectl'
 alias kgp='kubectl get pods'
 alias keti="kubectl exec -it"
