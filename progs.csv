@@ -142,8 +142,6 @@ p,xdg-desktop-portal-wlr,Wayland backend for xdg-desktop
 a,xdg-desktop-portal-hyprland-git, Hyprland backend for xdg-desktop
 a,cliphist,Clipboard manager for Wayland
 p,kitty,Fast terminal emulator
-<<<<<<< HEAD
 a,kubectl-node-shell,Access Kubernetes nodes via kubectl
-=======
+a,usbimager,USB image writer
 p,k9s,Kubernetes CLI to manage and view Kubernetes clusters
->>>>>>> @{u}
