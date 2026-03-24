@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doublecmd DCVersion="1.1.26 gamma">
-  <Hotkeys Version="63">
+<doublecmd DCVersion="1.2.1 beta">
+  <Hotkeys Version="70">
     <Form Name="Main">
       <Hotkey>
         <Shortcut>Shift+F3</Shortcut>
@@ -297,6 +297,7 @@
       <Hotkey>
         <Shortcut>Del</Shortcut>
         <Command>cm_Delete</Command>
+        <Control>Files Panel</Control>
       </Hotkey>
       <Hotkey>
         <Shortcut>Ctrl+D</Shortcut>
@@ -397,6 +398,14 @@
         <Command>cm_Rename</Command>
       </Hotkey>
       <Hotkey>
+        <Shortcut>F1</Shortcut>
+        <Command>cm_HelpIndex</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+K</Shortcut>
+        <Command>cm_MapNetworkDrive</Command>
+      </Hotkey>
+      <Hotkey>
         <Shortcut>Ctrl+A</Shortcut>
         <Command>cm_MarkMarkAll</Command>
         <Control>Files Panel</Control>
@@ -464,6 +473,17 @@
       <Hotkey>
         <Shortcut>Ctrl+X</Shortcut>
         <Command>cm_CutToClipboard</Command>
+        <Control>Files Panel</Control>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Shift+Del</Shortcut>
+        <Command>cm_Delete</Command>
+        <Param>trashcan=reversesetting</Param>
+        <Control>Files Panel</Control>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Num-</Shortcut>
+        <Command>cm_MarkUnmarkAll</Command>
         <Control>Files Panel</Control>
       </Hotkey>
     </Form>
