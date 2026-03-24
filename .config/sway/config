@@ -6,10 +6,10 @@ exec --no-startup-id dex --autostart --environment sway
 # exec_always swaybg -i /home/ramiro/.local/wallpapers/4.jpg -m fill
 exec_always sh -c 'pkill swaybg 2>/dev/null; swaybg -i "$(find -L ~/.local/wallpapers -type f | shuf -n 1)" -m fill'
 
-# logout every hour, lock after 10 minutes of inactivity
+# logout every hour, lock after 30 minutes, and turn off the screen after 1 hour
 exec swayidle -w \
   timeout 3600 'swaylock -f' \
-  timeout 600 'swaymsg "output * power off"' \
+  timeout 1800 'swaymsg "output * power off"' \
   resume 'swaymsg "output * power on"' \
   before-sleep 'swaylock -f'
 
@@ -43,9 +43,16 @@ bindsym $mod+Shift+f exec doublecmd
 bindsym $mod+w kill
 
 ### Screenshot
+# bindsym $mod+s exec \
+#   grim -g "$(slurp)" ~/Screenshots/$(date +%F_%T).png && \
+#   wl-copy < ~/Screenshots/$(ls -t /home/ramiro/Screenshots | head -n1)
+
 bindsym $mod+s exec \
-  grim -g "$(slurp)" ~/Screenshots/$(date +%F_%T).png && \
-  wl-copy < ~/Screenshots/$(ls -t /home/ramiro/Screenshots | head -n1)
+  grim -g "$(slurp)" -t ppm - | \
+  satty --filename - \
+        --fullscreen \
+        --output-filename ~/Screenshots/$(date +%F_%T).png && \
+  wl-copy < ~/Screenshots/$(ls -t ~/Screenshots | head -n1)
 
 ### Focus
 bindsym $mod+h focus left
@@ -194,6 +201,8 @@ input * {
 bindsym Ctrl+Mod4+r exec killall -SIGUSR2 waybar
 # Logout with Win+Ctrl+Q
 bindsym Ctrl+Mod4+q exec swaymsg exit
+# Refresh wayland config with Win+Ctrl+C
+bindsym Ctrl+Mod4+c exec swaymsg reload
 
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec_always ~/.local/bin/sway-displays.sh
