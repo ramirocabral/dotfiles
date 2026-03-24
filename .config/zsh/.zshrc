@@ -1,14 +1,14 @@
 stty stop undef
 
 # History
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=150000
+SAVEHIST=150000
 HISTFILE=~/.cache/zsh/history
 
 setopt EXTENDED_HISTORY # Save timestamp of each command in history file
 setopt HIST_REDUCE_BLANKS # Remove superfluous blanks from each command in history
 setopt INC_APPEND_HISTORY # Immediately append commands to the history file
-setopt SHARE_HISTORY  # Share history across all sessions
+# setopt SHARE_HISTORY  # Share history across all sessions
 
 export FZF_CTRL_R_OPTS="--sort --exact --tiebreak=index"
 
