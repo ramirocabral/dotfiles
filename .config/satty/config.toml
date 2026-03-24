@@ -1,0 +1,5 @@
+[general]
+fullscreen = true
+output-filename = "/home/ramiro/Screenshots/satty-%Y%m%d-%H%M%S.png"
+early-exit = true       # cierra satty después de guardar/copiar
+# copy-command = "wl-copy"
