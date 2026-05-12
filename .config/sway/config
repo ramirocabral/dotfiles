@@ -192,8 +192,10 @@ client.focused_inactive #000000 #000000 #000000 #000000
 client.unfocused #000000 #000000 #000000 #000000
 
 input * {
-    repeat_delay 300
-    repeat_rate 50
+    # delay before keys start repeating, in milliseconds
+    repeat_delay 200
+    # number of repeats per second
+    repeat_rate 55
     xkb_options caps:swapescape
 }
 
