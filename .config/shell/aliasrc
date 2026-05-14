@@ -40,3 +40,7 @@ alias kdp='kubectl describe pod'
 alias kl='kubectl logs'
 alias keti='kubectl exec -it'
 alias s='kitten ssh'
+
+kgs() {
+  kubectl get secret "$1" -o jsonpath='{.data}' | jq 'map_values(@base64d)'
+}
