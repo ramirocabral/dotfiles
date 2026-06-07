@@ -80,9 +80,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+space exec togglelayout
 bindsym $mod+p exec ~/.local/bin/vpn-menu.sh
 
-### Workspaces
-set $fm DP-3
-set $sm HDMI-A-1
+include $XDG_CONFIG_HOME/sway/monitor.conf
 
 set $ws1 "1"
 set $ws2 "2"
@@ -207,4 +205,3 @@ bindsym Ctrl+Mod4+q exec swaymsg exit
 bindsym Ctrl+Mod4+c exec swaymsg reload
 
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec_always ~/.local/bin/sway-displays.sh
