@@ -147,3 +147,4 @@ a,usbimager,USB image writer
 p,k9s,Kubernetes CLI to manage and view Kubernetes clusters
 p,satty,Simple image editor
 p,man-pages,Manual pages viewer
+a,bitwarden,Password manager
