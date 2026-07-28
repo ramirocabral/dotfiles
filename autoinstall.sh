@@ -127,6 +127,13 @@ pipinstall(){
     return $?
 }
 
+pipxinstall(){
+    [ -x "$(command -v "pipx")" ] || installpkg python-pipx >/dev/null 2>&1
+    echo "$pipxinstalled" | grep -q "^$1$" && return 0
+    sudo -u "$USERNAME" pipx install "$1" >/dev/null 2>&1
+    return $?
+}
+
 install_tmux_plugins(){
     echo "Installing Tmux plugins..."
     sudo -u "$USERNAME" git clone https://github.com/tmux-plugins/tpm "$HOMEDIR/.config/tmux/plugins/tpm" || {
@@ -149,6 +156,7 @@ installationloop(){
     aurinstalled="$(pacman -Qqm 2>/dev/null)"
     gitinstalled="$(ls "$REPODIR" 2>/dev/null)"
     pipinstalled="$(pip list 2>/dev/null | awk '{print $1}' | tail -n +3)"
+    pipxinstalled="$(sudo -u "$USERNAME" pipx list --short 2>/dev/null | awk '{print $1}')"
 
     options=()
     while IFS=, read -r -u 9 tag program desc; do
@@ -199,6 +207,7 @@ installationloop(){
                 "g") gitinstall "$program" < /dev/null || success=1 ;;
                 "a") aurinstall "$program" < /dev/null || success=1 ;;
                 "i") pipinstall "$program" < /dev/null || success=1 ;;
+                "x") pipxinstall "$program" < /dev/null || success=1 ;;
                 *) echo "Unknown tag '$tag' for $program"; success=1 ;;
             esac
 
