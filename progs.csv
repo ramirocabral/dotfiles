@@ -149,3 +149,4 @@ p,satty,Simple image editor
 p,man-pages,Manual pages viewer
 a,bitwarden,Password manager
 x,claude-swap,Claude account swapper
+p,kubeseal,Kubernetes controller for sealing secrets
