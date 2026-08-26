@@ -150,3 +150,4 @@ p,man-pages,Manual pages viewer
 a,bitwarden,Password manager
 x,claude-swap,Claude account swapper
 p,kubeseal,Kubernetes controller for sealing secrets
+p,net-tools,Network troubleshooting tools
