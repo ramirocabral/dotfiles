@@ -38,7 +38,8 @@ treesitter.setup({
 		"latex",
 		"python",
 		"go",
-		"terraform"
+		"terraform",
+		"hcl"
 	},
 	-- auto install above language parsers
 	auto_install = true,
