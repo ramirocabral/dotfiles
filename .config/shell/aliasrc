@@ -44,3 +44,50 @@ alias s='kitten ssh'
 kgs() {
   kubectl get secret "$1" -o jsonpath='{.data}' | jq 'map_values(@base64d)'
 }
+
+knode() {
+  local node="$1"
+  [ -z "$node" ] && { echo "uso: knode <nodeName>"; return 1; }
+  local ns="${2:-default}"
+
+  local safe
+  safe=$(printf '%s' "$node" | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9-' '-' | sed 's/^-*//; s/-*$//')
+  local pod="nsenter-${safe}"
+
+  trap "echo; echo '[knode] borrando ${pod}...'; kubectl -n '${ns}' delete pod '${pod}' --ignore-not-found --wait=false; trap - INT TERM EXIT" INT TERM EXIT
+
+  kubectl -n "${ns}" delete pod "${pod}" --ignore-not-found --wait=true
+
+  cat <<EOF | kubectl -n "${ns}" apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ${pod}
+  namespace: ${ns}
+spec:
+  nodeName: ${node}
+  hostPID: true
+  hostNetwork: true
+  restartPolicy: Never
+  tolerations:
+  - operator: Exists
+  containers:
+  - name: nsenter
+    image: alpine
+    command: ["nsenter", "--target", "1", "--mount", "--uts", "--ipc", "--net", "--pid", "--", "sh"]
+    stdin: true
+    tty: true
+    securityContext:
+      privileged: true
+EOF
+
+  echo "[knode] esperando a que ${pod} esté Running..."
+  local i=0
+  until [ "$(kubectl -n "${ns}" get pod "${pod}" -o jsonpath='{.status.phase}' 2>/dev/null)" = "Running" ]; do
+    sleep 0.3
+    i=$((i+1))
+    [ "$i" -gt 200 ] && { echo "[knode] timeout esperando Running"; return 1; }
+  done
+
+  kubectl -n "${ns}" attach -it "${pod}"
+}
