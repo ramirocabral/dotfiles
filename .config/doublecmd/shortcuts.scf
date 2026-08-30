@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doublecmd DCVersion="1.2.1 beta">
-  <Hotkeys Version="70">
+<doublecmd DCVersion="1.2.8 gamma">
+  <Hotkeys Version="71">
     <Form Name="Main">
       <Hotkey>
         <Shortcut>Shift+F3</Shortcut>
@@ -105,7 +105,8 @@
       </Hotkey>
       <Hotkey>
         <Shortcut>Ctrl+Shift+D</Shortcut>
-        <Command>cm_ConfigDirHotList</Command>
+        <Command>cm_Delete</Command>
+        <Param>trashcan=reversesetting</Param>
       </Hotkey>
       <Hotkey>
         <Shortcut>Ctrl+Shift+X</Shortcut>
@@ -295,11 +296,6 @@
         <Param>/mnt/nas</Param>
       </Hotkey>
       <Hotkey>
-        <Shortcut>Del</Shortcut>
-        <Command>cm_Delete</Command>
-        <Control>Files Panel</Control>
-      </Hotkey>
-      <Hotkey>
         <Shortcut>Ctrl+D</Shortcut>
         <Command>cm_Delete</Command>
       </Hotkey>
@@ -404,6 +400,11 @@
       <Hotkey>
         <Shortcut>Ctrl+K</Shortcut>
         <Command>cm_MapNetworkDrive</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Del</Shortcut>
+        <Command>cm_Delete</Command>
+        <Control>Files Panel</Control>
       </Hotkey>
       <Hotkey>
         <Shortcut>Ctrl+A</Shortcut>
@@ -701,6 +702,30 @@
       <Hotkey>
         <Shortcut>Alt+Right</Shortcut>
         <Command>cm_CopyLeftToRight</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+X</Shortcut>
+        <Command>cm_EditCut</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+C</Shortcut>
+        <Command>cm_EditCopy</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Z</Shortcut>
+        <Command>cm_EditUndo</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+V</Shortcut>
+        <Command>cm_EditPaste</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+A</Shortcut>
+        <Command>cm_EditSelectAll</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Shift+Z</Shortcut>
+        <Command>cm_EditRedo</Command>
       </Hotkey>
     </Form>
     <Form Name="Confirmation">

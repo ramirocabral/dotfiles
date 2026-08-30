@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doublecmd DCVersion="1.2.4 beta" ConfigVersion="15">
+<doublecmd DCVersion="1.2.8 gamma" ConfigVersion="16">
   <Toolbars>
     <MainToolbar>
       <Row>
@@ -161,7 +161,7 @@
       <Left>2560</Left>
       <Top>7</Top>
       <Width>2560</Width>
-      <Height>1390</Height>
+      <Height>1397</Height>
       <PixelsPerInch>96</PixelsPerInch>
       <Maximized>False</Maximized>
       <Splitter>49.6087636932707</Splitter>
@@ -428,7 +428,7 @@
     <ProcessComments>False</ProcessComments>
     <RenameSelOnlyName>True</RenameSelOnlyName>
     <ShowCopyTabSelectPanel>False</ShowCopyTabSelectPanel>
-    <UseTrash>True</UseTrash>
+    <UseTrash>False</UseTrash>
     <SkipFileOpError>False</SkipFileOpError>
     <TypeOfDuplicatedRename>0</TypeOfDuplicatedRename>
     <ShowDialogOnDragDrop>False</ShowDialogOnDragDrop>
@@ -566,9 +566,6 @@
   <IgnoreList Enabled="False">
     <IgnoreListFile>%DC_CONFIG_PATH%/ignorelist.txt</IgnoreListFile>
   </IgnoreList>
-  <DirectoryHotList>
-    <HotDir Name="nas" Path="/mnt/nas"/>
-  </DirectoryHotList>
   <Viewer>
     <PreviewVisible>False</PreviewVisible>
     <ImageStretch>False</ImageStretch>
@@ -765,7 +762,7 @@
           <Title>Name</Title>
           <Unique>AE3169F4-8EB9-4AB8-961A-C225004AD1E7</Unique>
           <FuncString>[DC().GETFILENAME{}]</FuncString>
-          <Width>277</Width>
+          <Width>553</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
