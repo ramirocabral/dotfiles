@@ -33,7 +33,7 @@ floating_modifier $mod
 # tiling_drag modifier titlebar
 
 ### Programas
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec kitty --single-instance
 bindsym $mod+Shift+b exec brave
 bindsym $mod+Shift+m exec wofi --show drun
 bindsym $mod+v exec cliphist list | wofi --dmenu --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy
