@@ -1,22 +1,14 @@
-#!/bin/zsh
+#!/bin/sh
 
-# This is bullshit
-case "$SYSTEM_CLASS" in 
-    "laptop") chip="coretemp-isa-0000";;
-    "desktop") chip="k10temp-pci-00c3";;
-    *)          chip="k10temp-pci-00c3";;
-esac
+# i3blocks CPU temperature block. Sensor detection lives in `cputemp`.
 
-line=$(sensors | grep -n "${chip}" | cut -d: -f1)
-(( line += 2))
-
-temp=$(sensors | head -n ${line} | tail -n 1 | grep -o "[0-9]*.[0-9]°C" | sed -n 's/\(.*\)\..*/\1/p' | head -n 1)
+temp=$("$(dirname "$0")/cputemp") || exit 0
 
 echo "TEMP $temp°C"
 echo "TEMP $temp°C"
 
 RED=${RED:-#FF0000}
 
-if [[ $temp -gt 65 ]] then
+if [ "$temp" -gt 65 ]; then
     echo "$RED"
 fi

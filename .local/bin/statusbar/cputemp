@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# Prints the CPU package temperature in whole degrees Celsius.
+#
+# The sensor lives under a different hwmon index on every machine, and the index
+# can change between boots, so the chip is looked up by name instead of being
+# hardcoded to a path.
+#
+# Usage: cputemp [--waybar]
+
+WARN=70
+CRIT=85
+
+findinput() {
+    for hwmon in /sys/class/hwmon/hwmon*; do
+        case "$(cat "$hwmon/name" 2>/dev/null)" in
+            k10temp|zenpower|coretemp) ;;
+            *) continue ;;
+        esac
+
+        # Prefer the package sensor; its label differs per driver.
+        for input in "$hwmon"/temp*_input; do
+            [ -e "$input" ] || continue
+            case "$(cat "${input%_input}_label" 2>/dev/null)" in
+                Tctl|Tdie|"Package id 0") echo "$input"; return 0 ;;
+            esac
+        done
+
+        [ -e "$hwmon/temp1_input" ] && { echo "$hwmon/temp1_input"; return 0; }
+    done
+    return 1
+}
+
+input=$(findinput) || exit 1
+temp=$(( $(cat "$input") / 1000 ))
+
+[ "$1" = "--waybar" ] || { echo "$temp"; exit 0; }
+
+if [ "$temp" -ge "$CRIT" ]; then
+    class="critical"
+elif [ "$temp" -ge "$WARN" ]; then
+    class="warning"
+else
+    class="normal"
+fi
+
+printf '{"text":"%s","class":"%s","tooltip":"%s: %s°C"}\n' \
+    "$temp" "$class" "$(cat "$(dirname "$input")/name")" "$temp"
