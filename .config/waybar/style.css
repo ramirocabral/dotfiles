@@ -41,12 +41,13 @@ window#waybar {
 #cpu,
 #memory,
 #disk,
-#temperature,
+#custom-cputemp,
 #language,
 #backlight,
 #network,
 #pulseaudio,
 #custom-nmvpn,
+#custom-wallpaper,
 #custom-kb_layout,
 #wireplumber,
 #custom-media,
@@ -85,8 +86,15 @@ window#waybar {
     color: #ffff00;
 }
 
-#memory.critical {
+#custom-cputemp.warning {
+    color: #ffff00;
+}
+
+#custom-cputemp.critical {
     color: #ff0000;
+}
+
+#memory.critical {
 }
 
 /* #custom-nmvpn.connected { */
@@ -103,3 +111,15 @@ window#waybar {
 /*     background-color: rgba(0xeb, 0x4d, 0x4b, 0.8); */
 /*     box-shadow: inset 0 -3px rgba(0xeb, 0x4d, 0x4b, 1.0); */
 /* } */
+
+#custom-wallpaper.favorite {
+    color: #f0c674;
+}
+
+#custom-wallpaper.syncing {
+    color: #2596be;
+}
+
+#custom-wallpaper.empty {
+    color: #888888;
+}

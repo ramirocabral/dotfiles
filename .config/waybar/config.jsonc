@@ -16,11 +16,25 @@
     "pulseaudio",
     // "battery",
     "memory",
-    "temperature",
+    "custom/cputemp",
     "cpu",
     "clock",
+    "custom/wallpaper",
     "tray"
   ],
+
+  "custom/wallpaper": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "wpm waybar",
+    "interval": "once",
+    "signal": 8,
+    "on-click": "wpm gui",
+    "on-click-right": "wpm fav -q",
+    "on-click-middle": "wpm ban -q",
+    "on-scroll-up": "wpm next -q",
+    "on-scroll-down": "wpm prev -q",
+  },
 
   "sway/workspaces": {
     "enable-bar-scroll": true,
@@ -52,7 +66,7 @@
   // },
 
   "custom/kb_layout": {
-    "exec": "/home/ramiro/.local/bin/statusbar/kb_layout",
+    "exec": "$HOME/.local/bin/statusbar/kb_layout",
     "interval": "once",
     "signal": 10,
     "format": "  {}",
@@ -85,8 +99,11 @@
     }
   },
 
-  "temperature": {
-    "format": " {temperatureC}°C"
+  "custom/cputemp": {
+    "format": " {}°C",
+    "return-type": "json",
+    "exec": "$HOME/.local/bin/statusbar/cputemp --waybar",
+    "interval": 2
   },
 
   "cpu": {
