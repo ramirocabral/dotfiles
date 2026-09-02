@@ -16,13 +16,13 @@ font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
 
 # Start Picom
-exec_always --no-startup-id picom --config /home/ramiro/.config/picom/picom.conf
+exec_always --no-startup-id picom --config $HOME/.config/picom/picom.conf
 
 # Set autotiling
 exec_always --no-startup-id autotiling
 
 # Set wallpaper
-exec --no-startup-id feh --bg-fill /home/ramiro/.local/wallpapers/4.jpg
+exec --no-startup-id feh --bg-fill $HOME/.local/wallpapers/4.jpg
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -73,7 +73,7 @@ bindsym $mod+w kill
 
 # screenshot    
 
-bindsym --release $mod+s exec " scrot --select --line mode=edge '/home/ramiro/Screenshots/%F_%T.png' -e 'xclip -selection clipboard -target image/png -i $f' "
+bindsym --release $mod+s exec " scrot --select --line mode=edge '$HOME/Screenshots/%F_%T.png' -e 'xclip -selection clipboard -target image/png -i $f' "
 
 # change focus
 bindsym $mod+h focus left
@@ -209,8 +209,8 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        # status_command i3status -c "/home/ramiro/.config/i3status/config/i3status.conf"
-        status_command  SCRIPT_DIR=/home/ramiro/.local/bin/statusbar/ i3blocks -c /home/ramiro/.config/i3blocks/i3blocks.conf
+        # status_command i3status -c "$HOME/.config/i3status/config/i3status.conf"
+        status_command  SCRIPT_DIR=$HOME/.local/bin/statusbar/ i3blocks -c $HOME/.config/i3blocks/i3blocks.conf
         position bottom
         # colors {
         #         background #000000

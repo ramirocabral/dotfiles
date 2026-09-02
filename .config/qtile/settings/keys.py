@@ -4,11 +4,15 @@
 
 # Qtile keybindings
 
+import os
+
 from libqtile.config import Key
 from libqtile.command import lazy
 
 
 mod = "mod4"
+# lazy.spawn does not go through a shell, so $HOME would stay literal.
+screenshots = os.path.expanduser("~/Screenshots")
 
 keys = [Key(key[0], key[1], *key[2:]) for key in [
     # ------------ Window Configs ------------
@@ -80,7 +84,7 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod], "c", lazy.spawn("blueman-manager")),
 
     # Screenshot
-    ([mod, "shift"], "s", lazy.spawn("scrot --select --line mode=edge '/home/ramiro/Screenshots/%F_%T.png' -e 'xclip -selection clipboard -target image/png -i $f'")),
+    ([mod, "shift"], "s", lazy.spawn(f"scrot --select --line mode=edge '{screenshots}/%F_%T.png' -e 'xclip -selection clipboard -target image/png -i $f'")),
 
     # ------------ Hardware Configs ------------
 
