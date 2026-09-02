@@ -1,0 +1,13 @@
+### Monitors — per-machine, NOT tracked
+#
+# Copy to monitor.conf and edit for this machine. `swaymsg -t get_outputs`
+# lists the output names and available modes.
+#
+# $fm is the primary output (workspaces 1-9), $sm the secondary (10-18);
+# see the `workspace N output` lines in the main config.
+
+set $fm HDMI-A-1
+set $sm HDMI-A-2
+
+output $fm mode 1920x1080@60Hz
+output $sm mode 1920x1080@60Hz position 1920 0
