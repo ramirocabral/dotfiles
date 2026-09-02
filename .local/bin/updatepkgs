@@ -1,7 +1,16 @@
 #!/bin/sh
-name="ramiro"
-repodir="/home/ramiro/.local/src"
-homedir="/home/ramiro"
+
+# Runs as root (pacman), so $HOME is root's -- resolve the invoking user instead.
+name="${SUDO_USER:-$1}"
+[ -n "$name" ] || {
+    echo "Usage: sudo updatepkgs   (or: updatepkgs <username> as root)"
+    exit 1
+}
+
+homedir="$(getent passwd "$name" | cut -d: -f6)"
+[ -n "$homedir" ] || { echo "Cannot resolve home directory for '$name'"; exit 1; }
+
+repodir="$homedir/.local/src"
 aurhelper="paru"
 
 installpkg(){
