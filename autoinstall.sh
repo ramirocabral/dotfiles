@@ -11,6 +11,7 @@ USERNAME="$1"
 [ -z "$USERNAME" ] && echo "Error: Username not provided." && exit 1
 
 HOMEDIR="/home/$USERNAME"
+DOTFILESDIR="$HOMEDIR/dotfiles"
 REPODIR="$HOMEDIR/.local/src"
 CONFIG_FILE="/tmp/arch_install_config"
 PROGSFILE="$HOMEDIR/progs.csv"
@@ -62,6 +63,12 @@ EOF
     
     chown "$USERNAME:$USERNAME" "$HOMEDIR/.config/zsh/.local"
     echo "Saved env vars: LAN=$LAN_IF, CLASS=$SYS_CLASS"
+
+    monitorconf="$DOTFILESDIR/.config/sway/monitor.conf"
+    if [ ! -f "$monitorconf" ] && [ -f "$monitorconf.example" ]; then
+        sudo -u "$USERNAME" cp "$monitorconf.example" "$monitorconf"
+        echo "Seeded sway/monitor.conf -- edit it for this machine's outputs."
+    fi
 }
 
 setup_smb() {
