@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Puente de portapapeles entre sway (Wayland) y el X anidado de psm, que tiene su propio
+# CLIPBOARD: xfreerdp3 sincroniza con ese X, no con el de sway. Solo texto.
+# El último texto sincronizado se guarda para no rebotar lo mismo de un lado al otro.
+#
+# Uso: psm-clip :9   (termina solo cuando muere ese X)
+set -uo pipefail
+
+disp="$1"
+last="${XDG_RUNTIME_DIR:-/tmp}/psm-clip-${disp#:}"
+export PSM_DISPLAY="$disp" PSM_CLIP_LAST="$last"
+
+# Wayland -> X: wl-paste corre el comando con el contenido nuevo en stdin cada vez que cambia
+wl-paste --type text --watch sh -c '
+    cat >"$PSM_CLIP_LAST.wl"
+    [ -s "$PSM_CLIP_LAST.wl" ] || exit 0
+    cmp -s "$PSM_CLIP_LAST.wl" "$PSM_CLIP_LAST" && exit 0
+    mv "$PSM_CLIP_LAST.wl" "$PSM_CLIP_LAST"
+    xclip -selection clipboard -display "$PSM_DISPLAY" -i <"$PSM_CLIP_LAST"
+' &
+wl_pid=$!
+trap 'kill "$wl_pid" 2>/dev/null; rm -f "$last" "$last.wl" "$last.x"' EXIT
+
+# X -> Wayland: XFixes avisa cada vez que cambia el dueño del CLIPBOARD en el X anidado
+python3 -I -c '
+import sys
+from Xlib import display
+from Xlib.ext import xfixes
+d = display.Display(sys.argv[1])
+d.xfixes_query_version()
+d.xfixes_select_selection_input(d.screen().root, d.get_atom("CLIPBOARD"),
+                                xfixes.XFixesSetSelectionOwnerNotifyMask)
+while True:
+    e = d.next_event()
+    if (e.type, e.sub_code) == d.extension_event.SetSelectionOwnerNotify:
+        print(flush=True)
+' "$disp" | while read -r _; do
+    xclip -selection clipboard -display "$disp" -o -t UTF8_STRING >"$last.x" 2>/dev/null || continue
+    [[ -s "$last.x" ]] || continue
+    cmp -s "$last.x" "$last" && continue
+    mv "$last.x" "$last"
+    wl-copy <"$last"
+done

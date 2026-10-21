@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+# Abre una conexión CyberArk PSM (.rdp en modo RemoteApp) con xfreerdp3 dentro de un
+# Xwayland "rootful" (un X anidado que es una ventana Wayland común de sway).
+# En sway/XWayland las ventanas RemoteApp quedan desfasadas y no toman clics; dentro del
+# X anidado no hay window manager que las mueva, así que el mouse funciona.
+# (Antes era Xephyr, pero bajo XWayland no actualiza el cursor y quedaba la cruz de X.)
+#
+# Uso: psm [archivo.rdp]   (sin argumento usa el *PSM*.rdp más nuevo de ~/Downloads)
+# El token del .rdp es de un solo uso y vence en ~1 minuto: correrlo apenas se descarga.
+# Está asociado a los .rdp (~/.local/share/applications/psm.desktop), así que el browser
+# lo lanza al abrir la descarga; los .rdp que no son de PSM y los .remmina van a Remmina.
+set -euo pipefail
+
+# Lanzado desde el browser no hay terminal: loguear a archivo y avisar con notificaciones
+if [[ -t 2 ]]; then
+    notify() { echo "psm: $*" >&2; }
+else
+    exec >>"${XDG_CACHE_HOME:-$HOME/.cache}/psm.log" 2>&1
+    echo "--- $(date '+%F %T') psm $*"
+    notify() { echo "psm: $*" >&2; notify-send -a psm PSM "$*" 2>/dev/null || true; }
+fi
+
+rdp="${1:-$(ls -t ~/Downloads/*PSM*.rdp 2>/dev/null | head -1 || true)}"
+[[ -n "$rdp" && -f "$rdp" ]] || { notify "no encontré ningún *PSM*.rdp en ~/Downloads"; exit 1; }
+
+grep -q "PSMInitSession" "$rdp" || exec remmina -c "$rdp"
+
+age=$(( $(date +%s) - $(stat -c %Y "$rdp") ))
+echo "psm: abriendo $(basename "$rdp") (descargado hace ${age}s)"
+(( age < 60 )) || notify "el .rdp tiene más de 1 minuto; si PSM dice PSMSR917E, bajá uno nuevo"
+
+# Primer display libre a partir de :9
+d=9
+while [[ -e /tmp/.X11-unix/X$d || -e /tmp/.X$d-lock ]]; do d=$((d + 1)); done
+
+# -noreset: sin él, el server se resetea cuando se desconecta xsetroot y pierde el cursor
+Xwayland ":$d" -geometry 1920x1080 -noreset &
+xwayland_pid=$!
+trap 'kill "$xwayland_pid" 2>/dev/null || true' EXIT
+
+for _ in $(seq 50); do
+    [[ -e /tmp/.X11-unix/X$d ]] && break
+    sleep 0.1
+done
+[[ -e /tmp/.X11-unix/X$d ]] || { notify "Xwayland no arrancó"; exit 1; }
+
+# Mandar la ventana sola a un workspace libre para que ocupe toda la pantalla: el tamaño de
+# la sesión RemoteApp se fija al conectar y no se adapta si después se mueve la ventana.
+# Candidatos: los que tienen atajo, primero el monitor grande (1-7) y después el vertical (10-18).
+if [[ -n "${SWAYSOCK:-}" ]]; then
+    used=" $(swaymsg -t get_workspaces | grep -oE '"num": ?[0-9]+' | grep -oE '[0-9]+' | tr '\n' ' ') "
+    ws=""
+    for n in 1 2 3 4 5 6 7 10 11 12 13 14 15 16 17 18; do
+        [[ "$used" == *" $n "* ]] || { ws=$n; break; }
+    done
+    if [[ -n "$ws" ]]; then
+        for _ in $(seq 30); do
+            swaymsg -q "[app_id=\"org.freedesktop.Xwayland\" title=\"^Xwayland on :$d\$\"] move container to workspace number $ws" 2>/dev/null && break
+            sleep 0.1
+        done
+        swaymsg -q workspace number "$ws" || true
+    fi
+fi
+
+# Darle tiempo a sway a acomodar la ventana; Xwayland adopta ese tamaño solo
+sleep 0.5
+size=$(xrandr -display ":$d" 2>/dev/null | sed -n 's/.*current \([0-9]*\) x \([0-9]*\).*/\1x\2/p')
+
+# Sin window manager el cursor es la cruz clásica de X; ponerle la flecha
+command -v xsetroot >/dev/null && xsetroot -display ":$d" -cursor_name left_ptr || true
+
+# Portapapeles compartido con sway; termina solo cuando el trap mata a Xwayland
+"$(dirname "$0")/psm-clip" ":$d" &
+
+DISPLAY=":$d" xfreerdp3 "$rdp" /sec:rdp /cert:ignore /p:"" ${size:+/size:"$size"}

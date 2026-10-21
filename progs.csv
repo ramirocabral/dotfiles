@@ -152,3 +152,8 @@ x,claude-swap,Claude account swapper
 p,kubeseal,Kubernetes controller for sealing secrets
 p,net-tools,Network troubleshooting tools
 p,kdeconnect,Phone integration (KDE Connect)
+p,xorg-xwayland,X server for Wayland (rootful display used by psm)
+p,freerdp,RDP client (xfreerdp3 for psm)
+p,remmina,Remote desktop client
+p,xorg-xsetroot,Set X root cursor (psm)
+p,python-xlib,X11 bindings for Python (psm-clip)
