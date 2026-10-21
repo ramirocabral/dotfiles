@@ -149,8 +149,10 @@ p,satty,Simple image editor
 p,man-pages,Manual pages viewer
 a,bitwarden,Password manager
 x,claude-swap,Claude account swapper
+x,git+https://github.com/ramirocabral/wpm.git,Wallpaper manager (wpm)
 p,kubeseal,Kubernetes controller for sealing secrets
 p,net-tools,Network troubleshooting tools
+p,wireguard-tools,Tools for WireGuard VPN
 p,kdeconnect,Phone integration (KDE Connect)
 p,xorg-xwayland,X server for Wayland (rootful display used by psm)
 p,freerdp,RDP client (xfreerdp3 for psm)
