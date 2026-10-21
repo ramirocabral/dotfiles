@@ -38,7 +38,7 @@ bindsym $mod+Shift+b exec brave
 bindsym $mod+Shift+m exec wofi --show drun
 bindsym $mod+v exec cliphist list | wofi --dmenu --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy
 bindsym $mod+Shift+e exec thunar
-bindsym $mod+Shift+s exec spotify-launcher
+bindsym $mod+Shift+p exec spotify-launcher
 bindsym $mod+Shift+f exec doublecmd
 bindsym $mod+w kill
 
@@ -52,6 +52,13 @@ bindsym $mod+Shift+w exec wpm menu -q
 
 bindsym $mod+s exec \
   grim -g "$(slurp)" -t ppm - | \
+  satty --filename - \
+        --fullscreen \
+        --output-filename ~/Screenshots/$(date +%F_%T).png && \
+  wl-copy < ~/Screenshots/$(ls -t ~/Screenshots | head -n1)
+
+bindsym $mod+Shift+s exec \
+  grim -t ppm - | \
   satty --filename - \
         --fullscreen \
         --output-filename ~/Screenshots/$(date +%F_%T).png && \
