@@ -161,3 +161,6 @@ p,xorg-xsetroot,Set X root cursor (psm)
 p,python-xlib,X11 bindings for Python (psm-clip)
 p,mako,Notification daemon for Wayland
 p,libnotify,Desktop notifications (notify-send)
+a,herdr-bin,Supervise multiple coding agents in one terminal
+p,7zip,File archiver
+p,msitools,Inspect and build Windows Installer (.MSI) files
