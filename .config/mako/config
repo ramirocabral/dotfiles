@@ -1,0 +1,30 @@
+# mako - notification daemon
+# Paleta tomada de kitty/themes/Everready.conf
+
+font=JetBrainsMono Nerd Font 11
+background-color=#0c0c0c
+text-color=#f9e7c4
+border-color=#63b3f9
+progress-color=over #63b3f9
+
+border-size=2
+border-radius=6
+padding=12,14
+margin=10
+width=380
+max-icon-size=48
+
+anchor=top-right
+layer=overlay
+max-visible=5
+default-timeout=5000
+ignore-timeout=0
+
+[urgency=critical]
+border-color=#f7685d
+default-timeout=20000
+
+[urgency=low]
+border-color=#767676
+text-color=#767676
+default-timeout=3000

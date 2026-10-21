@@ -157,3 +157,5 @@ p,freerdp,RDP client (xfreerdp3 for psm)
 p,remmina,Remote desktop client
 p,xorg-xsetroot,Set X root cursor (psm)
 p,python-xlib,X11 bindings for Python (psm-clip)
+p,mako,Notification daemon for Wayland
+p,libnotify,Desktop notifications (notify-send)
