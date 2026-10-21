@@ -2,7 +2,6 @@ set $mod Mod4
 font pango:monospace 8
 
 ### Autostart
-exec --no-startup-id dex --autostart --environment sway
 # exec_always swaybg -i $HOME/.local/wallpapers/4.jpg -m fill
 exec_always wpm apply -q
 
@@ -14,6 +13,7 @@ exec swayidle -w \
   before-sleep 'swaylock -f'
 
 exec --no-startup-id nm-applet
+exec --no-startup-id kdeconnect-indicator
 exec_always autotiling
 
 exec_always wl-paste --watch cliphist store
