@@ -215,3 +215,5 @@ bindsym Ctrl+Mod4+q exec swaymsg exit
 bindsym Ctrl+Mod4+c exec swaymsg reload
 
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+for_window [title="is sharing your (screen|window|tab)\.$"] move scratchpad
