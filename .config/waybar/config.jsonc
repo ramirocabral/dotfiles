@@ -1,4 +1,8 @@
 {
+  // Per-host modules: local.jsonc (gitignored) defines "group/local". Missing
+  // file or group just hides it. See local.jsonc.example.
+  "include": ["~/.config/waybar/local.jsonc"],
+
   "layer": "top",
   "position": "bottom",
   "height": 20,
@@ -14,12 +18,13 @@
     // "sway/language",
     "custom/kb_layout",
     "pulseaudio",
-    // "battery",
+    "battery",
     "memory",
     "custom/cputemp",
     "cpu",
     "clock",
     "custom/wallpaper",
+    "group/local",
     "tray"
   ],
 
@@ -51,7 +56,7 @@
   "custom/nmvpn": {
     "format": "{} {icon}",
     "return-type": "json",
-    "exec": "$GOPATH/bin/waybar-nmvpn",
+    "exec": "$HOME/.local/bin/statusbar/nmvpn",
     "format-icons": {
         "connected": "",
         "disconnected": "",
@@ -82,12 +87,13 @@
     "scroll-step": 5
   },
 
-  // "battery": {
-  //   "format": "  {capacity}% {status}",
-  //   "status-charging": "",
-  //   "status-discharging": "",
-  //   "status-full": ""
-  // },
+  // Hidden on machines without a battery.
+  "battery": {
+    "format": "  {capacity}% {status}",
+    "status-charging": "",
+    "status-discharging": "",
+    "status-full": ""
+  },
 
   "memory": {
     "interval": 2,

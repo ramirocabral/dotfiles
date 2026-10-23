@@ -1,0 +1,12 @@
+// Per-host waybar modules -- copy to local.jsonc (gitignored) on machines that
+// need them. config.jsonc lists "group/local" in modules-right; add the module
+// names to its "modules" and define them here.
+//
+// Waybar's include precedence is outermost-wins and objects are not merged:
+// a module defined in config.jsonc cannot be overridden or extended from here.
+{
+  "group/local": {
+    "orientation": "inherit",
+    "modules": []
+  }
+}

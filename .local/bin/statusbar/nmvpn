@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# Waybar module for NetworkManager VPNs (plugin VPNs and WireGuard).
+#
+# Prints one JSON line per state change: "text" is the active VPN names and
+# "alt" selects the icon (connected | disconnected | none | error). Runs as a
+# continuous module, so waybar needs no "interval".
+
+escape() {
+    sed 's/\\/\\\\/g; s/"/\\"/g'
+}
+
+# nmcli -t escapes ':' inside names as '\:'; split on unescaped colons only.
+vpns() {
+    nmcli -t -f NAME,TYPE connection show "$@" 2>/dev/null \
+        | sed 's/\\:/\x1f/g' \
+        | awk -F: '$2 == "vpn" || $2 == "wireguard" { gsub("\x1f", ":", $1); print $1 }'
+}
+
+status() {
+    if ! nmcli -t general status >/dev/null 2>&1; then
+        echo '{"text":"","alt":"error","class":"error","tooltip":"NetworkManager is not running"}'
+        return
+    fi
+
+    active=$(vpns --active | paste -sd, - | sed 's/,/, /g' | escape)
+    if [ -n "$active" ]; then
+        printf '{"text":"%s","alt":"connected","class":"connected","tooltip":"VPN: %s"}\n' "$active" "$active"
+    elif [ -n "$(vpns)" ]; then
+        echo '{"text":"","alt":"disconnected","class":"disconnected","tooltip":"No VPN connected"}'
+    else
+        echo '{"text":"","alt":"none","class":"none","tooltip":"No VPN configured"}'
+    fi
+}
+
+last=$(status)
+echo "$last"
+# Re-check on every NetworkManager event, printing only when the output changes.
+# Exit once waybar stops reading.
+nmcli monitor 2>/dev/null | while read -r _; do
+    new=$(status)
+    [ "$new" = "$last" ] && continue
+    last=$new
+    echo "$new" || exit 0
+done &
+
+# Without this, killing the script leaves the nmcli pipeline running.
+trap 'pkill -P $$; exit 0' TERM INT HUP
+wait
