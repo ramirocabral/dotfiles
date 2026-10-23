@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Prints the network interface that outbound traffic leaves through (the route
+# to a public address), or nothing when there is no route. Used instead of a
+# per-machine interface name.
+
+ip route get 1.1.1.1 2>/dev/null \
+    | awk '{ for (i = 1; i < NF; i++) if ($i == "dev") { print $(i + 1); exit } }'

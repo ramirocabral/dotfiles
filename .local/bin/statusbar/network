@@ -1,22 +1,32 @@
-#!/bin/bash
+#!/bin/sh
+
+# i3blocks network block: "iface @ address (speed)" on wired, "SSID @ address"
+# on wireless. The interface is the one traffic actually leaves through, so
+# nothing here depends on a machine's interface names.
 
 #green color
 COLOR_GE80=${COLOR_GE80:-#00FF00}
 
-INTERFACE=$(nmcli device | grep connected |grep -vE "loopback|docker|br-|veth" | cut -d" " -f1)
-
-#print ip address
-ADDRESS=$(ip addr show $INTERFACE | grep -m 1 "inet " |  awk '{print $2}')
-
-# if wifi is connected, print SSID
-if [[ -z $(nmcli device | grep wifi) ]] then
-    SPEED=$(ethtool ${INTERFACE} | grep "Speed" | awk '{print $2}')
-    echo "$INTERFACE @ $ADDRESS ($SPEED)" 
-    echo "$INTERFACE @ $ADDRESS ($SPEED)" 
-else 
-    SSID="$(iw wlo1 info | grep ssid | awk '{print $2}') @"
-    echo  "${SSID} ${ADDRESS}"
-    echo  "${SSID} ${ADDRESS}"
+INTERFACE=$("$(dirname "$0")/egress-iface")
+if [ -z "$INTERFACE" ]; then
+    echo "Disconnected"
+    echo "Disconnected"
+    exit 0
 fi
 
-echo $COLOR_GE80
+#print ip address
+ADDRESS=$(ip -4 -o addr show dev "$INTERFACE" | awk '{print $4; exit}')
+
+if [ -d "/sys/class/net/$INTERFACE/wireless" ]; then
+    SSID=$(iw dev "$INTERFACE" link 2>/dev/null | sed -n 's/^[[:space:]]*SSID: //p')
+    TEXT="$SSID @ $ADDRESS"
+else
+    # Mb/s, or -1 when the driver does not report it (bridges, tunnels)
+    SPEED=$(cat "/sys/class/net/$INTERFACE/speed" 2>/dev/null)
+    TEXT="$INTERFACE @ $ADDRESS"
+    [ "${SPEED:--1}" -gt 0 ] 2>/dev/null && TEXT="$TEXT (${SPEED}Mb/s)"
+fi
+
+echo "$TEXT"
+echo "$TEXT"
+echo "$COLOR_GE80"

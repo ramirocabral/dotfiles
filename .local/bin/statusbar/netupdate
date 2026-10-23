@@ -11,7 +11,10 @@ update(){
     echo $(( sum - old ))
 }
 
-rx=$(update /sys/class/net/"$LAN_INTERFACE"/statistics/rx_bytes)
-tx=$(update /sys/class/net/"$LAN_INTERFACE"/statistics/tx_bytes)
+iface=$("${0:h}/egress-iface")
+[ -n "$iface" ] || { echo "Rx: 0 Tx: 0"; exit 0; }
+
+rx=$(update /sys/class/net/"$iface"/statistics/rx_bytes)
+tx=$(update /sys/class/net/"$iface"/statistics/tx_bytes)
 
 echo "Rx: $(numfmt --to=si $rx) Tx: $(numfmt --to=si $tx)"
