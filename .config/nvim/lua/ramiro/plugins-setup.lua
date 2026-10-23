@@ -1,123 +1,113 @@
--- auto install packer if not installed
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-		vim.cmd([[packadd packer.nvim]])
-		return true
-	end
-	return false
+-- auto install lazy.nvim if not installed
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"--branch=stable",
+		"https://github.com/folke/lazy.nvim.git",
+		lazypath,
+	})
 end
-local packer_bootstrap = ensure_packer() -- true if packer was just installed
+vim.opt.rtp:prepend(lazypath)
 
-
--- import packer safely
-local status, packer = pcall(require, "packer")
+-- import lazy safely
+local status, lazy = pcall(require, "lazy")
 if not status then
 	return
 end
 
--- add list of plugins to install
-return packer.startup(function(use)
-	use("wbthomason/packer.nvim") --manage packer
+-- add list of plugins to install. Versions are pinned in lazy-lock.json
+-- (`:Lazy restore` to go back to them, `:Lazy update` to move them).
+lazy.setup({
+	"nvim-lua/plenary.nvim", -- lua functions that many plugins use
 
-	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
-
-	use("folke/tokyonight.nvim")
+	"folke/tokyonight.nvim",
 
 	--colorschemes
-	use("bluz71/vim-nightfly-guicolors")
-	use({ "catppuccin/nvim", as = "catppuccin" })
-	use("sainnhe/sonokai")
-	use({
+	"bluz71/vim-nightfly-guicolors",
+	{ "catppuccin/nvim", name = "catppuccin" },
+	"sainnhe/sonokai",
+	{
 		"daltonmenezes/aura-theme",
-		rtp = "packages/neovim",
-		config = function() end,
-	})
-	use("bluz71/vim-moonfly-colors")
-	use("navarasu/onedark.nvim")
+		-- the neovim theme lives in a subdirectory of the repo
+		config = function(plugin)
+			vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+		end,
+	},
+	"bluz71/vim-moonfly-colors",
+	"navarasu/onedark.nvim",
 
 	-- add, delete, change surroundings
-	use("tpope/vim-surround")
+	"tpope/vim-surround",
 
 	--detect tabstop and shiftwidth automatically
-	use("tpope/vim-sleuth")
+	"tpope/vim-sleuth",
 
 	-- commenting with gc
-	use("numToStr/Comment.nvim")
+	"numToStr/Comment.nvim",
 
 	-- file explorer
-	use("nvim-tree/nvim-tree.lua")
+	"nvim-tree/nvim-tree.lua",
 
 	-- vs-code like icons
-	use("nvim-tree/nvim-web-devicons")
+	"nvim-tree/nvim-web-devicons",
 
 	-- statusline
-	use("nvim-lualine/lualine.nvim")
+	"nvim-lualine/lualine.nvim",
 
 	-- fuzzy finding w/ telescope
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
-	use({ "nvim-telescope/telescope.nvim", branch = "master" }) -- fuzzy finder
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- dependency for better sorting performance
+	{ "nvim-telescope/telescope.nvim", branch = "master" }, -- fuzzy finder
 
 	-- autocompletion
-	use("hrsh7th/nvim-cmp") -- completion plugin
-	use("hrsh7th/cmp-buffer") -- source for text in buffer
-	use("hrsh7th/cmp-path") -- source for file system paths
-	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
+	"hrsh7th/nvim-cmp", -- completion plugin
+	"hrsh7th/cmp-buffer", -- source for text in buffer
+	"hrsh7th/cmp-path", -- source for file system paths
+	"hrsh7th/cmp-nvim-lsp", -- for autocompletion
+	"saadparwaiz1/cmp_luasnip", -- for autocompletion
 
 	-- snippets
-	use("L3MON4D3/LuaSnip") -- snippet engine
-	use("rafamadriz/friendly-snippets") -- useful snippets
+	"L3MON4D3/LuaSnip", -- snippet engine
+	"rafamadriz/friendly-snippets", -- useful snippets
 
-	-- managing & installing lsp servers, linters & formatters
-	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
-	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
+	-- managing & installing lsp servers
+	"williamboman/mason.nvim", -- in charge of managing lsp servers
+	"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
 
 	-- configuring lsp servers
-	use("neovim/nvim-lspconfig") -- easily configure language servers
+	"neovim/nvim-lspconfig", -- easily configure language servers
 
-	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
-
-	-- formatting & linting
-	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
-	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
-
-	-- treesitter configuration
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-			ts_update()
-		end,
-	})
+	-- treesitter configuration. The main branch is a rewrite: there is no
+	-- nvim-treesitter.configs module, and it does not support lazy-loading.
+	{ "nvim-treesitter/nvim-treesitter", branch = "main", build = ":TSUpdate" },
 
 	-- auto closing
-	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
-	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
+	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
+	"windwp/nvim-ts-autotag", -- autoclose tags
 
 	-- git integration
-	use("lewis6991/gitsigns.nvim")
+	"lewis6991/gitsigns.nvim",
 
 	--vimtex
-	use("lervag/vimtex")
+	"lervag/vimtex",
 
 	-- copilot
-	use("github/copilot.vim")
+	"github/copilot.vim",
 
-	use ({
+	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
-		requires = { {"nvim-lua/plenary.nvim"} }
-	})
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 
 	--colorizer
-	use("norcalli/nvim-colorizer.lua")
-
-
-
-	if packer_bootstrap then
-		require("packer").sync()
-	end
-end)
+	"norcalli/nvim-colorizer.lua",
+}, {
+	-- load everything at startup, as packer did: each plugin is configured by
+	-- its module, required from init.lua right after this file.
+	defaults = { lazy = false },
+	install = { colorscheme = { "tokyonight-night" } },
+	change_detection = { notify = false },
+})

@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts) -- go to implementation
 	vim.keymap.set("n", "<leader>ca",function() vim.lsp.buf.code_action() end, opts) -- see available code actions
 	vim.keymap.set("n", "<leader>rn",function() vim.lsp.buf.rename() end, opts) -- smart rename
-	vim.keymap.set("n", "<leader>D", function() vim.lsp.diagnostic.get_line_diagnostics() end, opts) -- show diagnostics for current line
+	vim.keymap.set("n", "<leader>D", function() vim.diagnostic.open_float() end, opts) -- show diagnostics for current line
 	vim.keymap.set("n", "<leader>sd", function() vim.lsp.buf.hover() end, opts) --show documentation for what is under cursor
 end
 
