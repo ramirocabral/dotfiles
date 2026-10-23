@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=CyberArk PSM (xfreerdp3)
+Comment=Abre .rdp de CyberArk PSM en RemoteApp dentro de un Xwayland anidado; el resto va a Remmina
+Exec=psm %f
+MimeType=application/x-remmina;
+Icon=org.remmina.Remmina
+Terminal=false
+NoDisplay=true
