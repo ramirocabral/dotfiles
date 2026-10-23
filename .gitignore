@@ -11,6 +11,7 @@
 # Machine-specific config: generated or hand-written per host, never tracked.
 # Ship a .example alongside anything added here.
 .config/sway/monitor.conf
+.config/i3/monitor.conf
 .config/zsh/.local
 .config/waybar/local.jsonc
 

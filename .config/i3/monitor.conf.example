@@ -1,0 +1,10 @@
+### Monitors -- per-machine, NOT tracked
+#
+# Copy to monitor.conf and edit for this machine. `xrandr --query` lists the
+# output names (they differ from sway's).
+#
+# $fm is the primary output (workspaces 1-6); $sm the secondary, used by the
+# commented-out workspace 10-15 block in the main config.
+
+set $fm eDP-1
+# set $sm HDMI-1

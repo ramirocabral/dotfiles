@@ -1,14 +1,16 @@
 #!/bin/sh
 
-# Usar swaymsg para obtener la configuración de entrada
-# y buscar el layout actual.
-# Nota: La salida de 'swaymsg -t get_input' puede variar un poco.
-# layout=$(swaymsg -t get_inputs | grep -A 5 -E 'type:keyboard' | grep 'xkb_layout:' | awk '{print $2}')
-layout=$(swaymsg -t get_inputs | grep -m 1 -E 'xkb_active_layout_name' | awk '{print $2}' | tr -d '"')
+# Prints the active keyboard layout as US or ES, under sway or X (i3).
 
-# swaymsg devuelve el layout en un formato como "us" o "es".
+if [ -n "$SWAYSOCK" ]; then
+    # xkb_active_layout_name is the long name, e.g. "English (US)" or "Spanish"
+    layout=$(swaymsg -t get_inputs | grep -m 1 -E 'xkb_active_layout_name' | awk '{print $2}' | tr -d '"')
+    [ "$layout" = "English" ] && layout=us
+else
+    layout=$(setxkbmap -query | awk '/^layout:/ {print $2}')
+fi
 
-if [[ "$layout" == "English" ]]; then
+if [ "$layout" = "us" ]; then
     echo "US"
 else
     echo "ES"

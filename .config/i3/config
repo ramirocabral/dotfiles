@@ -21,8 +21,8 @@ exec_always --no-startup-id picom --config $HOME/.config/picom/picom.conf
 # Set autotiling
 exec_always --no-startup-id autotiling
 
-# Set wallpaper
-exec --no-startup-id feh --bg-fill $HOME/.local/wallpapers/4.jpg
+# Set wallpaper: a random one from wpm's pool (wpm itself only drives sway)
+exec --no-startup-id feh --no-fehbg --bg-fill --randomize $HOME/.local/share/wallpaper-manager/pool
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -117,9 +117,8 @@ bindsym $mod+e layout toggle split
 
 bindsym $mod+space exec togglelayout
 
-# monitor variables
-set $fm eDP-1
-# set $sm HDMI-1
+# monitor variables ($fm, $sm): per machine, gitignored; see monitor.conf.example
+include monitor.conf
 
 set $ws1 "1"
 set $ws2 "2"
@@ -173,12 +172,13 @@ bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
 bindsym $mod+Shift+6 move container to workspace number $ws6
 
-bindsym Mod1+Shift+1 move container to workspace number $ws10
-bindsym Mod1+Shift+2 move container to workspace number $ws11
-bindsym Mod1+Shift+3 move container to workspace number $ws12
-bindsym Mod1+Shift+4 move container to workspace number $ws13
-bindsym Mod1+Shift+5 move container to workspace number $ws14
-bindsym Mod1+Shift+6 move container to workspace number $ws15
+# second monitor: disabled together with $ws10-15 above
+# bindsym Mod1+Shift+1 move container to workspace number $ws10
+# bindsym Mod1+Shift+2 move container to workspace number $ws11
+# bindsym Mod1+Shift+3 move container to workspace number $ws12
+# bindsym Mod1+Shift+4 move container to workspace number $ws13
+# bindsym Mod1+Shift+5 move container to workspace number $ws14
+# bindsym Mod1+Shift+6 move container to workspace number $ws15
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Ctrl+r restart
