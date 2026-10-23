@@ -18,6 +18,7 @@ The first column determines how the program is installed:
 - p : Pacman
 - g : Git clone
 - i : Python Pip
+- x : pipx (installed for the user)
 
 The second column is the name of the package.
 

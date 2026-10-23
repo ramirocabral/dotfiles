@@ -1,0 +1,19 @@
+# Files in the repo that stow must not link into $HOME.
+#
+# This file replaces stow's built-in ignore list instead of extending it, so the
+# defaults that apply here are repeated first.
+\.git
+\.gitignore
+\.gitmodules
+^/README.*
+^/LICENSE.*
+^/COPYING
+
+# Repo tooling, not dotfiles.
+^/\.stow-local-ignore
+^/bootstrap\.sh
+^/autoinstall\.sh
+^/progs\.csv
+^/librewolf\.overrides\.cfg
+^/CLAUDE\.md
+^/\.claude

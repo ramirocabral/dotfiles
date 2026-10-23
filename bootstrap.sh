@@ -6,61 +6,68 @@
 
 REPO_URL="https://github.com/ramirocabral/dotfiles"
 REPO_DIR="dotfiles"
+LOG="/var/log/dotfiles-bootstrap.log"
+
+error(){
+    printf 'ERROR: %s\n' "$1" >&2
+    exit 1
+}
+
+[ "$(id -u)" -eq 0 ] || error "This script must be run as root."
 
 usercheck(){
-    #checks username
-    echo -e "Enter usename:"
-    read name 
-    id "$name" >/dev/null 2>/dev/null || error "Invalid username!"
-    export HOMEDIR="/home/$name"
-    export USERNAME="$name"
+    printf 'Enter username: '
+    read -r USERNAME
+    [ -n "$USERNAME" ] && id "$USERNAME" >/dev/null 2>&1 || error "Invalid username: '$USERNAME'"
+    HOMEDIR="$(getent passwd "$USERNAME" | cut -d: -f6)"
 }
 
 usercheck
 
-if [ "$(id -u)" -ne 0 ]; then
-    echo "This script must be run as root."
-    exit 1
-fi
-
 echo "##### Installing dependencies #####"
-pacman -Sy --noconfirm git stow sudo python-pip python-pipx base-devel zsh ca-certificates dialog >/dev/null 2>&1
+# -Syu, not -Sy: refreshing the databases without upgrading is a partial upgrade.
+pacman -Syu --needed --noconfirm git stow sudo python-pip python-pipx base-devel zsh ca-certificates dialog >>"$LOG" 2>&1 \
+    || error "Failed to install dependencies, see $LOG"
 
 ### CLONE DOTFILES ###
 
 TARGET_DIR="$HOMEDIR/$REPO_DIR"
 
-if [ ! -d "$TARGET_DIR" ]; then
+if [ ! -d "$TARGET_DIR/.git" ]; then
     echo "Cloning dotfiles..."
-    sudo -u "$USERNAME" git clone "$REPO_URL" "$TARGET_DIR" >/dev/null 2>&1
+    sudo -u "$USERNAME" git clone -q "$REPO_URL" "$TARGET_DIR" || error "Failed to clone $REPO_URL into $TARGET_DIR"
 else
     echo "$TARGET_DIR already exists. Skipping clone."
 fi
 
-chown -R "$USERNAME:$USERNAME" "$TARGET_DIR"
+chown -R "$USERNAME:" "$TARGET_DIR"
 
 ### APPLY DOTFILES ###
 
 echo "Linking dotfiles with stow..."
 
-# symlink all files in the repo to the user's home directory
-cd $TARGET_DIR
-sudo -u "$USERNAME" stow --adopt --ignore=".config" --ignore=".local" . || echo "Failed to link dotfiles"
+# Stow folds a directory into a single symlink only when it does not exist yet.
+# Create the directories that apps also write into, so they stay real in $HOME
+# and only the tracked files inside them get linked; folded, every app's state
+# would land in the repo. What the repo does not stow is in .stow-local-ignore.
+sudo -u "$USERNAME" mkdir -p "$HOMEDIR/.config" "$HOMEDIR/.local/share/applications"
 
-# this is dumb but i swear there is not a better way to do it
-mkdir -p "$HOMEDIR/.config"
-cd "$TARGET_DIR/.config"
-stow --target="$HOMEDIR/.config" . || echo "Failed to link .config files"
-
-mkdir -p "$HOMEDIR/.local"
-cd "$TARGET_DIR/.local"
-stow --target="$HOMEDIR/.local" . || echo "Failed to link .local files"
+# A fresh home already has skeleton files (.bashrc...) that make stow abort on
+# conflict. --adopt moves them into the repo and links them in their place, and
+# the checkout afterwards puts the tracked versions back. That checkout discards
+# local changes, so only do it on a clean working tree.
+cd "$TARGET_DIR" || error "Cannot enter $TARGET_DIR"
+if [ -z "$(sudo -u "$USERNAME" git status --porcelain)" ]; then
+    sudo -u "$USERNAME" stow --adopt -t "$HOMEDIR" . \
+        && sudo -u "$USERNAME" git checkout -q -- . \
+        || error "Failed to link dotfiles"
+else
+    sudo -u "$USERNAME" stow -t "$HOMEDIR" . \
+        || error "Failed to link dotfiles ($TARGET_DIR has local changes, so conflicts were not adopted)"
+fi
 
 echo "Running autoinstall.sh..."
 
-cd "$HOMEDIR"
-chown -R "$USERNAME:$USERNAME" .
+bash "$TARGET_DIR/autoinstall.sh" "$USERNAME" || error "autoinstall.sh failed"
 
-bash "$TARGET_DIR/autoinstall.sh" "$USERNAME" || echo "Failed to run autoinstall.sh"
-
-echo -e "DONE! Now reboot your system."
+echo "DONE! Now reboot your system."
