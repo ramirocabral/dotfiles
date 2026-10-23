@@ -46,11 +46,11 @@ done
 
 # Mandar la ventana sola a un workspace libre para que ocupe toda la pantalla: el tamaño de
 # la sesión RemoteApp se fija al conectar y no se adapta si después se mueve la ventana.
-# Candidatos: los que tienen atajo, primero el monitor grande (1-7) y después el vertical (10-18).
+# Candidatos: los que tienen atajo, primero el monitor grande (1-9) y después el vertical (10-18).
 if [[ -n "${SWAYSOCK:-}" ]]; then
     used=" $(swaymsg -t get_workspaces | grep -oE '"num": ?[0-9]+' | grep -oE '[0-9]+' | tr '\n' ' ') "
     ws=""
-    for n in 1 2 3 4 5 6 7 10 11 12 13 14 15 16 17 18; do
+    for n in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18; do
         [[ "$used" == *" $n "* ]] || { ws=$n; break; }
     done
     if [[ -n "$ws" ]]; then
