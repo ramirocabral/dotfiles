@@ -11,7 +11,7 @@ p,brightnessctl,Backlight brightness control
 p,btrfs-progs,Btrfs filesystem utilities
 p,discord,ds
 p,efibootmgr,EFI boot manager
-p,exa,Modern replacement for ls
+p,eza,Modern replacement for ls
 p,feh,Image viewer and cataloguer
 p,github-cli,GitHub command line tool
 p,gnome-keyring,Password manager and keyring
@@ -39,7 +39,7 @@ p,zsh,Shell
 p,zsh-autosuggestions,Fish-like autosuggestions for Zsh
 p,zsh-syntax-highlighting,Syntax highlighting for Zsh
 p,spotify-launcher,Spotify client
-p,man,Manual pager
+p,man-db,Manual pager
 p,fzf,Command-line fuzzy finder
 p,xorg-server,Xorg server
 p,xorg-xinit,Xorg init program
@@ -60,9 +60,9 @@ p,zathura-ps,PostScript plugin for zathura
 p,zathura-djvu,DjVu plugin for zathura
 p,jq,Command-line JSON processor
 p,texlive,TeX Live typesetting system
-i,s-tui,System monitoring for terminal
+p,s-tui,System monitoring for terminal
 p,libreoffice-fresh,Office suite
-a,testdisk,Data recovery tool
+p,testdisk,Data recovery tool
 a,nerdfix,Nerd Font fixer
 p,noto-fonts,Google Noto fonts
 i,pulsectl-asyncio,Python PulseAudio controller with asyncio support
@@ -71,7 +71,7 @@ g,https://github.com/romkatv/gitstatus,Git status prompt for Zsh
 p,i3-wm,Window manager
 p,i3status,Status bar for i3
 p,i3blocks,Modular status bar for i3
-a,autotiling,Automatic window tiling for i3
+p,autotiling,Automatic window tiling for i3
 p,acpi,ACPI client
 p,xorg-xrandr,X11 RandR extension client
 a,brave-bin,Web browser
@@ -81,7 +81,7 @@ p,doublecmd-qt6,Double Commander file manager
 p,aws-cli,Amazon Web Services command line interface
 p,docker,Container platform
 a,wscat,WebSocket cat
-a,postman,API development environment
+a,postman-bin,API development environment
 p,go,Go programming language
 p,deno,Javascript and TypeScript runtime
 p,tmux,Terminal multiplexer
@@ -91,22 +91,22 @@ p,cups-filters,CUPS filters
 p,cups-pdf,PDF printer backend for CUPS
 p,sqlite,Lightweight SQL database engine
 p,termscp,Terminal file transfer client
-a,darkly,Terminal color scheme
+a,darkly,Qt application style
 p,qt6ct,Qt6 configuration tool
 p,vim-spell-es,Spanish spell file for Vim
 p,iw,Wireless tools for Linux
 p,tree-sitter-cli,CLI for Tree-sitter parsers
 p,rsync,File synchronization tool
-a,bruno-bin,Bruno note-taking app
+a,bruno-bin,API client
 p,terraform,Infrastructure as Code tool
-a,obsidian,Knowledge base application
-p,dnsutils,DNS utilities
+p,obsidian,Knowledge base application
+p,bind,DNS utilities (dig/nslookup)
 p,libvirt,Virtualization API library
-p,qemu,Generic and open source machine emulator and virtualizer
+p,qemu-base,Generic and open source machine emulator and virtualizer
 p,podman,Daemonless container engine
 p,conntrack-tools,Connection tracking utilities
 p,crictl,CLI for CRI-compatible container runtimes
-a,cri-dockerd,CRI interface for Docker
+a,cri-dockerd-git,CRI interface for Docker
 p,kubeadm,Kubernetes cluster bootstrapping tool
 p,kubelet,Kubernetes node agent
 p,kubectl,Kubernetes command-line tool
@@ -125,7 +125,6 @@ a,networkmanager-fortisslvpn,FortiSSL VPN plugin for NetworkManager
 p,networkmanager-openvpn,OpenVPN plugin for NetworkManager
 p,networkmanager-openconnect,OpenConnect plugin for NetworkManager
 p,networkmanager-l2tp,L2TP plugin for NetworkManager
-p,mysql,MySQL database server
 p,yq,YAML processor
 p,sway,Wayland compositor
 p,swaybg,Sway background setter
@@ -139,15 +138,14 @@ p,wl-clipboard,Clipboard utilities for Wayland
 p,wireplumber,Modular session manager for PipeWire
 p,xdg-desktop-portal,XDG desktop portal implementation
 p,xdg-desktop-portal-wlr,Wayland backend for xdg-desktop
-a,xdg-desktop-portal-hyprland-git, Hyprland backend for xdg-desktop
-a,cliphist,Clipboard manager for Wayland
+p,cliphist,Clipboard manager for Wayland
 p,kitty,Fast terminal emulator
 a,kubectl-node-shell,Access Kubernetes nodes via kubectl
 a,usbimager,USB image writer
 p,k9s,Kubernetes CLI to manage and view Kubernetes clusters
 p,satty,Simple image editor
 p,man-pages,Manual pages viewer
-a,bitwarden,Password manager
+p,bitwarden,Password manager
 x,claude-swap,Claude account swapper
 x,git+https://github.com/ramirocabral/wpm.git,Wallpaper manager (wpm)
 p,kubeseal,Kubernetes controller for sealing secrets
@@ -164,3 +162,14 @@ p,libnotify,Desktop notifications (notify-send)
 a,herdr-bin,Supervise multiple coding agents in one terminal
 p,7zip,File archiver
 p,msitools,Inspect and build Windows Installer (.MSI) files
+p,networkmanager,Network connection manager
+p,git,Version control system
+p,stow,Symlink farm manager (dotfiles)
+p,docker-compose,Multi-container Docker orchestration
+p,glab,GitLab command line tool
+p,nmap,Network scanner
+p,tcpdump,Packet capture tool
+p,wget,Network file downloader
+p,nfs-utils,NFS client and server utilities
+a,claude-code,Claude Code CLI
+a,visual-studio-code-bin,Visual Studio Code
