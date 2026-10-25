@@ -89,10 +89,10 @@
 
   // Hidden on machines without a battery.
   "battery": {
-    "format": "  {capacity}% {status}",
-    "status-charging": "",
-    "status-discharging": "",
-    "status-full": ""
+    // Full and "not charging" fall back to "format".
+    "format": "  {capacity}%",
+    "format-charging": "  {capacity}% ",
+    "format-discharging": "  {capacity}% "
   },
 
   "memory": {
