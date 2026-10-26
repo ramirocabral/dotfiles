@@ -11,6 +11,7 @@
 
 # Repo tooling, not dotfiles.
 ^/\.stow-local-ignore
+^/\.githooks
 ^/bootstrap\.sh
 ^/autoinstall\.sh
 ^/progs\.csv

@@ -42,6 +42,9 @@ fi
 
 chown -R "$USERNAME:" "$TARGET_DIR"
 
+# Relink after every pull, see .githooks/post-merge.
+sudo -u "$USERNAME" git -C "$TARGET_DIR" config core.hooksPath .githooks
+
 ### APPLY DOTFILES ###
 
 echo "Linking dotfiles with stow..."
