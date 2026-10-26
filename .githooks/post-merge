@@ -2,8 +2,8 @@
 
 # Relink the dotfiles after every pull. Most of the repo is linked as whole
 # directories, so new files inside them show up on their own, but a new entry
-# under a directory that is real in $HOME (.config, .local/share/applications)
-# needs stow to run again. -R also drops the links to files the pull removed.
+# under a directory that is real in $HOME (.config, .local/bin,
+# .local/share/applications) needs stow to run again. -R also drops the links to files the pull removed.
 #
 # No --adopt: a conflict is reported and left alone, never resolved by moving
 # the local file over the tracked one. Stow aborts the whole run on a conflict,

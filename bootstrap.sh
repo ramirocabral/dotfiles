@@ -53,7 +53,7 @@ echo "Linking dotfiles with stow..."
 # Create the directories that apps also write into, so they stay real in $HOME
 # and only the tracked files inside them get linked; folded, every app's state
 # would land in the repo. What the repo does not stow is in .stow-local-ignore.
-sudo -u "$USERNAME" mkdir -p "$HOMEDIR/.config" "$HOMEDIR/.local/share/applications"
+sudo -u "$USERNAME" mkdir -p "$HOMEDIR/.config" "$HOMEDIR/.local/bin" "$HOMEDIR/.local/share/applications"
 
 # A fresh home already has skeleton files (.bashrc...) that make stow abort on
 # conflict. --adopt moves them into the repo and links them in their place, and

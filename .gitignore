@@ -23,10 +23,3 @@ CLAUDE.md
 
 # LibreOffice lock files
 .~lock.*#
-
-# pipx entrypoint symlinks. ~/.local/bin is stowed from this repo, so pipx
-# writes them here; they point at absolute venv paths and would dangle on
-# another machine. Install the packages via progs.csv instead.
-.local/bin/wpm
-.local/bin/claude-swap
-.local/bin/cswap
