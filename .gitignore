@@ -8,6 +8,10 @@
 
 .config/zsh/.zcompdump
 
+# herdr keeps its sockets, logs and sessions next to the config.
+.config/herdr/*
+!.config/herdr/config.toml
+
 # Machine-specific config: generated or hand-written per host, never tracked.
 # Ship a .example alongside anything added here.
 .config/sway/monitor.conf
