@@ -14,7 +14,6 @@
   "modules-center": [],
   "modules-right": [
     "network",
-    "custom/nmvpn",
     // "sway/language",
     "custom/kb_layout",
     "pulseaudio",
@@ -52,17 +51,6 @@
     "format-wifi": "{essid} @ {ipaddr}/{cidr}   {bandwidthDownBits}  {bandwidthUpBits}",
     "format-disconnected": " Disconnected",
     "tooltip-format": "{ifname} via {gwaddr}"
-  },
-  "custom/nmvpn": {
-    "format": "{} {icon}",
-    "return-type": "json",
-    "exec": "$HOME/.local/bin/statusbar/nmvpn",
-    "format-icons": {
-        "connected": "",
-        "disconnected": "",
-        "none": "",
-        "error": "⚠"
-    }
   },
   //
   // "sway/language": {
