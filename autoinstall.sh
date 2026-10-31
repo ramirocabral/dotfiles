@@ -303,7 +303,7 @@ install_aurhelper || error "Failed to install AUR helper, see $LOG"
 installationloop
 
 echo "Enabling services..."
-for unit in NetworkManager.service bluetooth.service docker.service libvirtd.service sshd.service fstrim.timer lightdm.service; do
+for unit in NetworkManager.service bluetooth.service docker.service libvirtd.service sshd.service fstrim.timer linux-modules-cleanup.service paccache.timer lightdm.service; do
     enable_service "$unit"
 done
 

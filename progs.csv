@@ -76,6 +76,8 @@ p,acpi,ACPI client
 p,xorg-xrandr,X11 RandR extension client
 a,brave-bin,Web browser
 p,reflector,Mirrorlist generator
+p,kernel-modules-hook,Keep running kernel modules after a kernel upgrade
+p,pacman-contrib,Pacman utilities: paccache pacdiff checkupdates
 p,cifs-utils,Tools for CIFS/SMB filesystems
 p,doublecmd-qt6,Double Commander file manager
 p,aws-cli,Amazon Web Services command line interface
