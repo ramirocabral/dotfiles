@@ -12,6 +12,8 @@
 .config/herdr/*
 !.config/herdr/config.toml
 
+.config/pulse/
+
 # Machine-specific config: generated or hand-written per host, never tracked.
 # Ship a .example alongside anything added here.
 .config/sway/monitor.conf
