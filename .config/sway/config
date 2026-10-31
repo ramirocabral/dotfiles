@@ -88,7 +88,6 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 bindsym $mod+e layout toggle split
 bindsym $mod+space exec togglelayout
-bindsym $mod+p exec ~/.local/bin/vpn-menu.sh
 
 include monitor.conf
 
