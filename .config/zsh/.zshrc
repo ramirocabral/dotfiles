@@ -7,8 +7,7 @@ HISTFILE=~/.cache/zsh/history
 
 setopt EXTENDED_HISTORY # Save timestamp of each command in history file
 setopt HIST_REDUCE_BLANKS # Remove superfluous blanks from each command in history
-setopt INC_APPEND_HISTORY # Immediately append commands to the history file
-# setopt SHARE_HISTORY  # Share history across all sessions
+setopt SHARE_HISTORY # Append each command to the history file at once and import the other sessions' ones
 
 export FZF_CTRL_R_OPTS="--sort --exact --tiebreak=index"
 
@@ -41,12 +40,6 @@ setopt prompt_subst
 # Run vcs_info just before a prompt is displayed (precmd)
 add-zsh-hook precmd vcs_info
 zstyle ':vcs_info:*' formats ' %F{yellow}%s%f(%F{red}%b%f)' # git(main)
-
-# Function to reload history before each prompt
-force_reload_history() {
-    fc -R
-}
-add-zsh-hook precmd force_reload_history
 
 [[ -f $autosuggestions ]] && source $autosuggestions
 [[ -f $syntax ]] && source $syntax
