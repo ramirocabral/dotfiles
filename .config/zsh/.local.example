@@ -4,3 +4,6 @@
 # Only for values that are true of this machine alone and cannot be detected at
 # runtime. Network interface, CPU sensor and battery are detected by the
 # statusbar scripts, so they don't go here.
+
+# Sway on a machine without a usable GPU (a VM): let wlroots render in software.
+# export WLR_RENDERER_ALLOW_SOFTWARE=1
