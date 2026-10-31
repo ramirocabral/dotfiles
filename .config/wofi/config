@@ -5,6 +5,6 @@ prompt=Run
 insensitive=true
 allow_markup=true
 no_actions=true
-term=alacritty
+term=kitty
 key_down=Ctrl-j
 key_up=Ctrl-k

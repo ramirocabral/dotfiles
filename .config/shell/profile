@@ -10,8 +10,8 @@ export PATH
 # Default programs:
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERMINAL="alacritty"
-export TERMINAL_PROG="alacritty"
+export TERMINAL="kitty"
+export TERMINAL_PROG="kitty"
 export BROWSER="brave"
 
 # Other important variables:
