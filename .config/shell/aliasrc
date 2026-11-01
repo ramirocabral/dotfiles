@@ -44,6 +44,15 @@ kgs() {
   kubectl get secret "$1" -o jsonpath='{.data}' | jq 'map_values(@base64d)'
 }
 
+# xterm-kitty declares 256 colors; kitty-direct lets vifm use the exact 24-bit theme.
+vifm() {
+  if [ "$TERM" = xterm-kitty ]; then
+    TERM=kitty-direct command vifm "$@"
+  else
+    command vifm "$@"
+  fi
+}
+
 knode() {
   local node="$1"
   [ -z "$node" ] && { echo "uso: knode <nodeName>"; return 1; }

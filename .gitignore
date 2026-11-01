@@ -14,6 +14,12 @@
 
 .config/pulse/
 
+.config/vifm/*
+!.config/vifm/vifmrc
+!.config/vifm/colors/
+.config/vifm/colors/*
+!.config/vifm/colors/tokyonight-night.vifm
+
 # Machine-specific config: generated or hand-written per host, never tracked.
 # Ship a .example alongside anything added here.
 .config/sway/monitor.conf

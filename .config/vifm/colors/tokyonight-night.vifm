@@ -1,0 +1,42 @@
+" Tokyo Night (night), transparent background like the neovim config.
+" cterm values are the nearest xterm-256 colors; gui values are used on direct-color terminals.
+
+highlight clear
+
+highlight Win          cterm=none ctermfg=153 ctermbg=default guifg=#c0caf5 guibg=default
+highlight AuxWin       cterm=none ctermfg=default ctermbg=default
+highlight Border       cterm=none ctermfg=239 ctermbg=default guifg=#3b4261 guibg=default
+highlight LineNr       cterm=none ctermfg=239 ctermbg=default guifg=#3b4261 guibg=default
+
+highlight Directory    cterm=bold ctermfg=111 ctermbg=default guifg=#7aa2f7 guibg=default gui=bold
+highlight Link         cterm=none ctermfg=117 ctermbg=default guifg=#7dcfff guibg=default
+highlight BrokenLink   cterm=none ctermfg=210 ctermbg=default guifg=#f7768e guibg=default
+highlight HardLink     cterm=none ctermfg=default ctermbg=default
+highlight Executable   cterm=none ctermfg=149 ctermbg=default guifg=#9ece6a guibg=default
+highlight Socket       cterm=none ctermfg=141 ctermbg=default guifg=#bb9af7 guibg=default
+highlight Device       cterm=none ctermfg=215 ctermbg=default guifg=#ff9e64 guibg=default
+highlight Fifo         cterm=none ctermfg=179 ctermbg=default guifg=#e0af68 guibg=default
+
+highlight Selected     cterm=bold ctermfg=215 ctermbg=default guifg=#ff9e64 guibg=default gui=bold
+highlight CurrLine     cterm=none ctermfg=default ctermbg=237 guibg=#283457
+highlight OtherLine    cterm=none ctermfg=default ctermbg=235 guibg=#1f2335
+
+highlight column:size  cterm=none ctermfg=146 ctermbg=default guifg=#a9b1d6 guibg=default
+highlight column:mtime cterm=none ctermfg=146 ctermbg=default guifg=#a9b1d6 guibg=default
+
+highlight TopLine      cterm=none ctermfg=60 ctermbg=default guifg=#565f89 guibg=default
+highlight TopLineSel   cterm=bold ctermfg=111 ctermbg=default guifg=#7aa2f7 guibg=default gui=bold
+highlight TabLine      cterm=none ctermfg=60 ctermbg=234 guifg=#565f89 guibg=#16161e
+highlight TabLineSel   cterm=bold ctermfg=234 ctermbg=111 guifg=#16161e guibg=#7aa2f7 gui=bold
+
+highlight StatusLine   cterm=none ctermfg=146 ctermbg=234 guifg=#a9b1d6 guibg=#16161e
+highlight JobLine      cterm=none ctermfg=111 ctermbg=234 guifg=#7aa2f7 guibg=#16161e
+highlight CmdLine      cterm=none ctermfg=153 ctermbg=default guifg=#c0caf5 guibg=default
+highlight ErrorMsg     cterm=bold ctermfg=167 ctermbg=default guifg=#db4b4b guibg=default gui=bold
+highlight WildBox      cterm=none ctermfg=153 ctermbg=234 guifg=#c0caf5 guibg=#16161e
+highlight WildMenu     cterm=bold ctermfg=153 ctermbg=237 guifg=#c0caf5 guibg=#283457 gui=bold
+highlight SuggestBox   cterm=none ctermfg=153 ctermbg=234 guifg=#c0caf5 guibg=#16161e
+
+highlight CmpMismatch  cterm=bold ctermfg=210 ctermbg=default guifg=#f7768e guibg=default gui=bold
+highlight CmpUnmatched cterm=bold ctermfg=149 ctermbg=default guifg=#9ece6a guibg=default gui=bold
+highlight CmpBlank     cterm=none ctermfg=default ctermbg=default

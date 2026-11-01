@@ -80,6 +80,7 @@ p,kernel-modules-hook,Keep running kernel modules after a kernel upgrade
 p,pacman-contrib,Pacman utilities: paccache pacdiff checkupdates
 p,cifs-utils,Tools for CIFS/SMB filesystems
 p,doublecmd-qt6,Double Commander file manager
+p,vifm,Twin-panel terminal file manager with vim keys
 p,aws-cli,Amazon Web Services command line interface
 p,docker,Container platform
 a,wscat,WebSocket cat
