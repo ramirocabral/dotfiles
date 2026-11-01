@@ -17,3 +17,19 @@ if ! out="$(stow -R -t "$HOME" . 2>&1)"; then
     printf '\n\033[1;31mpost-merge: stow failed, dotfiles were NOT relinked\033[0m\n%s\n' "$out" >&2
     printf 'Fix the conflicts above, then run: stow -R -t ~ .\n\n' >&2
 fi
+
+# Only what this pull added: every machine skips some packages on purpose in the installer.
+missing() {
+    git diff ORIG_HEAD HEAD -- progs.csv | sed -n "s/^+$1,\([^,]*\).*/\1/p" | xargs -r pacman -T
+}
+
+if command -v pacman >/dev/null 2>&1 && git rev-parse -q --verify ORIG_HEAD >/dev/null; then
+    pkgs="$(missing p | paste -sd ' ' -)"
+    aur="$(missing a | paste -sd ' ' -)"
+    if [ -n "$pkgs$aur" ]; then
+        printf '\n\033[1;33mpost-merge: new programs in progs.csv are not installed here\033[0m\n' >&2
+        [ -n "$pkgs" ] && printf '  sudo pacman -S --needed %s\n' "$pkgs" >&2
+        [ -n "$aur" ] && printf '  paru -S --needed %s\n' "$aur" >&2
+        echo >&2
+    fi
+fi
