@@ -65,8 +65,8 @@ bindsym $mod+Shift+e exec thunar
 # start Spotify
 bindsym $mod+Shift+s exec spotify-launcher
 
-# start lf file explorer
-bindsym $mod+Shift+f exec doublecmd
+# start vifm
+bindsym $mod+Shift+f exec kitty --single-instance env TERM=kitty-direct vifm
 
 # kill focused window
 bindsym $mod+w kill
