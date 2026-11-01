@@ -65,6 +65,7 @@ p,libreoffice-fresh,Office suite
 p,testdisk,Data recovery tool
 a,nerdfix,Nerd Font fixer
 p,noto-fonts,Google Noto fonts
+p,noto-fonts-cjk,Google Noto fonts for Chinese Japanese and Korean
 i,pulsectl-asyncio,Python PulseAudio controller with asyncio support
 p,wireshark-qt,Network protocol analyzer
 g,https://github.com/romkatv/gitstatus,Git status prompt for Zsh
