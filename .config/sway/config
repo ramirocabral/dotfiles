@@ -18,6 +18,7 @@ exec autotiling
 
 exec wl-paste --watch cliphist store
 exec blueman-applet
+exec unvpn-gui --tray
 
 ### Audio
 bindsym $mod+equal exec pactl set-sink-volume @DEFAULT_SINK@ +5%
