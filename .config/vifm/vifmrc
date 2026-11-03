@@ -562,9 +562,9 @@ nnoremap A cw
 
 " Open console in current directory
 if $DISPLAY != '' && executable('xterm')
-    nnoremap ,t :!xterm &<cr>
+    nnoremap ,s :!xterm &<cr>
 elseif $TERMINAL != ''
-    nnoremap ,t :!$TERMINAL &<cr>
+    nnoremap ,s :!$TERMINAL &<cr>
 endif
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
