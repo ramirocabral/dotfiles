@@ -218,6 +218,7 @@ bindsym Ctrl+Mod4+q exec swaymsg exit
 bindsym Ctrl+Mod4+c exec swaymsg reload
 
 for_window [class="^(xfreerdp|psm|RAIL)"] floating enable, border none
+for_window [app_id="^dragon-drop$"] floating enable, sticky enable
 
 for_window [title="is sharing your (screen|window|tab)\.$"] move scratchpad
 

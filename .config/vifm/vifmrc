@@ -519,6 +519,14 @@ endif
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l
 
+" Drag and drop through a dragon-drop window
+if executable('dragon-drop')
+    nnoremap ,d :!dragon-drop --all --and-exit %f &<cr>
+    vnoremap ,d :!dragon-drop --all --and-exit %f &<cr>
+    nnoremap ,D :!vifm-drop %d<cr>
+    nnoremap ,M :!vifm-drop -m %d<cr>
+endif
+
 " Interaction with system clipboard
 if has('win')
     " Yank current directory path to Windows clipboard with forward slashes

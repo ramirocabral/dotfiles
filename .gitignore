@@ -8,6 +8,9 @@
 
 .config/vifm/*
 !.config/vifm/vifmrc
+!.config/vifm/scripts/
+.config/vifm/scripts/*
+!.config/vifm/scripts/vifm-drop
 !.config/vifm/colors/
 .config/vifm/colors/*
 !.config/vifm/colors/tokyonight-night.vifm

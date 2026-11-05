@@ -241,3 +241,5 @@ smart_gaps on
 client.focused #166fce #166fce #166fce #166fce
 client.focused_inactive #000000 #000000 #000000 #000000
 client.unfocused #000000 #000000 #000000 #000000
+
+for_window [instance="^dragon-drop$"] floating enable, sticky enable
