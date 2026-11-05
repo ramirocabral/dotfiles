@@ -5,9 +5,11 @@
 #
 # $fm is the primary output (workspaces 1-9), $sm the secondary (10-18);
 # see the `workspace N output` lines in the main config.
+#
+# Keep one output at 0,0: Chromium on Wayland hides beforeunload dialogs otherwise (brave#60072).
 
 set $fm HDMI-A-1
 set $sm HDMI-A-2
 
-output $fm mode 1920x1080@60Hz
+output $fm mode 1920x1080@60Hz position 0 0
 output $sm mode 1920x1080@60Hz position 1920 0
