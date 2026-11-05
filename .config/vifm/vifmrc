@@ -626,8 +626,8 @@ nnoremap <a-o> :sync %c<cr>
 " Panel configuration examples
 " ------------------------------------------------------------------------------
 
-" Customize view columns a bit (enable ellipsis for truncated file names)
-windo set viewcolumns=-{name}..,8{size},18{mtime}
+" Truncate long names in the middle, so the start and the end stay visible
+windo set viewcolumns=^{name}..,8{size},18{mtime}
 
 " Show vertical border
 " set fillchars=vborder:│
