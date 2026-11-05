@@ -1,11 +1,3 @@
-.config/doublecmd/*
-
-!.config/doublecmd/doublecmd.xml
-!.config/doublecmd/doublecmd.cfg
-!.config/doublecmd/colors.json
-!.config/doublecmd/shortcuts.scf
-!.config/doublecmd/pixmaps.txt
-
 .config/zsh/.zcompdump
 
 # herdr keeps its sockets, logs and sessions next to the config.
