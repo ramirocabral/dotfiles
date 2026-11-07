@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Toggles a screen recording of a region picked with slurp. Recordings go to
+# ~/Videos; a second call stops the running one.
+
+# SIGINT lets wf-recorder finalize the mp4; SIGKILL leaves it unplayable.
+pkill -INT -x wf-recorder && exit
+
+geom=$(slurp) || exit
+mkdir -p "$HOME/Videos"
+file="$HOME/Videos/$(date +%F_%T).mp4"
+
+notify-send -t 1500 "Grabando" "Mod+Shift+r para cortar"
+if wf-recorder -g "$geom" -f "$file"; then
+	action=$(notify-send -A default=Abrir "Grabación guardada" "$file")
+	[ "$action" = default ] && xdg-open "$file"
+else
+	notify-send -u critical "wf-recorder falló"
+fi

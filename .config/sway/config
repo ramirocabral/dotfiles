@@ -65,6 +65,9 @@ bindsym $mod+Shift+s exec \
         --output-filename ~/Screenshots/$(date +%F_%T).png && \
   wl-copy < ~/Screenshots/$(ls -t ~/Screenshots | head -n1)
 
+### Screen recording
+bindsym $mod+Shift+r exec screenrec
+
 ### Focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
