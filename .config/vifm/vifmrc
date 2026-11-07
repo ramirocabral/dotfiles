@@ -58,6 +58,8 @@ set trash
 set vifminfo=dhistory,savedirs,chistory,state,tui,tabs,shistory,ehistory,
             \phistory,fhistory,dirstack,registers,bookmarks,bmarks,mchistory
 
+set dotfiles
+
 " This is size of all of the many kinds of histories, in particular it's the
 " number of last visited directories (not necessarily distinct ones) stored in
 " the directory history.
