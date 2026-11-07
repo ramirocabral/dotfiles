@@ -1,0 +1,49 @@
+#!/bin/sh
+# Clipboard history picker: fzf in history order, previewing the full text or the
+# image. Needs a kitty window for the image preview (see the sway binding).
+
+thumbs="${XDG_CACHE_HOME:-$HOME/.cache}/cliphist/thumbs"
+
+if [ "$1" = --preview ]; then
+	id=$2 ext=$3
+	if [ "$ext" = - ]; then
+		printf '%s\t\n' "$id" | cliphist decode
+		exit
+	fi
+	img="$thumbs/$id.$ext"
+	[ -s "$img" ] || printf '%s\t\n' "$id" | cliphist decode >"$img"
+	# the last line is a bare reset code that makes fzf show a scroll indicator
+	kitty icat --clear --transfer-mode=memory --unicode-placeholder --stdin=no \
+		--place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" "$img" |
+		sed '$d' | sed "$(printf '$s/$/\033[m/')"
+	exit
+fi
+
+mkdir -p "$thumbs"
+
+# id <tab> image extension, or "-" for text <tab> what fzf shows
+menu=$(cliphist list | tr -d '\000' | LC_ALL=C awk -F '\t' '
+	$2 ~ /^\[\[ binary data .* \]\]$/ {
+		n = split($2, w, " ")
+		printf "%s\t%s\t[%s %s, %s %s]\n", $1, w[n-2], w[n-2], w[n-1], w[4], w[5]
+		next
+	}
+	{ id = $1; sub(/^[^\t]*\t/, ""); printf "%s\t-\t%s\n", id, $0 }')
+[ -n "$menu" ] || exit 0
+
+# drop thumbnails of entries no longer in the history
+printf '%s\n' "$menu" | awk -F '\t' -v dir="$thumbs" '
+	$2 != "-" { keep[$1 "." $2] }
+	END {
+		cmd = "ls -A \"" dir "\""
+		while ((cmd | getline f) > 0) if (!(f in keep)) print dir "/" f
+	}' | xargs -r -d '\n' rm -f --
+
+# typing searches, ctrl-j/ctrl-k move (fzf defaults)
+sel=$(printf '%s\n' "$menu" | fzf --delimiter='\t' --with-nth=3.. \
+	--layout=reverse --prompt='clipboard> ' --info=inline-right --no-sort --exact \
+	--preview="$0 --preview {1} {2}" --preview-window=right,55%,border-left \
+	--bind=change:first) || exit 0
+
+# wl-copy stays around serving the selection; on the tty it would keep kitty open
+printf '%s\t\n' "${sel%%	*}" | cliphist decode | wl-copy 2>/dev/null

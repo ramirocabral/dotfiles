@@ -1,0 +1,4 @@
+# images are most of the db size: 750 items with ~110 images was ~65 MB
+max-items 5000
+# list truncates entries to this, and the picker can only search what it shows
+preview-width 300

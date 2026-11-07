@@ -37,7 +37,7 @@ floating_modifier $mod
 bindsym $mod+Return exec kitty --single-instance
 bindsym $mod+Shift+b exec brave
 bindsym $mod+Shift+m exec wofi --show drun
-bindsym $mod+v exec cliphist list | wofi --dmenu --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy
+bindsym $mod+v exec kitty --single-instance --class clipboard-picker cliphist-fzf
 bindsym $mod+Shift+e exec thunar
 bindsym $mod+Shift+p exec spotify-launcher
 bindsym $mod+Shift+f exec kitty --single-instance env TERM=kitty-direct vifm
@@ -219,6 +219,7 @@ bindsym Ctrl+Mod4+c exec swaymsg reload
 
 for_window [class="^(xfreerdp|psm|RAIL)"] floating enable, border none
 for_window [app_id="^dragon-drop$"] floating enable, sticky enable
+for_window [app_id="^clipboard-picker$"] floating enable, resize set 1400 800, move position center
 
 for_window [title="is sharing your (screen|window|tab)\.$"] move scratchpad
 
