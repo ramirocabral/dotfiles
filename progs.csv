@@ -143,6 +143,7 @@ p,wireplumber,Modular session manager for PipeWire
 p,xdg-desktop-portal,XDG desktop portal implementation
 p,xdg-desktop-portal-wlr,Wayland backend for xdg-desktop
 p,qt6-wayland,Native Wayland support for Qt6 apps
+p,polkit-gnome,Polkit authentication agent
 p,cliphist,Clipboard manager for Wayland
 p,kitty,Fast terminal emulator
 a,kubectl-node-shell,Access Kubernetes nodes via kubectl
@@ -156,6 +157,7 @@ x,claude-swap,Claude account swapper
 x,git+https://github.com/ramirocabral/wpm.git,Wallpaper manager (wpm)
 p,kubeseal,Kubernetes controller for sealing secrets
 p,net-tools,Network troubleshooting tools
+p,traceroute,Network route tracing tool
 p,wireguard-tools,Tools for WireGuard VPN
 p,kdeconnect,Phone integration (KDE Connect)
 p,xorg-xwayland,X server for Wayland (rootful display used by psm)
