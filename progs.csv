@@ -82,6 +82,8 @@ p,pacman-contrib,Pacman utilities: paccache pacdiff checkupdates
 p,cifs-utils,Tools for CIFS/SMB filesystems
 p,vifm,Twin-panel terminal file manager with vim keys
 a,dragon-drop,Drag-and-drop source/target window (used from vifm)
+p,poppler,PDF utilities (pdftotext for vifm previews)
+p,ffmpeg,Audio/video toolkit (ffprobe for vifm previews)
 p,aws-cli,Amazon Web Services command line interface
 p,docker,Container platform
 a,wscat,WebSocket cat
@@ -181,3 +183,7 @@ p,wget,Network file downloader
 p,nfs-utils,NFS client and server utilities
 a,claude-code,Claude Code CLI
 a,visual-studio-code-bin,Visual Studio Code
+p,rbw,Bitwarden CLI with a background agent
+p,rofi-rbw,Rofi picker that types Bitwarden passwords
+p,wtype,Type text into Wayland windows
+p,xdotool,Type text into X11 windows

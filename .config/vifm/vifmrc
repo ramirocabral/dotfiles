@@ -51,7 +51,7 @@ set syscalls
 " files by deleting them and then using p to put the file in the new location.
 " I recommend not changing this until you are familiar with vifm.
 " This probably shouldn't be an option.
-set trash
+set notrash
 
 " What should be saved automatically on restarting vifm.  Drop "savedirs"
 " value if you don't want vifm to remember last visited directories for you.
@@ -523,8 +523,8 @@ nnoremap gb :file &<cr>l
 
 " Drag and drop through a dragon-drop window
 if executable('dragon-drop')
-    nnoremap ,d :!dragon-drop --all --and-exit %f &<cr>
-    vnoremap ,d :!dragon-drop --all --and-exit %f &<cr>
+    nnoremap ,d :!NO_AT_BRIDGE=1 dragon-drop --all --and-exit %f &<cr>
+    vnoremap ,d :!NO_AT_BRIDGE=1 dragon-drop --all --and-exit %f &<cr>
     nnoremap ,D :!vifm-drop %d<cr>
     nnoremap ,M :!vifm-drop -m %d<cr>
 endif
@@ -605,6 +605,10 @@ nnoremap yO :!sudo cp -r %f %D<cr>
 vnoremap yO :!sudo cp -r %f %D<cr>
 nnoremap mO :!sudo mv %f %D<cr>
 vnoremap mO :!sudo mv %f %D<cr>
+
+" New directory / file
+nnoremap ,n :mkdir<space>
+nnoremap ,f :touch<space>
 
 " Tabs per pane, space as leader
 set tabscope=pane

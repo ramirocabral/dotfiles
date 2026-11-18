@@ -1,0 +1,70 @@
+#!/bin/sh
+# Claude Code status line:
+#   model · effort │ user@host:cwd │ account (most important first: Claude Code truncates the tail)
+#   5h / 7d subscription limits, one row each.
+#   The orange tick marks how much of the window has elapsed: fill past it = burning faster than the window lasts.
+# Claude Code pipes the session JSON on stdin; the account comes from its config file.
+# Limits come from the (undocumented) endpoint behind /usage, fetched in the background at most once a minute
+# and cached for all sessions. If the cache is stale (expired token, no network) it falls back to the session's
+# own rate_limits, which only change when Claude answers.
+
+config="${CLAUDE_CONFIG_DIR:-$HOME}/.claude.json"
+creds="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/.credentials.json"
+account=$(jq -r '.oauthAccount.emailAddress // empty' "$config" 2>/dev/null)
+host=$(uname -n)
+now=$(date +%s)
+mtime() { stat -c %Y "$1" 2>/dev/null || echo 0; }
+
+usage=/dev/null
+if [ -n "$account" ] && [ -r "$creds" ]; then
+	cache="${XDG_CACHE_HOME:-$HOME/.cache}/claude-statusline/usage-$account.json"
+	if [ $((now - $(mtime "$cache.stamp"))) -ge 60 ] && mkdir -p "${cache%/*}" && touch "$cache.stamp"; then
+		# Token goes through stdin, never argv.
+		setsid -f sh -c '
+			jq -r "\"Authorization: Bearer \" + .claudeAiOauth.accessToken" "$1" |
+				curl -fsS --max-time 10 -H @- -H "anthropic-beta: oauth-2025-04-20" \
+					https://api.anthropic.com/api/oauth/usage >"$2.$$" &&
+				jq -e .five_hour "$2.$$" >/dev/null && mv "$2.$$" "$2"
+			rm -f "$2.$$"' sh "$creds" "$cache" </dev/null >/dev/null 2>&1
+	fi
+	[ $((now - $(mtime "$cache"))) -lt 300 ] && usage=$cache
+fi
+
+exec jq -r \
+	--slurpfile api "$usage" \
+	--arg account "${account:-api key}" \
+	--arg home "$HOME" \
+	--arg user "${USER:-$(id -un)}" \
+	--arg host "${host%%.*}" '
+def c(code; s): "\u001b[\(code)m\(s)\u001b[0m";
+def level: if . < 50 then "38;5;110" elif . < 80 then "38;5;180" else "38;5;174" end;
+def clamp(lo; hi): [[., lo] | max, hi] | min;
+def epoch: try (sub("\\.[0-9]+"; "") | sub("\\+00:00$"; "Z") | fromdateiso8601) catch null;
+def window: if . then {used_percentage: .utilization, resets_at: (.resets_at | epoch)} else null end;
+def until_reset: (. - now | floor) as $s
+	| if $s <= 0 then "ya"
+	elif $s >= 86400 then "\($s / 86400 | floor)d\($s % 86400 / 3600 | floor)h"
+	elif $s >= 3600 then "\($s / 3600 | floor)h\($s % 3600 / 60 | floor)m"
+	else "\($s / 60 | ceil)m" end;
+def limit(name; window):
+	20 as $w
+	| (.used_percentage // 0 | round) as $p
+	| ($p * $w / 100 | round | clamp(0; $w)) as $fill
+	| (if .resets_at then (1 - (.resets_at - now) / window) * $w | floor | clamp(0; $w - 1) else -1 end) as $tick
+	| ($p | level) as $col
+	| c("2"; name) + " "
+	+ ([range($w) | if . == $tick then c("38;5;173"; "┃") elif . < $fill then c($col; "━") else c("38;5;238"; "─") end] | add)
+	+ c("2"; " \($p)%" + (if .resets_at then " ↻ \(.resets_at | until_reset)" else "" end));
+
+($api[0] // null) as $u
+| (if $u then {five_hour: ($u.five_hour | window), seven_day: ($u.seven_day | window)} else .rate_limits end) as $rl
+| (.workspace.current_dir // .cwd // "") as $dir
+| (if $dir == $home then "~" elif ($dir | startswith($home + "/")) then "~" + $dir[($home | length):] else $dir end) as $cwd
+
+| ([ .model.display_name + (if .effort.level then " · " + c("38;5;139"; .effort.level) else "" end),
+     "\($user)@\($host):" + c("38;2;177;185;249"; $cwd),
+     c("2"; $account | sub("@.*"; ""))
+   ] | join(c("2"; " │ "))),
+  ($rl.five_hour // empty | limit("5h"; 18000)),
+  ($rl.seven_day // empty | limit("7d"; 604800))
+'

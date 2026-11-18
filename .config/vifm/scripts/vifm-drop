@@ -5,7 +5,7 @@ op="cp -r"
 [ "$1" = -m ] && { op="mv"; shift; }
 dest=${1:-.}
 
-dragon-drop --target --and-exit --print-path | while IFS= read -r item; do
+NO_AT_BRIDGE=1 dragon-drop --target --and-exit --print-path | while IFS= read -r item; do
     case $item in
         http://* | https://*) curl -fsSL --output-dir "$dest" -OJ -- "$item" ;;
         *) $op -n -- "$item" "$dest"/ ;;
