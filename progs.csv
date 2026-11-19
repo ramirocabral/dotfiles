@@ -26,6 +26,9 @@ p,neovim,Best text editor ever
 p,pavucontrol,PulseAudio volume control
 p,picom,Compositor for X11
 p,pipewire-pulse,PulseAudio replacement
+p,pipewire-alsa,Route ALSA default through PipeWire
+p,linux-firmware,Firmware for audio/wifi/GPU and other devices
+p,sof-firmware,Sound Open Firmware (audio and DMIC on modern laptops)
 p,python-pip,Python package installer
 p,rofi,Application launcher and dmenu replacement
 p,scrot,Screenshot utility
