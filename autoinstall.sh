@@ -333,27 +333,15 @@ fi
 echo "Creating user directories..."
 sudo -u "$USERNAME" mkdir -p "$HOMEDIR/Screenshots" "$HOMEDIR/Desktop" "$HOMEDIR/Documents" "$HOMEDIR/projects"
 
-# CyberArk PSM .rdp downloads open with psm (.local/share/applications/psm.desktop)
-if command -v xdg-mime >/dev/null 2>&1; then
-    sudo -u "$USERNAME" xdg-mime default psm.desktop application/x-remmina
-fi
-
 # Not a tracked mimeapps.list: apps rewrite it, which would replace the stow symlink
 echo "Setting default applications..."
 if command -v xdg-mime >/dev/null 2>&1; then
-    while read -r app types; do
-        if [ -f "/usr/share/applications/$app" ]; then
-            # shellcheck disable=SC2086
-            sudo -u "$USERNAME" xdg-mime default "$app" $types
+    while IFS=, read -r mime app; do
+        case "$mime" in "#"* | "") continue ;; esac
+        if [ -f "/usr/share/applications/$app" ] || [ -f "$HOMEDIR/.local/share/applications/$app" ]; then
+            sudo -u "$USERNAME" xdg-mime default "$app" "$mime"
         fi
-    done <<'EOF'
-org.pwmt.zathura-pdf-poppler.desktop application/pdf
-org.pwmt.zathura-ps.desktop application/postscript
-org.pwmt.zathura-djvu.desktop image/vnd.djvu
-org.gnome.eog.desktop image/png image/jpeg image/gif image/webp image/bmp image/tiff
-vlc.desktop video/mp4 video/x-matroska video/webm video/quicktime video/x-msvideo audio/mpeg audio/flac audio/ogg audio/x-wav
-kitty-open.desktop text/plain
-EOF
+    done <"$DOTFILESDIR/mimeapps.csv"
 fi
 
 # kubie only reads ~/.kube/kubie.yaml; the tracked copy lives in .config/kubie

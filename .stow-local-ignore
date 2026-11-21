@@ -15,6 +15,7 @@
 ^/bootstrap\.sh
 ^/autoinstall\.sh
 ^/progs\.csv
+^/mimeapps\.csv
 ^/librewolf\.overrides\.cfg
 ^/CLAUDE\.md
 ^/\.claude

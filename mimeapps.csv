@@ -1,0 +1,21 @@
+#MIME TYPE,DESKTOP FILE
+application/pdf,org.pwmt.zathura-pdf-poppler.desktop
+application/postscript,org.pwmt.zathura-ps.desktop
+image/vnd.djvu,org.pwmt.zathura-djvu.desktop
+image/png,org.gnome.eog.desktop
+image/jpeg,org.gnome.eog.desktop
+image/gif,org.gnome.eog.desktop
+image/webp,org.gnome.eog.desktop
+image/bmp,org.gnome.eog.desktop
+image/tiff,org.gnome.eog.desktop
+video/mp4,vlc.desktop
+video/x-matroska,vlc.desktop
+video/webm,vlc.desktop
+video/quicktime,vlc.desktop
+video/x-msvideo,vlc.desktop
+audio/mpeg,vlc.desktop
+audio/flac,vlc.desktop
+audio/ogg,vlc.desktop
+audio/x-wav,vlc.desktop
+text/plain,kitty-open.desktop
+application/x-remmina,psm.desktop
