@@ -8,3 +8,4 @@ ssh_command = "ssh"
 term = "xterm-256color"
 vault_timeout = 0          # seconds idle before locking the vault (0 = never)
 # clipboard_command = "wl-copy"   # autodetected (wl-copy, xclip, xsel) when unset
+theme = "dracula"
