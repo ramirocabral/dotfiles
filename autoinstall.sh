@@ -338,6 +338,24 @@ if command -v xdg-mime >/dev/null 2>&1; then
     sudo -u "$USERNAME" xdg-mime default psm.desktop application/x-remmina
 fi
 
+# Not a tracked mimeapps.list: apps rewrite it, which would replace the stow symlink
+echo "Setting default applications..."
+if command -v xdg-mime >/dev/null 2>&1; then
+    while read -r app types; do
+        if [ -f "/usr/share/applications/$app" ]; then
+            # shellcheck disable=SC2086
+            sudo -u "$USERNAME" xdg-mime default "$app" $types
+        fi
+    done <<'EOF'
+org.pwmt.zathura-pdf-poppler.desktop application/pdf
+org.pwmt.zathura-ps.desktop application/postscript
+org.pwmt.zathura-djvu.desktop image/vnd.djvu
+org.gnome.eog.desktop image/png image/jpeg image/gif image/webp image/bmp image/tiff
+vlc.desktop video/mp4 video/x-matroska video/webm video/quicktime video/x-msvideo audio/mpeg audio/flac audio/ogg audio/x-wav
+kitty-open.desktop text/plain
+EOF
+fi
+
 # kubie only reads ~/.kube/kubie.yaml; the tracked copy lives in .config/kubie
 echo "Configuring kubie..."
 if [ -f "$HOMEDIR/.config/kubie/kubie.yaml" ]; then
