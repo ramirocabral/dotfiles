@@ -15,15 +15,12 @@ alias ..='cd ..'
 alias vim='nvim'
 alias cp="cp -iv"
 alias mv="mv -iv"
-alias bare="/usr/bin/git --git-dir=$HOME/dotfiles.git --work-tree=$HOME"
-alias setclip="xclip -sel clp"
 alias forcepull="git fetch; git reset --hard HEAD; git merge '@{u}'"
 alias gs="git status"
 alias gc="git commit -m"
 alias json='jq'
 alias html='pup'
 alias wificonnect='nmcli -ask device wifi connect'
-alias bluetooth='sudo systemctl start bluetooth.service'
 alias updaterepos='sudo reflector --country 'us' --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias list-hosts='cat ~/.ssh/config | grep "Host " | cut -d " " -f 2 | sort'
 alias ns='kubie ns'
@@ -37,8 +34,15 @@ alias kgpvc='kubectl get pvc'
 alias kd='kubectl describe'
 alias kdp='kubectl describe pod'
 alias kl='kubectl logs'
-alias keti='kubectl exec -it'
 alias s='kitten ssh'
+
+setclip() {
+  if [ -n "$WAYLAND_DISPLAY" ]; then
+    wl-copy
+  else
+    xclip -selection clipboard
+  fi
+}
 
 kgs() {
   kubectl get secret "$1" -o jsonpath='{.data}' | jq 'map_values(@base64d)'
