@@ -2,4 +2,6 @@
 fullscreen = true
 output-filename = "~/Screenshots/satty-%Y%m%d-%H%M%S.png"
 early-exit = true       # cierra satty después de guardar/copiar
-# copy-command = "wl-copy"
+# sin esto el portapapeles se pierde al cerrar satty
+copy-command = "wl-copy"
+save-after-copy = true

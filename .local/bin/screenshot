@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Screenshot of a region picked with slurp ("full": the whole screen), annotated in
+# satty. Enter saves it to ~/Screenshots and copies it; Escape discards it.
+
+if [ "$1" = full ]; then
+	set --
+else
+	geom=$(slurp) || exit
+	set -- -g "$geom"
+fi
+
+mkdir -p "$HOME/Screenshots"
+file="$HOME/Screenshots/$(date +%F_%T).png"
+grim "$@" -t ppm - | satty --filename - --output-filename "$file" --actions-on-enter save-to-file
+# satty's own copy can die with it when it exits right after saving
+[ -f "$file" ] && wl-copy --type image/png <"$file"

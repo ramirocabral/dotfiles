@@ -48,23 +48,8 @@ bindsym $mod+w kill
 bindsym $mod+Shift+w exec wpm menu -q
 
 ### Screenshot
-# bindsym $mod+s exec \
-#   grim -g "$(slurp)" ~/Screenshots/$(date +%F_%T).png && \
-#   wl-copy < ~/Screenshots/$(ls -t $HOME/Screenshots | head -n1)
-
-bindsym $mod+s exec \
-  grim -g "$(slurp)" -t ppm - | \
-  satty --filename - \
-        --fullscreen \
-        --output-filename ~/Screenshots/$(date +%F_%T).png && \
-  wl-copy < ~/Screenshots/$(ls -t ~/Screenshots | head -n1)
-
-bindsym $mod+Shift+s exec \
-  grim -t ppm - | \
-  satty --filename - \
-        --fullscreen \
-        --output-filename ~/Screenshots/$(date +%F_%T).png && \
-  wl-copy < ~/Screenshots/$(ls -t ~/Screenshots | head -n1)
+bindsym $mod+s exec screenshot
+bindsym $mod+Shift+s exec screenshot full
 
 ### Screen recording
 bindsym $mod+Shift+r exec screenrec
