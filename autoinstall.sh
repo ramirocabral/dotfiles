@@ -351,6 +351,16 @@ if [ -f "$HOMEDIR/.config/kubie/kubie.yaml" ]; then
     sudo -u "$USERNAME" ln -sfn "$HOMEDIR/.config/kubie/kubie.yaml" "$HOMEDIR/.kube/kubie.yaml"
 fi
 
+# settings.json also holds per-machine state, so only the statusLine key is set, never overwritten
+echo "Configuring Claude Code status line..."
+if command -v jq >/dev/null 2>&1; then
+    sudo -u "$USERNAME" sh -c '
+        mkdir -p "${1%/*}"
+        [ -s "$1" ] || echo "{}" >"$1"
+        jq ".statusLine //= {type: \"command\", command: \"~/.local/bin/claude-statusline\", refreshInterval: 5}" "$1" >"$1.tmp" &&
+            mv "$1.tmp" "$1" || rm -f "$1.tmp"' sh "$HOMEDIR/.claude/settings.json"
+fi
+
 # 8. FINAL REPORT
 clear
 echo "########################################"
